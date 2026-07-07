@@ -5,7 +5,7 @@
 // Stufe setzen (siehe docs/DEPLOYMENT.md):
 //
 //   dashboard-projekte.ch      -> 127.0.0.1:8020 (prod)
-//   test.dashboard-projekte.ch -> 127.0.0.1:8021 (test / Kunde LLV)
+//   test.dashboard-projekte.ch -> 127.0.0.1:8021 (test)
 //   int.dashboard-projekte.ch  -> 127.0.0.1:8022 (int)
 //   dev.dashboard-projekte.ch  -> 127.0.0.1:8023 (dev)
 //

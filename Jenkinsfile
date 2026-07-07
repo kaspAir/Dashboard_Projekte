@@ -6,13 +6,11 @@
 // und feuern die passende Deploy-Stufe:
 //
 //   dev  → Tests + Deploy dev   (dev.dashboard-projekte.ch   → Port 8023)
-//   test → Tests + Deploy test  (test.dashboard-projekte.ch  → Port 8021)  [Kunde LLV!]
+//   test → Tests + Deploy test  (test.dashboard-projekte.ch  → Port 8021)
 //   int  → Tests + Deploy int   (int.dashboard-projekte.ch   → Port 8022)
 //   main → Tests + Deploy prod  (dashboard-projekte.ch       → Port 8020)
 //
 // Promotion streng sequenziell: dev → test → int → main. Nie Stufen ueberspringen.
-// Die Stufe "test" ist die kundenwahrnehmbare LLV-Umgebung und ist zusaetzlich durch ein
-// manuelles Freigabe-Gate gesichert (Deploy nur auf ausdrueckliche Bestaetigung).
 //
 // Voraussetzungen Jenkins:
 //   - SSH-Credential 'dashboard-deploy' (privater Key fuer u7031y_kaspar@83.228.238.194,
@@ -96,13 +94,9 @@ pipeline {
             }
         }
 
-        stage('Deploy test (Kunde LLV)') {
+        stage('Deploy test') {
             when { expression { env.JOB_NAME.contains('test') } }
             steps {
-                timeout(time: 30, unit: 'MINUTES') {
-                    input message: 'Deploy auf die Kunden-Stufe test.dashboard-projekte.ch (LLV)?',
-                          ok: 'Deploy freigeben'
-                }
                 script { deploy('dashboard-test', 'test', '8021', '1') }
             }
         }

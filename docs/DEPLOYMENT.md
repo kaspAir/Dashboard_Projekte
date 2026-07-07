@@ -9,16 +9,13 @@ lokalen **Gunicorn**-Port.
 | Branch | Umgebung | URL | Port | App-Verzeichnis | Workers |
 |--------|----------|-----|------|-----------------|---------|
 | `dev` | dev | dev.dashboard-projekte.ch | 8023 | `~/dashboard-dev` | 1 |
-| `test` | **test (Kunde LLV)** | test.dashboard-projekte.ch | 8021 | `~/dashboard-test` | 1 |
+| `test` | test | test.dashboard-projekte.ch | 8021 | `~/dashboard-test` | 1 |
 | `int` | int | int.dashboard-projekte.ch | 8022 | `~/dashboard-int` | 1 |
 | `main` | prod | dashboard-projekte.ch | 8020 | `~/dashboard` | 2 |
 
 **Promotion streng sequenziell: `dev → test → int → main`.** Nie Stufen
-überspringen.
-
-> ⚠️ **`test` ist die kundenwahrnehmbare LLV-Stufe.** Deploy dorthin **nur auf
-> ausdrückliche Anweisung** – in der Pipeline zusätzlich durch ein manuelles
-> Freigabe-Gate (`input`) abgesichert.
+überspringen. Jeder Deploy wird bewusst durch das Ausführen des jeweiligen
+Jenkins-Jobs ausgelöst.
 
 Port-Block **8020–8023** ist frei gewählt und kollidiert nicht mit hermespia
 (8000–8003) oder ProS (8010–8012) auf demselben Host.
