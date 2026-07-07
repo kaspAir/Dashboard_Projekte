@@ -6,7 +6,6 @@ from flask import Flask, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
 from .data import dashboard_data
-from .extraction import extract_snapshot
 from .mim import load_mim
 
 META_IDS = ["project_name", "project_number", "report_date", "project_lead",
@@ -75,6 +74,7 @@ def create_app() -> Flask:
         tmp = os.path.join(tempfile.gettempdir(), secure_filename(f.filename))
         f.save(tmp)
         try:
+            from .extraction import extract_snapshot  # lazy: docx/lxml erst bei Bedarf laden
             result = _result_view(load_mim(), extract_snapshot(tmp, load_mim()), f.filename)
         except Exception as exc:  # Extraktion darf die Seite nicht crashen
             return render_template("upload.html", env=env, result=None,
