@@ -54,7 +54,7 @@
 
   <header>
     <h1>Projekt-Dashboard</h1>
-    <div class="env">Umgebung: <b>{{ env }}</b> · Datenquelle: {{ d.data_source }} · <a href="/projekte" style="color:#2563eb;text-decoration:none;font-weight:600">Alle Projekte →</a> · <a href="/quellen" style="color:#2563eb;text-decoration:none;font-weight:600">Quellen →</a> · <a href="/upload" style="color:#2563eb;text-decoration:none;font-weight:600">PSR hochladen →</a></div>
+    <div class="env">{% if org %}Mandant: <b>{{ org.name }}</b> · <a href="/orgs" style="color:#2563eb;text-decoration:none;font-weight:600">Organisationen</a> · {% endif %}Umgebung: <b>{{ env }}</b> · Datenquelle: {{ d.data_source }} · <a href="/projekte" style="color:#2563eb;text-decoration:none;font-weight:600">Alle Projekte →</a> · <a href="/quellen" style="color:#2563eb;text-decoration:none;font-weight:600">Quellen →</a> · <a href="/upload" style="color:#2563eb;text-decoration:none;font-weight:600">PSR hochladen →</a></div>
   </header>
 
   <div class="pills">

@@ -11,6 +11,8 @@ from collections import Counter, defaultdict
 
 import yaml
 
+from .orgs import in_scope
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RUNTIME_STORE = os.path.join(ROOT, "data", "canonical_store.yaml")      # Laufzeit-Ingestion (bevorzugt)
 STORE = os.path.join(ROOT, "sample-data", "canonical_store.yaml")       # committeter Seed
@@ -44,6 +46,14 @@ def load_snapshots(path: str | None = None):
         return []
     with open(path, encoding="utf-8") as f:
         return yaml.safe_load(f) or []
+
+
+def _snaps(org=None):
+    """Snapshots, auf den Mandanten (Scope) gefiltert."""
+    snaps = load_snapshots()
+    if org:
+        snaps = [r for r in snaps if in_scope(r, org)]
+    return snaps
 
 
 def _project_view(rs):
@@ -92,8 +102,8 @@ def _rollup(projects, dim):
     return sorted(rows, key=lambda x: (-RANK[x[1]], x[0]))
 
 
-def dashboard_data():
-    projects = build_projects(load_snapshots())
+def dashboard_data(org=None):
+    projects = build_projects(_snaps(org))
     active = [p for p in projects if p["lifecycle"] == "active"]
     inactive = [p for p in projects if p["lifecycle"] != "active"]
     aborted = [p for p in inactive if p["lifecycle"] == "aborted"]
@@ -113,15 +123,15 @@ def dashboard_data():
     )
 
 
-def all_projects():
-    """Alle Projekte (jeder Lebenszyklus), schlechteste zuerst."""
-    return sorted(build_projects(load_snapshots()),
+def all_projects(org=None):
+    """Alle Projekte des Mandanten (jeder Lebenszyklus), schlechteste zuerst."""
+    return sorted(build_projects(_snaps(org)),
                   key=lambda p: (-RANK[p["overall"]], p["name"]))
 
 
-def project_detail(key):
+def project_detail(key, org=None):
     """Zeitreihe + Zusammenfassung eines Projekts (per Projekt-Schlüssel)."""
-    snaps = [r for r in load_snapshots() if str(r.get("projekt")) == str(key)]
+    snaps = [r for r in _snaps(org) if str(r.get("projekt")) == str(key)]
     if not snaps:
         return None
     snaps.sort(key=lambda r: r["periode"])

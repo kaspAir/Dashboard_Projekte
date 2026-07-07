@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organisationen (Mandanten)</title>
+<style>
+  :root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb;--g:#2e9e4f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:900px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .lead{color:var(--muted);margin-top:6px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  .active{background:#eaf7ee}
+  .pill{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .pill.on{background:var(--g);color:#fff;border-color:var(--g)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:12px}
+  label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+  input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+  .checks label{display:flex;gap:8px;align-items:center;text-transform:none;letter-spacing:0;color:var(--ink);font-size:13px;margin:0}
+  button{border:0;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer;background:var(--ink);color:#fff;margin-top:14px}
+  .mini{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Organisationen</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b>{% if active %} · Aktiv: <b>{{ active.name }}</b>{% endif %} · <a href="/dashboard">← Dashboard</a></div>
+  </header>
+  <div class="lead">Mandantenfähig: jede Organisation sieht nur die für sie relevanten Projekte.
+    Wähle den aktiven Mandanten oder lege einen neuen an.</div>
+
+  <table>
+    <tr><th>Mandant</th><th>Sichtbare Bereiche</th><th>Projekte</th><th></th></tr>
+    {% for o in orgs %}
+    <tr class="{{ 'active' if active and o.id==active.id else '' }}">
+      <td><b>{{ o.name }}</b> {% if active and o.id==active.id %}<span class="pill on">aktiv</span>{% endif %}</td>
+      <td class="mini">{% if o.scope and o.scope.business_areas %}{{ o.scope.business_areas|join(', ') }}{% else %}Alle Bereiche{% endif %}</td>
+      <td>{{ o.n_projects }}</td>
+      <td>{% if not (active and o.id==active.id) %}<a href="/orgs/wechsel/{{ o.id }}">Wechseln →</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Neuen Mandanten anlegen</h2>
+  <form method="post" class="card">
+    <label for="name">Name der Organisation</label>
+    <input type="text" id="name" name="name" placeholder="z. B. Stadtverwaltung Musterstadt" required>
+    <label style="margin-top:14px">Sichtbare Bereiche (leer = alle Projekte)</label>
+    <div class="checks">
+      {% for m in ministries %}
+      <label><input type="checkbox" name="business_areas" value="{{ m }}"> {{ m }}</label>
+      {% endfor %}
+    </div>
+    <button type="submit">Mandant anlegen</button>
+  </form>
+  <div class="mini" style="margin-top:10px">Später erhält jeder Mandant seine eigene Datenquelle (eigenes SharePoint/Verzeichnis) – heute wird über die Bereiche gescopt.</div>
+</div>
+</body>
+</html>
