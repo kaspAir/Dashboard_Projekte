@@ -8,3 +8,6 @@ logs/
 tmp/
 reports/
 .pytest_cache/
+
+# Generierte Test-PSR (reproduzierbar via sample-data/generate_psr.py)
+sample-data/psr/

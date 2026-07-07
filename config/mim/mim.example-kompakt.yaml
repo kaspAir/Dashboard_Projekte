@@ -1,0 +1,38 @@
+# Beispiel-Overlay (GENERISCH – kein realer Kunde).
+#
+# Zeigt den Mandanten-Override-Mechanismus:
+#   hide     -> Felder kürzen
+#   override -> umbenennen / umsortieren / Einheit ändern (Kern-IDs bleiben stabil)
+#   add      -> mandanteneigene Zusatzfelder
+#
+# Anwendungsfall: eine Organisation, die ein kompaktes Modell will.
+
+extends: default
+
+meta:
+  id: example-kompakt
+  label: "Kompaktes Modell (Beispiel)"
+
+# Nicht benötigte Felder ausblenden
+hide:
+  - status_governance
+  - effort
+  - objective_achievement
+  - problems
+
+# Labels/Einheiten anpassen – die kanonischen IDs bleiben, damit vergleichbar
+override:
+  org_unit:      { label: "Abteilung" }
+  business_area: { label: "Ressort" }
+  cost:          { unit: EUR }
+
+# Mandanteneigenes Zusatzfeld
+add:
+  - id: customer_impact
+    label: "Kundenwirkung"
+    type: rag
+    with_explanation: true
+    values_ref: rag          # referenziert das Vokabular aus dem Default
+    aggregation: worst_of
+    description: "Ampel zur Auswirkung auf Kundinnen und Kunden."
+    display: { as: ampel, order: 35 }

@@ -1,0 +1,146 @@
+# Management-Informationsmodell (MIM) – Standard/Default
+#
+# Definiert, welche Managementinformation relevant ist. Steuert GLEICHZEITIG:
+#   - die Extraktion   (description, values_ref -> was im Bericht finden?)
+#   - die Darstellung  (display, aggregation   -> was/wie zeigen?)
+#
+# Generisch gehalten (kein kunden-/organisationsspezifischer Inhalt).
+# Mandanten passen das über ein Overlay an (siehe README.md): kürzen, erweitern,
+# umbenennen, umsortieren – bei stabilen Feld-IDs (Vergleichbarkeit).
+
+meta:
+  id: default
+  label: "Standard-Statusmodell"
+  language: de
+  version: 1
+
+# Kontrollierte Vokabulare inkl. Synonyme. Die Extraktion mappt Freitext auf den
+# kanonischen Wert (umlaut-/synonym-tolerant). Per values_ref referenzierbar.
+vocab:
+  rag:
+    green: ["grün", "gruen", "green", "im plan", "on track", "ok", "auf kurs"]
+    amber: ["gelb", "amber", "orange", "gefährdet", "at risk", "beobachten"]
+    red:   ["rot", "red", "kritisch", "eskalation", "off track", "stark gefährdet"]
+
+entity:
+  reporting_unit: project
+  # Gruppierungsachsen für Filter/Roll-up. Labels sind pro Mandant anpassbar.
+  dimensions:
+    - { id: org_unit,        label: "Organisationseinheit" }
+    - { id: business_area,   label: "Bereich" }
+    - { id: phase,           label: "Projektphase" }
+    - { id: lifecycle_state, label: "Lebenszyklus" }
+
+# Standard-Sichtbarkeit: das Dashboard zeigt nur AKTIVE Projekte. Abgeschlossene
+# und abgebrochene bleiben verfügbar für Trend- und Verlässlichkeitsanalysen.
+scope:
+  default_filter: "lifecycle_state == active"
+
+fields:
+  # -- Identität / Metadaten --------------------------------------------------
+  - { id: project_name,   label: "Projekt",          type: text, role: identity, required: true,
+      description: "Offizieller Projektname." }
+  - { id: project_number, label: "Projektnummer",    type: text, role: identity,
+      description: "Eindeutige Projekt-/Auftragsnummer." }
+  - { id: report_date,    label: "Berichtsdatum",    type: date, role: identity,
+      description: "Stichtag/Bearbeitungsdatum des Statusberichts." }
+  - { id: project_lead,   label: "Projektleitung",   type: text,
+      description: "Verantwortliche Projektleitung." }
+  - { id: sponsor,        label: "Auftraggeber",     type: text,
+      description: "Auftraggeberin/Auftraggeber des Projekts." }
+  - { id: org_unit,       label: "Organisationseinheit", type: text, role: dimension,
+      description: "Organisatorische Einheit, der das Projekt zugeordnet ist." }
+  - { id: business_area,  label: "Bereich",          type: text, role: dimension,
+      description: "Übergeordneter Verantwortungs-/Geschäftsbereich." }
+  - { id: phase,          label: "Projektphase",     type: text, role: dimension,
+      description: "Aktuelle Projektphase (z. B. Initialisierung, Konzept, Realisierung, Einführung)." }
+  - { id: lifecycle_state, label: "Lebenszyklus",    type: enum, role: dimension,
+      values: [active, completed, aborted],
+      description: "Aktiv, abgeschlossen oder abgebrochen. Standard-Dashboard zeigt nur aktive Projekte; inaktive dienen Trend- und Verlässlichkeitsanalysen (Wahrheitsgehalt der Meldungen)." }
+
+  # -- Ampel-Status (RAG). with_explanation: Freitext-Begründung wird mitextrahiert. --
+  - { id: status_overall,    label: "Gesamtstatus",          type: rag, required: true,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Gesamt-Ampel des Projekts.",            display: { as: ampel, order: 10 } }
+  - { id: status_schedule,   label: "Termine",               type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zur Terminsituation / zum Zeitplan.", display: { as: ampel, order: 20 } }
+  - { id: status_cost,       label: "Kosten",                type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zur Kosten-/Budgetsituation.",    display: { as: ampel, order: 30 } }
+  - { id: status_effort,     label: "Personalaufwand",       type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zum Personalaufwand / zu den Ressourcen.", display: { as: ampel, order: 40 } }
+  - { id: status_results,    label: "Ergebnisse",            type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zum Stand der Projektergebnisse/Lieferobjekte.", display: { as: ampel, order: 50 } }
+  - { id: status_objectives, label: "Projektziele",          type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zur Zielerreichung.",             display: { as: ampel, order: 60 } }
+  - { id: status_risks,      label: "Projektrisiken",        type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zur Risikosituation.",            display: { as: ampel, order: 70 } }
+  - { id: status_governance, label: "Einhaltung Governance", type: rag,
+      with_explanation: true, values_ref: rag, aggregation: worst_of,
+      description: "Ampel zur Einhaltung von Vorgaben/Governance.", display: { as: ampel, order: 80 } }
+
+  # -- Trend (abgeleitet aus den historisierten Snapshots, NICHT extrahiert) --
+  - { id: trend_overall, label: "Trend", type: trend, source: derived,
+      description: "Entwicklung des Gesamtstatus gegenüber der Vorperiode (aus Snapshots).",
+      display: { as: arrow, order: 15 } }
+  - { id: trend_stability, label: "Trend-Stabilität", type: enum, source: derived,
+      values: [stabil, schwankend],
+      description: "Wie stark der Gesamtstatus über die letzten Perioden schwankt (aus Snapshots). Indikator für die Verlässlichkeit der Statusaussage.",
+      display: { as: badge, order: 16 } }
+
+  # -- Kennzahlen -------------------------------------------------------------
+  - id: cost
+    label: "Kosten"
+    type: metric
+    unit: CHF                       # pro Mandant anpassbar (z. B. EUR)
+    components: [plan, actual, forecast]
+    derived: { variance: "forecast - plan" }
+    aggregation: sum
+    description: "Kosten je Plan, Ist und Prognose (inkl. Abweichung)."
+    display: { as: number, order: 90 }
+  - id: effort
+    label: "Aufwand"
+    type: metric
+    unit: PT                        # Personentage
+    components: [plan, actual, forecast]
+    derived: { variance: "forecast - plan" }
+    aggregation: sum
+    description: "Aufwand in Personentagen je Plan, Ist und Prognose."
+    display: { as: number, order: 100 }
+  - id: objective_achievement
+    label: "Zielerreichung"
+    type: list
+    item: { objective_id: text, category: text, statement: text, forecast_pct: percent }
+    description: "Prognostizierte Zielerreichung je Ziel in Prozent."
+    display: { as: list, order: 110 }
+
+  # -- Meilensteine / Risiken / Probleme -------------------------------------
+  - id: milestones
+    label: "Meilensteine"
+    type: list
+    item: { name: text, plan: date, forecast: date, actual: date, period: enum }  # period: achieved|upcoming
+    description: "Erreichte und geplante Meilensteine mit Plan-, Prognose- und Ist-Datum."
+    display: { as: milestone_list, order: 120 }
+  - id: risks
+    label: "Top-Risiken"
+    type: list
+    item: { risk_id: text, description: text, probability: scale_1_3, impact: scale_1_3,
+            score: derived, measure: text, owner: text }   # score = probability * impact
+    description: "Wichtigste offene Risiken mit Eintretenswahrscheinlichkeit, Auswirkung und Massnahme."
+    display: { as: risk_list, order: 130 }
+  - id: problems
+    label: "Probleme und Massnahmen"
+    type: list
+    item: { problem_id: text, description: text, measure: text, owner: text, due: date, done: text }
+    description: "Aktuelle Probleme mit Massnahme, Verantwortung und Termin."
+    display: { as: table, order: 140 }
+  - id: management_summary
+    label: "Gesamtbeurteilung / Fazit"
+    type: text
+    description: "Narrative Management-Einschätzung des Projektstands."
+    display: { as: text, order: 150 }
