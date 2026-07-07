@@ -32,9 +32,17 @@ def deploy(String subdir, String branch, String port, String workers) {
                 git remote set-url origin ${REPO_URL}
                 git fetch origin
                 git reset --hard origin/${branch}
-                [ -d .venv ] || python3 -m venv .venv
-                . .venv/bin/activate
-                pip install -r requirements.txt -q
+                if [ -x .venv/bin/pip ]; then
+                    . .venv/bin/activate
+                else
+                    rm -rf .venv
+                    python3 -m venv .venv --without-pip
+                    . .venv/bin/activate
+                    curl -sSf https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    python get-pip.py -q
+                    rm -f get-pip.py
+                fi
+                python -m pip install -r requirements.txt -q
                 mkdir -p data logs tmp
                 PID=\$APP/tmp/gunicorn.pid
                 [ -f "\$PID" ] && kill \$(cat "\$PID") 2>/dev/null || true
