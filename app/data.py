@@ -12,7 +12,16 @@ from collections import Counter, defaultdict
 import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SNAPSHOTS = os.path.join(ROOT, "sample-data", "ground_truth.yaml")
+STORE = os.path.join(ROOT, "sample-data", "canonical_store.yaml")       # Ingestion-Ergebnis (bevorzugt)
+GROUND_TRUTH = os.path.join(ROOT, "sample-data", "ground_truth.yaml")   # Fallback (Test-Oracle)
+
+
+def resolve_source():
+    if os.path.exists(STORE):
+        return STORE, "Ordner-Ingestion (extrahiert)"
+    if os.path.exists(GROUND_TRUTH):
+        return GROUND_TRUTH, "Test-Zeitreihe"
+    return None, "keine Daten"
 
 RANK = {"grün": 0, "gelb": 1, "rot": 2}
 INV = {0: "grün", 1: "gelb", 2: "rot"}
@@ -26,8 +35,9 @@ def worst_of(values):
 
 
 def load_snapshots(path: str | None = None):
-    path = path or SNAPSHOTS
-    if not os.path.exists(path):
+    if path is None:
+        path, _ = resolve_source()
+    if not path or not os.path.exists(path):
         return []
     with open(path, encoding="utf-8") as f:
         return yaml.safe_load(f) or []
@@ -96,4 +106,5 @@ def dashboard_data():
         by_unit=_rollup(active, "org_unit"),
         total_active=len(active),
         total_all=len(projects),
+        data_source=resolve_source()[1],
     )

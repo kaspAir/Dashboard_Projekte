@@ -1,0 +1,14 @@
+# Beispiel-Quellkonfiguration (generisch). Pro Mandant eine Datei.
+#
+# Der Ordner-Connector scannt das Wurzelverzeichnis REKURSIV: PSR dürfen beliebig
+# tief und verstreut liegen (z. B. ein Unterordner je Projekt). Welche .docx
+# tatsächlich ein PSR ist, entscheidet die Ingestion inhaltsbasiert.
+
+type: folder
+path: ./sample-data/psr
+
+# Später (gleiche Ingestion dahinter):
+# type: sharepoint
+# site: "https://<tenant>.sharepoint.com/sites/<projekte>"
+# drive: "Dokumente"
+# root: "Projekte"          # Verzeichnis aller Projekte; PSR liegen irgendwo darin
