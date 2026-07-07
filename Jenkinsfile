@@ -38,7 +38,8 @@ def deploy(String subdir, String branch, String port, String workers) {
                     rm -rf .venv
                     python3 -m venv .venv --without-pip
                     . .venv/bin/activate
-                    curl -sSf https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+                    PYVER=\$(ls .venv/lib | sed s/python//)
+                    curl -sSf https://bootstrap.pypa.io/pip/\$PYVER/get-pip.py -o get-pip.py 2>/dev/null || curl -sSf https://bootstrap.pypa.io/get-pip.py -o get-pip.py
                     python get-pip.py -q
                     rm -f get-pip.py
                 fi
