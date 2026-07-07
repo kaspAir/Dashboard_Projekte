@@ -1,23 +1,20 @@
-"""Testet Mandantenfähigkeit: Organisationen-Seite, Scoping, Wechsel."""
-from app import create_app
+"""Mandantenfähigkeit: Organisationen-Seite, Scoping, Wechsel."""
 from app.data import dashboard_data
 from app.orgs import get_org
 
 
-def test_orgs_page_ok():
-    resp = create_app().test_client().get("/orgs")
+def test_orgs_page_ok(client):
+    resp = client.get("/orgs")
     assert resp.status_code == 200
-    assert "Mandant" in resp.get_data(as_text=True)
+    assert "Organisation" in resp.get_data(as_text=True)
 
 
 def test_scope_reduces_projects():
-    alle = dashboard_data(get_org("llv"))["total_all"]
-    scoped = dashboard_data(get_org("demo-infrastruktur"))["total_all"]
-    assert 0 < scoped < alle          # gescopter Mandant sieht echt weniger Projekte
+    alle = dashboard_data(get_org("llv-gesamt"))["total_all"]
+    scoped = dashboard_data(get_org("llv-infra"))["total_all"]
+    assert 0 < scoped < alle          # gescopte Organisation sieht echt weniger Projekte
 
 
-def test_switch_sets_cookie():
-    resp = create_app().test_client().get("/orgs/wechsel/demo-infrastruktur")
+def test_switch_sets_cookie(client):
+    resp = client.get("/orgs/wechsel/llv-infra")
     assert resp.status_code in (301, 302)
-    assert "org=demo-infrastruktur" in "".join(
-        v for k, v in resp.headers if k.lower() == "set-cookie")

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benutzer</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1f2937;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 20px 60px}
+  h1{font-size:22px;margin:8px 0 0}h2{font-size:14px;margin:24px 0 8px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px}
+  .lead{color:#6b7280;margin-top:6px}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-top:12px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #e5e7eb;font-size:13px}th{font-size:12px;color:#6b7280;text-transform:uppercase;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  .role{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid #e5e7eb;color:#6b7280}
+  .role.super_admin{color:#a21caf;border-color:#e9c7ef}.role.mandant_admin{color:#2563eb;border-color:#c7dbf5}
+  .yes{color:#2e9e4f;font-weight:700}.no{color:#9aa4b2}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-top:12px}
+  label{display:block;font-size:12px;color:#6b7280;text-transform:uppercase;margin:12px 0 6px}
+  input[type=text],input[type=email],input[type=password],select{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+  .checks label,.inline{display:flex;gap:8px;align-items:center;text-transform:none;color:#1f2937;font-size:13px;margin:6px 0 0}
+  button{margin-top:16px;background:#1f2937;color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer}
+  @media(max-width:640px){.two,.checks{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  {% include '_nav.html' %}
+  <h1>Benutzer</h1>
+  <div class="lead">Super-Admin und Mandant-Admins legen Benutzer an. Benutzer sehen nur die ihnen
+    zugewiesenen Organisationen; „PSR hochladen" ist je Benutzer schaltbar.</div>
+
+  <table>
+    <tr><th>Name</th><th>E-Mail</th><th>Rolle</th><th>Organisationen</th><th>Upload</th></tr>
+    {% for u in users %}
+    <tr>
+      <td><b>{{ u.name }}</b></td>
+      <td>{{ u.email }}</td>
+      <td><span class="role {{ u.role }}">{{ u.role }}</span></td>
+      <td>{{ (u.org_ids or [])|join(', ') if u.role=='user' else '–' }}</td>
+      <td>{% if u.role=='super_admin' or u.can_upload %}<span class="yes">ja</span>{% else %}<span class="no">nein</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Neuen Benutzer anlegen{% if mandant %} · Mandant {{ mandant.name }}{% endif %}</h2>
+  <form method="post" class="card">
+    <div class="two">
+      <div><label for="name">Name</label><input type="text" id="name" name="name" required></div>
+      <div><label for="email">E-Mail</label><input type="email" id="email" name="email" required></div>
+    </div>
+    <div class="two">
+      <div>
+        <label for="role">Rolle</label>
+        <select id="role" name="role">
+          <option value="user">Benutzer</option>
+          <option value="mandant_admin">Mandant-Admin</option>
+          {% if is_super %}<option value="super_admin">Super-Admin</option>{% endif %}
+        </select>
+      </div>
+      <div><label for="password">Initiales Passwort</label><input type="password" id="password" name="password" required></div>
+    </div>
+    <label>Zugriff auf Organisationen (nur für Rolle „Benutzer")</label>
+    <div class="checks">
+      {% for o in orgs %}<label><input type="checkbox" name="org_ids" value="{{ o.id }}"> {{ o.name }}</label>{% endfor %}
+    </div>
+    <label class="inline"><input type="checkbox" name="can_upload" value="1"> PSR hochladen erlauben</label>
+    <button type="submit">Benutzer anlegen</button>
+  </form>
+</div>
+</body>
+</html>

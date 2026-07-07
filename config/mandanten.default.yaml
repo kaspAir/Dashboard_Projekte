@@ -1,0 +1,5 @@
+# Standard-Mandanten (committet). Laufzeit-Mandanten kommen aus data/mandanten.yaml.
+# Der Mandant ist die oberste Ebene; darunter liegen Organisationen (config/orgs.default.yaml).
+
+- id: llv
+  name: Liechtensteinische Landesverwaltung

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandanten</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1f2937;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 20px 60px}
+  h1{font-size:22px;margin:8px 0 0}h2{font-size:14px;margin:24px 0 8px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px}
+  a{color:#2563eb;text-decoration:none;font-weight:600}
+  .lead{color:#6b7280;margin-top:6px}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin-top:12px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #e5e7eb}th{font-size:12px;color:#6b7280;text-transform:uppercase;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}.active{background:#eaf7ee}
+  .pill{font-size:12px;padding:2px 8px;border-radius:999px;background:#2e9e4f;color:#fff}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px;margin-top:12px}
+  label{display:block;font-size:12px;color:#6b7280;text-transform:uppercase;margin-bottom:6px}
+  input[type=text]{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit}
+  button{margin-top:14px;background:#1f2937;color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  {% include '_nav.html' %}
+  <h1>Mandanten</h1>
+  <div class="lead">Oberste Ebene. Nur der Super-Admin legt Mandanten an; darunter liegen Organisationen.</div>
+
+  <table>
+    <tr><th>Mandant</th><th>ID</th><th></th></tr>
+    {% for m in mandanten %}
+    <tr class="{{ 'active' if mandant and m.id==mandant.id else '' }}">
+      <td><b>{{ m.name }}</b> {% if mandant and m.id==mandant.id %}<span class="pill">aktiv</span>{% endif %}</td>
+      <td>{{ m.id }}</td>
+      <td>{% if not (mandant and m.id==mandant.id) %}<a href="/mandanten/wechsel/{{ m.id }}">Wechseln →</a>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Neuen Mandanten anlegen</h2>
+  <form method="post" class="card">
+    <label for="name">Name des Mandanten</label>
+    <input type="text" id="name" name="name" placeholder="z. B. Stadtverwaltung Musterhausen" required>
+    <button type="submit">Mandant anlegen</button>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Standard-Benutzer (committet). KEIN Passwort-Hash im Git (Repo ist öffentlich):
+# der Super-Admin setzt sein Passwort beim ERSTEN Login selbst.
+# Weitere Benutzer werden zur Laufzeit angelegt (data/users.yaml).
+
+- email: k.broennimann@gmail.com
+  name: Kaspar Brönnimann
+  role: super_admin
+  can_upload: true

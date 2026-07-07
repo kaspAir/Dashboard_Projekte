@@ -1,10 +1,8 @@
-"""Testet die Dashboard-Ansicht (aus der Ground-Truth gerendert)."""
-from app import create_app
+"""Dashboard-Ansicht (aus der aktiven Datenquelle gerendert)."""
 from app.data import dashboard_data
 
 
-def test_dashboard_route_ok():
-    client = create_app().test_client()
+def test_dashboard_route_ok(client):
     resp = client.get("/dashboard")
     assert resp.status_code == 200
     body = resp.get_data(as_text=True)
@@ -14,7 +12,6 @@ def test_dashboard_route_ok():
 
 def test_dashboard_data_shape():
     d = dashboard_data()
-    # Testdaten vorhanden: aktive Projekte + Roll-ups + abgebrochene mit Urteil
     assert d["total_active"] > 0
     assert d["by_area"], "Roll-up je Bereich darf nicht leer sein"
     assert all("verdict" in p for p in d["aborted"])

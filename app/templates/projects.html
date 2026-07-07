@@ -33,9 +33,10 @@
 <body>
 {% macro amp(s) %}<span class="status {{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
 <div class="wrap">
+  {% include '_nav.html' %}
   <header>
     <h1>Projekte{% if bereich %} · {{ bereich }}{% endif %}{% if einheit %} · {{ einheit }}{% endif %}</h1>
-    <div class="env">{% if org %}Mandant: <b>{{ org.name }}</b> · {% endif %}Umgebung: <b>{{ env }}</b> · <a href="/orgs">Organisationen</a> · <a href="/dashboard">← Dashboard</a></div>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/dashboard">← Dashboard</a></div>
   </header>
   <div class="mini" style="margin-top:6px">{{ projects|length }} Projekte (alle Lebenszyklen). Zeile anklicken für den Verlauf.</div>
 

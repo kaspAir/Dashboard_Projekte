@@ -1,0 +1,22 @@
+<style>
+  .topbar{background:#1f2937;color:#e5e7eb;border-radius:10px;padding:10px 16px;margin-bottom:18px;
+          display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px}
+  .topbar a{color:#dbeafe;text-decoration:none;font-weight:600;margin-left:14px}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .brand a{color:#fff;font-size:15px;margin:0}
+  .topbar .muted{color:#9aa4b2;margin-left:12px}
+  .topbar b{color:#fff}
+</style>
+<div class="topbar">
+  <div class="brand"><a href="/dashboard">Projekt-Dashboard</a>
+    {% if mandant %}<span class="muted">Mandant: <b>{{ mandant.name }}</b></span>{% endif %}
+    {% if org %}<span class="muted">· {{ org.name }}</span>{% endif %}
+  </div>
+  <nav>
+    <a href="/orgs">Organisationen</a>
+    {% if is_super %}<a href="/mandanten">Mandanten</a>{% endif %}
+    {% if can_manage %}<a href="/users">Benutzer</a><a href="/quellen">Quellen</a>{% endif %}
+    {% if may_upload %}<a href="/upload">PSR hochladen</a>{% endif %}
+    {% if user %}<span class="muted">{{ user.name }} ({{ user.role }})</span><a href="/logout">Logout</a>{% endif %}
+  </nav>
+</div>

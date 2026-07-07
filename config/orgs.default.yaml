@@ -1,15 +1,14 @@
-# Standard-Mandanten (committet). Zur Laufzeit angelegte Mandanten kommen aus
-# data/orgs.yaml (nicht im Git) und ergänzen/überschreiben diese per id.
-#
-# scope leer ({}) = alle Projekte. Sonst Filter über Geschäftsbereich und/oder
-# Organisationseinheit – so sieht jeder Mandant nur die für ihn relevanten Projekte.
+# Standard-Organisationen je Mandant (committet). Laufzeit aus data/orgs.yaml.
+# scope leer ({}) = alle Projekte des Mandanten; sonst Filter über Geschäftsbereich/Einheit.
 
-- id: llv
-  name: Liechtensteinische Landesverwaltung
+- id: llv-gesamt
+  mandant_id: llv
+  name: Gesamtverwaltung
   scope: {}
 
-- id: demo-infrastruktur
-  name: "Demo-Mandant: Infrastruktur & Justiz"
+- id: llv-infra
+  mandant_id: llv
+  name: Infrastruktur & Justiz
   scope:
     business_areas:
       - Ministerium für Infrastruktur und Justiz
