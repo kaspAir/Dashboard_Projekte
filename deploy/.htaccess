@@ -1,0 +1,10 @@
+# Zusammen mit proxy.php in den Web-Root der jeweiligen Subdomain legen.
+# Leitet alle Anfragen an den PHP-Proxy (der an Gunicorn weiterreicht).
+
+RewriteEngine On
+
+# proxy.php selbst direkt ausliefern (sonst Endlosschleife)
+RewriteRule ^proxy\.php$ - [L]
+
+# alles Uebrige durch den Proxy
+RewriteRule ^ proxy.php [QSA,L]
