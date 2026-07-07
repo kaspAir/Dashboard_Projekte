@@ -52,9 +52,11 @@ So kann ein Dependency-Bump auf `dev` keine andere Stufe beeinträchtigen.
 
 ## Jenkins
 
-- **Multibranch-Pipeline** auf `https://github.com/kaspAir/Dashboard_Projekte`.
-  Der Branch steckt im `JOB_NAME`; die `when{}`-Bedingungen im `Jenkinsfile` feuern
-  pro Branch die passende Deploy-Stufe.
+- **Vier separate Pipeline-Jobs** (kein Multibranch), je einer pro Branch/Stufe:
+  `Dashboard dev/test/int/main`, jeweils *Pipeline script from SCM* auf
+  `https://github.com/kaspAir/Dashboard_Projekte` mit dem passenden Branch. Die
+  `when{}`-Bedingungen im `Jenkinsfile` matchen den `JOB_NAME` und feuern die
+  richtige Deploy-Stufe.
 - Credential **`dashboard-deploy`** (privater SSH-Key für `u7031y_kaspar`, derselbe
   Key wie `hermespia-deploy`).
 - Ablauf je Deploy: `git reset --hard origin/<branch>` → venv sicherstellen →
@@ -66,8 +68,9 @@ So kann ein Dependency-Bump auf `dev` keine andere Stufe beeinträchtigen.
 1. Vier Branches anlegen und pushen: `dev`, `test`, `int`, `main`.
 2. Subdomains dev/test/int + Prod-Domain in Infomaniak einrichten (DNS + TLS).
 3. In jeden Subdomain-Web-Root `proxy.php` (Port anpassen!) + `.htaccess` legen.
-4. Jenkins-Credential `dashboard-deploy` hinterlegen; Multibranch-Job auf das Repo zeigen.
-5. Ersten Build je Branch laufen lassen – die Pipeline klont ins App-Verzeichnis.
+4. Jenkins-Credential `dashboard-deploy` hinterlegen; vier Pipeline-Jobs
+   (`Dashboard dev/test/int/main`) auf Repo + jeweiligen Branch zeigen.
+5. Ersten Build je Job laufen lassen – die Pipeline klont ins App-Verzeichnis.
 6. In jedem App-Verzeichnis auf dem Server eine `.env` erstellen (aus `.env.example`).
 7. Verifizieren: `https://dev.dashboard-projekte.ch/healthz` → `{"status":"ok","env":"dev"}`.
 

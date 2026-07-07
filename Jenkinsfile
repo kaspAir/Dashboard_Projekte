@@ -1,8 +1,9 @@
 // Projekt-Dashboard – CI/CD-Pipeline
 //
-// Multibranch-Pipeline auf https://github.com/kaspAir/Dashboard_Projekte.
-// Jeder Branch wird als Sub-Job gescannt; die when{ branch '...' }-Bedingungen
-// feuern pro Branch die passende Deploy-Stufe:
+// Vier separate Pipeline-Jobs (kein Multibranch), je einer pro Branch/Stufe:
+// "Dashboard dev/test/int/main". Jeder Job checkt seinen Branch aus; die
+// when{}-Bedingungen matchen den JOB_NAME (z. B. "Dashboard dev" enthaelt 'dev')
+// und feuern die passende Deploy-Stufe:
 //
 //   dev  → Tests + Deploy dev   (dev.dashboard-projekte.ch   → Port 8023)
 //   test → Tests + Deploy test  (test.dashboard-projekte.ch  → Port 8021)  [Kunde LLV!]
@@ -89,14 +90,14 @@ pipeline {
         }
 
         stage('Deploy dev') {
-            when { branch 'dev' }
+            when { expression { env.JOB_NAME.contains('dev') } }
             steps {
                 script { deploy('dashboard-dev', 'dev', '8023', '1') }
             }
         }
 
         stage('Deploy test (Kunde LLV)') {
-            when { branch 'test' }
+            when { expression { env.JOB_NAME.contains('test') } }
             steps {
                 timeout(time: 30, unit: 'MINUTES') {
                     input message: 'Deploy auf die Kunden-Stufe test.dashboard-projekte.ch (LLV)?',
@@ -107,14 +108,14 @@ pipeline {
         }
 
         stage('Deploy int') {
-            when { branch 'int' }
+            when { expression { env.JOB_NAME.contains('int') } }
             steps {
                 script { deploy('dashboard-int', 'int', '8022', '1') }
             }
         }
 
         stage('Deploy prod') {
-            when { branch 'main' }
+            when { expression { env.JOB_NAME.contains('main') } }
             steps {
                 script { deploy('dashboard', 'main', '8020', '2') }
             }
