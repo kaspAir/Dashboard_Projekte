@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projekt-Dashboard</title>
+<style>
+  :root{
+    --g:#2e9e4f; --a:#e0a400; --r:#d23b3b;
+    --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --bg:#f5f6f8; --card:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:15px;margin:28px 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  .env{font-size:12px;color:var(--muted)}
+  .env b{color:var(--ink)}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:104px}
+  .pill .n{font-size:22px;font-weight:700}
+  .pill .l{font-size:12px;color:var(--muted)}
+  .pill.g{border-left:4px solid var(--g)} .pill.a{border-left:4px solid var(--a)} .pill.r{border-left:4px solid var(--r)} .pill.t{border-left:4px solid var(--ink)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+  .g .dot,.dot.g{background:var(--g)} .a .dot,.dot.a{background:var(--a)} .r .dot,.dot.r{background:var(--r)}
+  .status{white-space:nowrap;font-weight:600}
+  .status.g{color:var(--g)} .status.a{color:var(--a)} .status.r{color:var(--r)}
+  .badge{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .badge.warn{background:#fff5e6;border-color:#f3d9a6;color:#a56a00}
+  .trend{font-weight:700}
+  .trend.up{color:var(--g)} .trend.down{color:var(--r)} .trend.flat{color:var(--muted)}
+  .mini{font-size:12px;color:var(--muted);white-space:nowrap}
+  .mini b.g{color:var(--g)} .mini b.a{color:var(--a)} .mini b.r{color:var(--r)}
+  .verdict{font-weight:700}
+  .verdict.ok{color:var(--g)} .verdict.bad{color:var(--r)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .note{color:var(--muted);font-size:12px;margin-top:8px}
+  footer{margin-top:34px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+{% macro amp(s) %}<span class="status {{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
+{% macro mini(dist) %}<span class="mini"><b class="g">{{ dist['grün'] }}</b> · <b class="a">{{ dist['gelb'] }}</b> · <b class="r">{{ dist['rot'] }}</b></span>{% endmacro %}
+<div class="wrap">
+
+  <header>
+    <h1>Projekt-Dashboard</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · Datenquelle: Test-Zeitreihe (Phase 0)</div>
+  </header>
+
+  <div class="pills">
+    <div class="pill t"><div class="n">{{ d.total_active }}</div><div class="l">aktive Projekte</div></div>
+    <div class="pill g"><div class="n">{{ d.kpi['grün'] }}</div><div class="l">grün</div></div>
+    <div class="pill a"><div class="n">{{ d.kpi['gelb'] }}</div><div class="l">gelb</div></div>
+    <div class="pill r"><div class="n">{{ d.kpi['rot'] }}</div><div class="l">rot</div></div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <h2>Status je Bereich</h2>
+      <table>
+        <tr><th>Bereich</th><th>Status</th><th>Projekte</th></tr>
+        {% for name, status, count, dist in d.by_area %}
+        <tr><td>{{ name }}</td><td>{{ amp(status) }}</td><td>{{ mini(dist) }} <span class="mini">({{ count }})</span></td></tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div>
+      <h2>Status je Organisationseinheit</h2>
+      <table>
+        <tr><th>Einheit</th><th>Status</th><th>Projekte</th></tr>
+        {% for name, status, count, dist in d.by_unit %}
+        <tr><td>{{ name }}</td><td>{{ amp(status) }}</td><td>{{ mini(dist) }} <span class="mini">({{ count }})</span></td></tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <h2>Aktive Projekte</h2>
+  <table>
+    <tr><th>Projekt</th><th>Bereich</th><th>Phase</th><th>Status</th><th>Trend</th><th>Stabilität</th></tr>
+    {% for p in d.active %}
+    <tr>
+      <td><b>{{ p.name }}</b><br><span class="mini">{{ p.org_unit }}</span></td>
+      <td class="mini">{{ p.business_area }}</td>
+      <td class="mini">{{ p.phase }}</td>
+      <td>{{ amp(p.overall) }}</td>
+      <td>{% if p.trend=='besser' %}<span class="trend up">▲ besser</span>{% elif p.trend=='schlechter' %}<span class="trend down">▼ schlechter</span>{% else %}<span class="trend flat">▶ stabil</span>{% endif %}</td>
+      <td>{% if p.stability=='schwankend' %}<span class="badge warn">schwankend ({{ p.changes }})</span>{% else %}<span class="badge">stabil</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div class="note">Trend über die letzten Monate; „schwankend" = häufige Statuswechsel → Statusaussage mit Vorsicht interpretieren.</div>
+
+  <h2>Verlässlichkeit der Berichterstattung</h2>
+  <table>
+    <tr><th>Abgebrochenes Projekt</th><th>Einheit</th><th>Rote Vorwarnung</th><th>Beurteilung</th></tr>
+    {% for p in d.aborted %}
+    <tr>
+      <td><b>{{ p.name }}</b></td>
+      <td class="mini">{{ p.org_unit }}</td>
+      <td>{{ p.trailing_red }} Monate</td>
+      <td>{% if p.verdict=='ehrlich' %}<span class="verdict ok">ehrlich gewarnt</span>{% else %}<span class="verdict bad">⚠ zu spät gewarnt</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div class="note">{{ d.completed|length }} abgeschlossene und {{ d.aborted|length }} abgebrochene Projekte fliessen in Trend- und Verlässlichkeitsanalysen ein (nicht in die aktive Sicht oben).</div>
+
+  <footer>
+    {{ d.total_all }} Projekte insgesamt · {{ d.total_active }} aktiv · Roll-up nach „worst-of" (eine rote Meldung färbt die Gruppe rot).
+  </footer>
+</div>
+</body>
+</html>
