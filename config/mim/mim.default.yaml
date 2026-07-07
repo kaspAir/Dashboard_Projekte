@@ -18,9 +18,9 @@ meta:
 # kanonischen Wert (umlaut-/synonym-tolerant). Per values_ref referenzierbar.
 vocab:
   rag:
-    green: ["grün", "gruen", "green", "im plan", "on track", "ok", "auf kurs"]
-    amber: ["gelb", "amber", "orange", "gefährdet", "at risk", "beobachten"]
-    red:   ["rot", "red", "kritisch", "eskalation", "off track", "stark gefährdet"]
+    grün: ["grün", "gruen", "green", "im plan", "on track", "ok", "auf kurs"]
+    gelb: ["gelb", "amber", "orange", "gefährdet", "at risk", "beobachten"]
+    rot:  ["rot", "red", "kritisch", "eskalation", "off track", "stark gefährdet"]
 
 entity:
   reporting_unit: project
