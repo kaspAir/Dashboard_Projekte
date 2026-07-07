@@ -75,6 +75,20 @@ So kann ein Dependency-Bump auf `dev` keine andere Stufe beeinträchtigen.
    `APP_ENV` setzt die Pipeline bereits je Stufe.
 6. Verifizieren: `https://dev.dashboard-projekte.ch/healthz` → `{"status":"ok","env":"dev"}`.
 
+## Releases & Versionierung
+
+- **SemVer** `MAJOR.MINOR.PATCH` in der Datei [`VERSION`](../VERSION) (eine Quelle der Wahrheit).
+- **Git-Tag** `vX.Y.Z` auf dem Release-Commit; **[`CHANGELOG.md`](../CHANGELOG.md)** = Release-Notes.
+- App-Leiste und `GET /healthz` zeigen **Version + Commit-SHA** → jederzeit prüfbar, was wo läuft.
+
+**Ablauf eines Releases (Beispiel dev → test):**
+1. Auf `dev`: `VERSION` setzen (z. B. `0.5.0`), `CHANGELOG.md` nachführen, committen.
+2. Taggen: `git tag -a v0.5.0 -m "0.5.0"` und `git push origin v0.5.0`.
+3. `test` auf den Release-Commit bringen (Fast-Forward) und pushen → Job **Dashboard test**
+   deployt nach `test.dashboard-projekte.ch`.
+4. Verifizieren: `https://test.dashboard-projekte.ch/healthz` → `{"version":"0.5.0", …}`.
+5. Höher promoten (`test → integration → main`) nach demselben Muster.
+
 ## Health-Check
 
 `GET /healthz` → `{"status":"ok","env":"<umgebung>"}`. Wird von der Pipeline nach

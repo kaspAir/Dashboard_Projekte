@@ -8,7 +8,7 @@
   .topbar b{color:#fff}
 </style>
 <div class="topbar">
-  <div class="brand"><a href="/dashboard">Projekt-Dashboard</a>
+  <div class="brand"><a href="/dashboard">Projekt-Dashboard</a> <span class="muted">v{{ version }}</span>
     {% if mandant %}<span class="muted">Mandant: <b>{{ mandant.name }}</b></span>{% endif %}
     {% if org %}<span class="muted">· {{ org.name }}</span>{% endif %}
   </div>

@@ -15,6 +15,7 @@ from .mim import load_mim
 from .orgs import (get_mandant, in_scope, load_mandanten, load_orgs,
                    save_mandant, save_org, slug)
 from .sources.registry import load_active_source, save_active_source
+from .version import GIT_SHA, __version__
 
 LIFECYCLE_DE = {"active": "aktiv", "completed": "abgeschlossen", "aborted": "abgebrochen"}
 META_IDS = ["project_name", "project_number", "report_date", "project_lead",
@@ -89,9 +90,14 @@ def create_app() -> Flask:
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-insecure")
     app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 
+    @app.context_processor
+    def _inject_version():
+        return {"version": __version__}
+
     @app.get("/healthz")
     def healthz():
-        return jsonify(status="ok", env=app.config["APP_ENV"])
+        return jsonify(status="ok", env=app.config["APP_ENV"],
+                       version=__version__, sha=GIT_SHA)
 
     @app.before_request
     def _gate():
