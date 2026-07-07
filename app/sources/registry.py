@@ -1,5 +1,5 @@
-"""Aktive Quell-Konfiguration – laufzeit-editierbar, persistiert unter data/
-(nicht im Git; überlebt Deploys, da git reset data/ nicht anfasst)."""
+"""Quell-Konfiguration je Mandant – laufzeit-editierbar, persistiert unter
+data/sources/<mandant_id>.yaml (nicht im Git, überlebt Deploys)."""
 from __future__ import annotations
 
 import os
@@ -7,18 +7,29 @@ import os
 import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-ACTIVE_SOURCE_FILE = os.path.join(ROOT, "data", "active_source.yaml")
-DEFAULT_SOURCE = {"type": "folder", "path": os.path.join(ROOT, "sample-data", "psr")}
+SOURCES_DIR = os.path.join(ROOT, "data", "sources")
 
 
-def load_active_source() -> dict:
-    if os.path.exists(ACTIVE_SOURCE_FILE):
-        with open(ACTIVE_SOURCE_FILE, encoding="utf-8") as f:
-            return yaml.safe_load(f) or dict(DEFAULT_SOURCE)
-    return dict(DEFAULT_SOURCE)
+def source_file(mandant_id: str) -> str:
+    return os.path.join(SOURCES_DIR, f"{mandant_id}.yaml")
 
 
-def save_active_source(config: dict) -> None:
-    os.makedirs(os.path.dirname(ACTIVE_SOURCE_FILE), exist_ok=True)
-    with open(ACTIVE_SOURCE_FILE, "w", encoding="utf-8") as f:
+def default_source(mandant_id: str) -> dict:
+    # LLV bekommt lokal den Demo-Ordner als Default; andere Mandanten leer.
+    if mandant_id == "llv":
+        return {"type": "folder", "path": os.path.join(ROOT, "sample-data", "psr")}
+    return {"type": "folder", "path": ""}
+
+
+def load_active_source(mandant_id: str) -> dict:
+    path = source_file(mandant_id)
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            return yaml.safe_load(f) or default_source(mandant_id)
+    return default_source(mandant_id)
+
+
+def save_active_source(mandant_id: str, config: dict) -> None:
+    os.makedirs(SOURCES_DIR, exist_ok=True)
+    with open(source_file(mandant_id), "w", encoding="utf-8") as f:
         yaml.safe_dump(config, f, allow_unicode=True)

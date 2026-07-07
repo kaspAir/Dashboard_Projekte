@@ -18,3 +18,8 @@ def test_scope_reduces_projects():
 def test_switch_sets_cookie(client):
     resp = client.get("/orgs/wechsel/llv-infra")
     assert resp.status_code in (301, 302)
+
+
+def test_other_mandant_has_own_empty_store():
+    # Ein Mandant ohne eigenen Store sieht keine (fremden) Daten -> Isolation.
+    assert dashboard_data(mandant_id="stadt-ohne-daten")["total_all"] == 0

@@ -17,7 +17,11 @@ from .mim import load_mim
 from .sources.config import build_connector
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RUNTIME_STORE = os.path.join(ROOT, "data", "canonical_store.yaml")
+STORES_DIR = os.path.join(ROOT, "data", "stores")
+
+
+def store_file(mandant_id: str) -> str:
+    return os.path.join(STORES_DIR, f"{mandant_id}.yaml")
 
 # MIM-Feld-ID -> Schlüssel im kanonischen Snapshot (Statusampeln)
 FIELD_TO_STATUS = {
@@ -87,9 +91,9 @@ def run_ingestion(source_config: dict, mim: dict | None = None) -> dict:
     return {"records": records, "scanned": scanned, "ingested": len(records), "skipped": skipped}
 
 
-def write_store(records, path: str | None = None) -> str:
-    """Schreibt den kanonischen Store (Laufzeit) – bevorzugte Datenquelle des Dashboards."""
-    path = path or RUNTIME_STORE
+def write_store(records, mandant_id: str) -> str:
+    """Schreibt den kanonischen Store des Mandanten – bevorzugte Datenquelle des Dashboards."""
+    path = store_file(mandant_id)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         yaml.safe_dump(records, f, allow_unicode=True, sort_keys=False)

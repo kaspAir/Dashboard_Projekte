@@ -120,15 +120,16 @@ def create_app() -> Flask:
     @app.get("/dashboard")
     def dashboard():
         user = current_user()
+        mid = (active_mandant(user) or {}).get("id")
         return render_template("dashboard.html", env=app.config["APP_ENV"], mim=load_mim(),
-                               d=dashboard_data(active_org(user)), **_ctx(user))
+                               d=dashboard_data(active_org(user), mid), **_ctx(user))
 
     @app.get("/projekte")
     def projekte():
         user = current_user()
         bereich = request.args.get("bereich")
         einheit = request.args.get("einheit")
-        projects = all_projects(active_org(user))
+        projects = all_projects(active_org(user), (active_mandant(user) or {}).get("id"))
         if bereich:
             projects = [p for p in projects if p["business_area"] == bereich]
         if einheit:
@@ -139,7 +140,7 @@ def create_app() -> Flask:
     @app.get("/projekt/<key>")
     def projekt(key):
         user = current_user()
-        detail = project_detail(key, active_org(user))
+        detail = project_detail(key, active_org(user), (active_mandant(user) or {}).get("id"))
         if not detail:
             abort(404)
         return render_template("project_detail.html", env=app.config["APP_ENV"],
@@ -164,7 +165,7 @@ def create_app() -> Flask:
                 save_org({"id": slug(mand["id"] + "-" + name), "mandant_id": mand["id"],
                           "name": name, "scope": {"business_areas": areas} if areas else {}})
             return redirect("/orgs")
-        snaps = load_snapshots()
+        snaps = load_snapshots((mand or {}).get("id"))
         rows = [{**o, "n_projects": len({r.get("projekt") for r in snaps if in_scope(r, o)})}
                 for o in visible_orgs(user)]
         ministries = sorted({r.get("geschaeftsbereich") for r in snaps if r.get("geschaeftsbereich")})
@@ -221,28 +222,29 @@ def create_app() -> Flask:
         user = current_user()
         if not can_manage_users(user):
             abort(403)
-        source = load_active_source()
+        mid = (active_mandant(user) or {}).get("id")
+        source = load_active_source(mid)
         result = error = None
         if request.method == "POST":
             action = request.form.get("action")
             path = (request.form.get("path") or "").strip()
             if path:
                 source = {"type": "folder", "path": path}
-                save_active_source(source)
+                save_active_source(mid, source)
             if action == "ingest":
                 try:
                     from .ingestion import run_ingestion, write_store
                     res = run_ingestion(source)
                     if res["ingested"] > 0:
-                        write_store(res["records"])
+                        write_store(res["records"], mid)
                     result = res
                 except Exception as exc:
                     error = f"Einlesen fehlgeschlagen: {exc}"
-        snaps = load_snapshots()
+        snaps = load_snapshots(mid)
         return render_template("quellen.html", env=app.config["APP_ENV"], source=source,
                                result=result, error=error, store_snapshots=len(snaps),
                                store_projects=len({r.get("projekt") for r in snaps}),
-                               data_source=resolve_source()[1], **_ctx(user))
+                               data_source=resolve_source(mid)[1], **_ctx(user))
 
     @app.route("/upload", methods=["GET", "POST"])
     def upload():

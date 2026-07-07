@@ -1,12 +1,13 @@
-"""Quellen-Verwaltung (Seite, sichere Leer-Ingestion)."""
+"""Quellen-Verwaltung (Seite, sichere Leer-Ingestion) – je Mandant."""
 import os
 
-from app.sources.registry import ACTIVE_SOURCE_FILE
+from app.sources.registry import source_file
 
 
 def _cleanup():
-    if os.path.exists(ACTIVE_SOURCE_FILE):
-        os.remove(ACTIVE_SOURCE_FILE)
+    p = source_file("llv")            # aktiver Mandant des Super-Admin im Test
+    if os.path.exists(p):
+        os.remove(p)
 
 
 def test_quellen_page_ok(client):
