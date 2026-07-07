@@ -21,7 +21,7 @@
 //   - Subdomain-Web-Root mit proxy.php (richtiger Port) + .htaccess
 //   - .env im jeweiligen App-Verzeichnis (Secrets, DATABASE_URL)
 
-def deploy(String subdir, String branch, String port, String workers) {
+def deploy(String subdir, String branch, String port, String workers, String appEnv, String webhost) {
     sshagent(credentials: ['dashboard-deploy']) {
         sh """
             ssh -o StrictHostKeyChecking=no ${DEPLOY_HOST} '
@@ -45,10 +45,20 @@ def deploy(String subdir, String branch, String port, String workers) {
                 fi
                 python -m pip install -r requirements.txt -q
                 mkdir -p data logs tmp
+                WEBROOT=\$HOME/sites/${webhost}
+                if [ -d "\$WEBROOT" ]; then
+                    cp deploy/proxy.php  "\$WEBROOT/proxy.php"
+                    cp deploy/.htaccess  "\$WEBROOT/.htaccess"
+                    sed -i "s#127.0.0.1:8020#127.0.0.1:${port}#" "\$WEBROOT/proxy.php"
+                    echo "Proxy aktualisiert: \$WEBROOT -> 127.0.0.1:${port}"
+                else
+                    echo "WARN: Web-Root \$WEBROOT fehlt - Subdomain anlegen; Proxy nicht platziert."
+                fi
                 PID=\$APP/tmp/gunicorn.pid
                 [ -f "\$PID" ] && kill \$(cat "\$PID") 2>/dev/null || true
                 sleep 1
                 set -a; [ -f .env ] && . .env; set +a
+                export APP_ENV=${appEnv}
                 nohup gunicorn run:app \\
                     --bind 127.0.0.1:${port} --workers ${workers} --timeout 120 \\
                     --access-logfile logs/access.log \\
@@ -99,28 +109,28 @@ pipeline {
         stage('Deploy dev') {
             when { expression { env.JOB_NAME.contains('dev') } }
             steps {
-                script { deploy('dashboard-dev', 'dev', '8023', '1') }
+                script { deploy('dashboard-dev', 'dev', '8023', '1', 'dev', 'dev.dashboard-projekte.ch') }
             }
         }
 
         stage('Deploy test') {
             when { expression { env.JOB_NAME.contains('test') } }
             steps {
-                script { deploy('dashboard-test', 'test', '8021', '1') }
+                script { deploy('dashboard-test', 'test', '8021', '1', 'test', 'test.dashboard-projekte.ch') }
             }
         }
 
         stage('Deploy int') {
             when { expression { env.JOB_NAME.contains('int') } }
             steps {
-                script { deploy('dashboard-int', 'int', '8022', '1') }
+                script { deploy('dashboard-int', 'int', '8022', '1', 'int', 'int.dashboard-projekte.ch') }
             }
         }
 
         stage('Deploy prod') {
             when { expression { env.JOB_NAME.contains('main') } }
             steps {
-                script { deploy('dashboard', 'main', '8020', '2') }
+                script { deploy('dashboard', 'main', '8020', '2', 'prod', 'dashboard-projekte.ch') }
             }
         }
     }

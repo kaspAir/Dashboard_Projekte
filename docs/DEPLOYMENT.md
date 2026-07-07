@@ -29,12 +29,14 @@ Port-Block **8020–8023** ist frei gewählt und kollidiert nicht mit hermespia
 
 ## Serving: PHP-Proxy
 
-Pro Subdomain in den **Web-Root der Subdomain** legen:
-
-- `deploy/proxy.php` – `$BACKEND` auf den Port der Stufe setzen (s. Tabelle).
-- `deploy/.htaccess` – leitet alle Requests an `proxy.php`.
-
+Die Pipeline platziert bei jedem Deploy automatisch `proxy.php` (mit korrektem
+Stufen-Port) und `.htaccess` im Web-Root der Subdomain (`~/sites/<subdomain>/`).
 Der Proxy reicht an `127.0.0.1:<port>` weiter, wo Gunicorn die App bedient.
+
+Manuell bleibt pro Subdomain nur einmalig:
+- Subdomain in Infomaniak anlegen (Web-Root `~/sites/<subdomain>/`),
+- ggf. **Wartungs-/Baustellenmodus deaktivieren** (sonst überlagert Infomaniaks
+  `.infomaniak-maintenance.html` die App).
 
 ## Secrets & Konfiguration
 
@@ -63,13 +65,15 @@ So kann ein Dependency-Bump auf `dev` keine andere Stufe beeinträchtigen.
 ## Erstinbetriebnahme (einmalig)
 
 1. Vier Branches anlegen und pushen: `dev`, `test`, `int`, `main`.
-2. Subdomains dev/test/int + Prod-Domain in Infomaniak einrichten (DNS + TLS).
-3. In jeden Subdomain-Web-Root `proxy.php` (Port anpassen!) + `.htaccess` legen.
-4. Jenkins-Credential `dashboard-deploy` hinterlegen; vier Pipeline-Jobs
+2. Subdomains dev/test/int + Prod-Domain in Infomaniak einrichten (DNS + TLS),
+   ggf. Wartungsmodus deaktivieren.
+3. Jenkins-Credential `dashboard-deploy` hinterlegen; vier Pipeline-Jobs
    (`Dashboard dev/test/int/main`) auf Repo + jeweiligen Branch zeigen.
-5. Ersten Build je Job laufen lassen – die Pipeline klont ins App-Verzeichnis.
-6. In jedem App-Verzeichnis auf dem Server eine `.env` erstellen (aus `.env.example`).
-7. Verifizieren: `https://dev.dashboard-projekte.ch/healthz` → `{"status":"ok","env":"dev"}`.
+4. Ersten Build je Job laufen lassen – die Pipeline klont ins App-Verzeichnis,
+   startet Gunicorn und platziert den PHP-Proxy automatisch.
+5. Optional: `.env` je App-Verzeichnis für Secrets (`ANTHROPIC_API_KEY` etc.).
+   `APP_ENV` setzt die Pipeline bereits je Stufe.
+6. Verifizieren: `https://dev.dashboard-projekte.ch/healthz` → `{"status":"ok","env":"dev"}`.
 
 ## Health-Check
 
