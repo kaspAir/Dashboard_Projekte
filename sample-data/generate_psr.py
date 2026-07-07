@@ -217,7 +217,8 @@ def snapshots_for(p):
         prog = max(0.03, min(prog, 1.0))
         ov = overall(p["arch"], prog, i)
         if p["lifecycle"] == "aborted":
-            red_lead, amber_extra = ABORT_LEAD.get(p["short"], (5, 3))
+            default_lead = (1, 1) if p["arch"] == "gescheitert_spaet" else (5, 3)
+            red_lead, amber_extra = ABORT_LEAD.get(p["short"], default_lead)
             mte = midx(end) - midx(ym)
             ov = "rot" if mte < red_lead else ("gelb" if mte < red_lead + amber_extra else "grün")
         if is_last and p["lifecycle"] == "completed":

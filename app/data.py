@@ -15,7 +15,12 @@ from .orgs import in_scope
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORES_DIR = os.path.join(ROOT, "data", "stores")                 # Laufzeit-Ingestion je Mandant
-SEED = os.path.join(ROOT, "sample-data", "canonical_store.yaml")  # committeter Seed (Mandant LLV)
+SAMPLE = os.path.join(ROOT, "sample-data")
+SEEDS = {                                                          # committete Seed-Stores je Mandant
+    "llv": os.path.join(SAMPLE, "canonical_store.yaml"),
+    "kaspair": os.path.join(SAMPLE, "store-kaspair.yaml"),
+    "musterstadt": os.path.join(SAMPLE, "store-musterstadt.yaml"),
+}
 
 
 def resolve_source(mandant_id=None):
@@ -23,8 +28,9 @@ def resolve_source(mandant_id=None):
     live = os.path.join(STORES_DIR, f"{mid}.yaml")
     if os.path.exists(live):
         return live, "Ingestion (Live)"
-    if mid == "llv" and os.path.exists(SEED):
-        return SEED, "Seed-Daten (LLV)"
+    seed = SEEDS.get(mid)
+    if seed and os.path.exists(seed):
+        return seed, "Seed-Daten"
     return None, "keine Daten"
 
 RANK = {"grün": 0, "gelb": 1, "rot": 2}

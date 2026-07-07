@@ -17,3 +17,15 @@
   mandant_id: kaspair
   name: Alle Projekte
   scope: {}
+
+- id: musterstadt-gesamt
+  mandant_id: musterstadt
+  name: Gesamtstadt
+  scope: {}
+
+- id: musterstadt-bau
+  mandant_id: musterstadt
+  name: Bau & Umwelt
+  scope:
+    business_areas:
+      - Ressort Bau & Umwelt

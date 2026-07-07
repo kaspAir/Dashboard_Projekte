@@ -6,3 +6,6 @@
 
 - id: kaspair
   name: kaspAIr GmbH   # Demo-Mandant mit Live-Quelle aus SharePoint
+
+- id: musterstadt
+  name: Stadt Musterstadt   # Demo-Gemeinde

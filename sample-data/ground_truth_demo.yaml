@@ -1,0 +1,5016 @@
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-01_PSR.docx
+  periode: 2024-01
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 129'188
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-02_PSR.docx
+  periode: 2024-02
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 155'025
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-03_PSR.docx
+  periode: 2024-03
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 180'862
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-04_PSR.docx
+  periode: 2024-04
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 206'700
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-05_PSR.docx
+  periode: 2024-05
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 232'538
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 258'375
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 284'212
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 310'050
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 335'888
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 361'725
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 387'562
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 413'400
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 439'238
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 465'075
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 490'912
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 516'750
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 542'588
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 568'425
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 594'262
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 620'100
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 645'938
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 671'775
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 697'612
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 723'450
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 749'288
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 775'125
+    prognose: 826'800
+- projekt: Buergerportal
+  name: Bürgerportal Musterstadt
+  nummer: M-2023-001
+  datei: 01_Buergerportal/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 780'000
+    ist: 800'962
+    prognose: 826'800
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 20'909
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 41'818
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 62'727
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 83'636
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 104'545
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 125'455
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 146'364
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 167'273
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 188'182
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 209'091
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 230'000
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 250'909
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 271'818
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 292'727
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 313'636
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 334'545
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 355'455
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 376'364
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 397'273
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 418'182
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 439'091
+    prognose: 460'000
+- projekt: Baugenehmigung
+  name: Digitale Baugenehmigung
+  nummer: M-2024-002
+  datei: 02_Baugenehmigung/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 460'000
+    ist: 460'000
+    prognose: 460'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-02_PSR.docx
+  periode: 2024-02
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 21'333
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-03_PSR.docx
+  periode: 2024-03
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 42'667
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-04_PSR.docx
+  periode: 2024-04
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 64'000
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-05_PSR.docx
+  periode: 2024-05
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 85'333
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 106'667
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 128'000
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 149'333
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 170'667
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 192'000
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 213'333
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 234'667
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 256'000
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 277'333
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 298'667
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 320'000
+    prognose: 320'000
+- projekt: SchulWLAN
+  name: Schul-WLAN-Ausbau
+  nummer: M-2024-003
+  datei: 03_SchulWLAN/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 320'000
+    ist: 320'000
+    prognose: 320'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 14'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 28'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 42'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 56'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 70'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 84'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 98'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 112'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 126'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 140'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 154'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 168'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 182'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 196'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 210'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 224'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 238'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 252'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 252'000
+    prognose: 252'000
+- projekt: ERechnung
+  name: E-Rechnung Stadtkasse
+  nummer: M-2024-004
+  datei: 04_ERechnung/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Stadtkasse
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 252'000
+    prognose: 252'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 20'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 41'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 61'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 82'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 102'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 123'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 143'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 164'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 184'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 205'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 225'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 246'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 266'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 287'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 307'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 328'000
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 348'500
+    prognose: 410'000
+- projekt: SozialPortal
+  name: Sozialhilfe-Portal
+  nummer: M-2024-005
+  datei: 05_SozialPortal/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 410'000
+    ist: 369'000
+    prognose: 410'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-01_PSR.docx
+  periode: 2024-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 36'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-02_PSR.docx
+  periode: 2024-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 73'600
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-03_PSR.docx
+  periode: 2024-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 110'400
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-04_PSR.docx
+  periode: 2024-04
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 147'200
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-05_PSR.docx
+  periode: 2024-05
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 184'000
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 220'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 257'600
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 294'400
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 331'200
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 368'000
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 404'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 441'600
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 478'400
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 515'200
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 552'000
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 588'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 625'600
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 662'400
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 699'200
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: gelb
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 736'000
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 772'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 809'600
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 846'400
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 883'200
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 920'000
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 956'800
+    prognose: 1'104'000
+- projekt: Verkehrsleit
+  name: Verkehrsleitsystem
+  nummer: M-2024-006
+  datei: 06_Verkehrsleit/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: rot
+    termine: grün
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: rot
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 920'000
+    ist: 993'600
+    prognose: 1'104'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-01_PSR.docx
+  periode: 2024-01
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 492'067
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-02_PSR.docx
+  periode: 2024-02
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 536'800
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-03_PSR.docx
+  periode: 2024-03
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 581'533
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-04_PSR.docx
+  periode: 2024-04
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 626'267
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-05_PSR.docx
+  periode: 2024-05
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 671'000
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 715'733
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 760'467
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 805'200
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 849'933
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 894'667
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 939'400
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 984'133
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'028'867
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'073'600
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'118'333
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'163'067
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'207'800
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'252'533
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'297'267
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Abschluss
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: gelb
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'342'000
+    prognose: 1'342'000
+- projekt: Einwohnerregister
+  name: Einwohnerregister-Ablösung
+  nummer: M-2022-007
+  datei: 07_Einwohnerregister/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Einwohneramt
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: aborted
+  phase: Abschluss
+  status:
+    gesamt: rot
+    termine: rot
+    kosten: rot
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 1'100'000
+    ist: 1'342'000
+    prognose: 1'342'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 26'727
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 53'455
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 80'182
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 106'909
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 133'636
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 160'364
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 187'091
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 213'818
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 240'545
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 267'273
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 294'000
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 320'727
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 347'455
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 374'182
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 400'909
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 427'636
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 454'364
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 481'091
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 507'818
+    prognose: 588'000
+- projekt: Einsatzapp
+  name: Stadtpolizei-Einsatzapp
+  nummer: M-2024-008
+  datei: 08_Einsatzapp/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Stadtpolizei
+  geschaeftsbereich: Ressort Sicherheit
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: gelb
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: gelb
+    governance: grün
+  kosten:
+    plan: 560'000
+    ist: 534'545
+    prognose: 588'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-06_PSR.docx
+  periode: 2024-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 13'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-07_PSR.docx
+  periode: 2024-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 26'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-08_PSR.docx
+  periode: 2024-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 40'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 53'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 66'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 80'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 93'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 106'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 120'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: gelb
+    termine: gelb
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 133'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 146'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 160'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 173'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 186'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 200'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 213'333
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 226'667
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 240'000
+    prognose: 240'000
+- projekt: Umweltsensorik
+  name: Umwelt-Sensornetz
+  nummer: M-2024-009
+  datei: 09_Umweltsensorik/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Bauamt
+  geschaeftsbereich: Ressort Bau & Umwelt
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 240'000
+    ist: 240'000
+    prognose: 240'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 12'857
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 25'714
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 38'571
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 51'429
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 64'286
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 77'143
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 90'000
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 102'857
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 115'714
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 128'571
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 141'429
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 154'286
+    prognose: 180'000
+- projekt: Ratsinfo
+  name: Digitales Ratsinformationssystem
+  nummer: M-2025-010
+  datei: 10_Ratsinfo/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: IT-Abteilung
+  geschaeftsbereich: Ressort Finanzen
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 180'000
+    ist: 167'143
+    prognose: 180'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 12'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 25'000
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 37'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 50'000
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 62'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 75'000
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-10_PSR.docx
+  periode: 2025-10
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 87'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-11_PSR.docx
+  periode: 2025-11
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 100'000
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2025-12_PSR.docx
+  periode: 2025-12
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 112'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2026-01_PSR.docx
+  periode: 2026-01
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 125'000
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2026-02_PSR.docx
+  periode: 2026-02
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 137'500
+    prognose: 150'000
+- projekt: BiblioCloud
+  name: Bibliotheks-Cloud
+  nummer: M-2025-011
+  datei: 11_BiblioCloud/2026-03_PSR.docx
+  periode: 2026-03
+  verwaltungseinheit: Schulamt
+  geschaeftsbereich: Ressort Bildung
+  lifecycle: active
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 150'000
+    ist: 150'000
+    prognose: 150'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2024-09_PSR.docx
+  periode: 2024-09
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Initialisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 13'333
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2024-10_PSR.docx
+  periode: 2024-10
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 26'667
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2024-11_PSR.docx
+  periode: 2024-11
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Konzept
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 40'000
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2024-12_PSR.docx
+  periode: 2024-12
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 53'333
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-01_PSR.docx
+  periode: 2025-01
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 66'667
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-02_PSR.docx
+  periode: 2025-02
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 80'000
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-03_PSR.docx
+  periode: 2025-03
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 93'333
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-04_PSR.docx
+  periode: 2025-04
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Realisierung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 106'667
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-05_PSR.docx
+  periode: 2025-05
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 120'000
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-06_PSR.docx
+  periode: 2025-06
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 133'333
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-07_PSR.docx
+  periode: 2025-07
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Einführung
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 146'667
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-08_PSR.docx
+  periode: 2025-08
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 160'000
+    prognose: 160'000
+- projekt: GesundheitTermin
+  name: Gesundheitsamt-Terminsystem
+  nummer: M-2024-012
+  datei: 12_GesundheitTermin/2025-09_PSR.docx
+  periode: 2025-09
+  verwaltungseinheit: Sozialamt
+  geschaeftsbereich: Ressort Soziales & Gesundheit
+  lifecycle: completed
+  phase: Abschluss
+  status:
+    gesamt: grün
+    termine: grün
+    kosten: grün
+    personalaufwand: grün
+    ergebnisse: grün
+    projektziele: grün
+    projektrisiken: grün
+    governance: grün
+  kosten:
+    plan: 160'000
+    ist: 160'000
+    prognose: 160'000
