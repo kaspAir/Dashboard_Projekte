@@ -12,3 +12,8 @@
   scope:
     business_areas:
       - Ministerium für Infrastruktur und Justiz
+
+- id: kaspair-gesamt
+  mandant_id: kaspair
+  name: Alle Projekte
+  scope: {}

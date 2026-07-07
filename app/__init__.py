@@ -227,10 +227,21 @@ def create_app() -> Flask:
         result = error = None
         if request.method == "POST":
             action = request.form.get("action")
-            path = (request.form.get("path") or "").strip()
-            if path:
-                source = {"type": "folder", "path": path}
-                save_active_source(mid, source)
+            if request.form.get("stype") == "sharepoint":
+                new = {"type": "sharepoint",
+                       "tenant_id": (request.form.get("tenant_id") or "").strip(),
+                       "client_id": (request.form.get("client_id") or "").strip(),
+                       "site": (request.form.get("site") or "").strip(),
+                       "root": (request.form.get("root") or "").strip()}
+                secret = (request.form.get("client_secret") or "").strip()
+                if secret:
+                    new["client_secret"] = secret
+                elif source.get("type") == "sharepoint":   # bestehenden Secret behalten
+                    new["client_secret"] = source.get("client_secret", "")
+                source = new
+            else:
+                source = {"type": "folder", "path": (request.form.get("path") or "").strip()}
+            save_active_source(mid, source)
             if action == "ingest":
                 try:
                     from .ingestion import run_ingestion, write_store
@@ -242,6 +253,7 @@ def create_app() -> Flask:
                     error = f"Einlesen fehlgeschlagen: {exc}"
         snaps = load_snapshots(mid)
         return render_template("quellen.html", env=app.config["APP_ENV"], source=source,
+                               has_secret=bool(source.get("client_secret")),
                                result=result, error=error, store_snapshots=len(snaps),
                                store_projects=len({r.get("projekt") for r in snaps}),
                                data_source=resolve_source(mid)[1], **_ctx(user))

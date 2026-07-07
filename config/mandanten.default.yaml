@@ -3,3 +3,6 @@
 
 - id: llv
   name: Liechtensteinische Landesverwaltung
+
+- id: kaspair
+  name: kaspAIr GmbH   # Demo-Mandant mit Live-Quelle aus SharePoint
