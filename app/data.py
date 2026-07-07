@@ -12,11 +12,14 @@ from collections import Counter, defaultdict
 import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STORE = os.path.join(ROOT, "sample-data", "canonical_store.yaml")       # Ingestion-Ergebnis (bevorzugt)
+RUNTIME_STORE = os.path.join(ROOT, "data", "canonical_store.yaml")      # Laufzeit-Ingestion (bevorzugt)
+STORE = os.path.join(ROOT, "sample-data", "canonical_store.yaml")       # committeter Seed
 GROUND_TRUTH = os.path.join(ROOT, "sample-data", "ground_truth.yaml")   # Fallback (Test-Oracle)
 
 
 def resolve_source():
+    if os.path.exists(RUNTIME_STORE):
+        return RUNTIME_STORE, "Ordner-Ingestion (Live)"
     if os.path.exists(STORE):
         return STORE, "Ordner-Ingestion (extrahiert)"
     if os.path.exists(GROUND_TRUTH):

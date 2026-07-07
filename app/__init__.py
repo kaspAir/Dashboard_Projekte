@@ -5,8 +5,10 @@ import tempfile
 from flask import Flask, abort, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
-from .data import all_projects, dashboard_data, project_detail
+from .data import (all_projects, dashboard_data, load_snapshots, project_detail,
+                   resolve_source)
 from .mim import load_mim
+from .sources.registry import load_active_source, save_active_source
 
 LIFECYCLE_DE = {"active": "aktiv", "completed": "abgeschlossen", "aborted": "abgebrochen"}
 
@@ -79,6 +81,32 @@ def create_app() -> Flask:
             abort(404)
         return render_template("project_detail.html", env=app.config["APP_ENV"],
                                d=detail, lifecycle_de=LIFECYCLE_DE)
+
+    @app.route("/quellen", methods=["GET", "POST"])
+    def quellen():
+        env = app.config["APP_ENV"]
+        source = load_active_source()
+        result = error = None
+        if request.method == "POST":
+            action = request.form.get("action")
+            path = (request.form.get("path") or "").strip()
+            if path:
+                source = {"type": "folder", "path": path}
+                save_active_source(source)
+            if action == "ingest":
+                try:
+                    from .ingestion import run_ingestion, write_store  # lazy (docx)
+                    res = run_ingestion(source)
+                    if res["ingested"] > 0:      # leeres Ergebnis nie den Store überschreiben
+                        write_store(res["records"])
+                    result = res
+                except Exception as exc:
+                    error = f"Einlesen fehlgeschlagen: {exc}"
+        snaps = load_snapshots()
+        return render_template("quellen.html", env=env, source=source, result=result,
+                               error=error, store_snapshots=len(snaps),
+                               store_projects=len({r.get("projekt") for r in snaps}),
+                               data_source=resolve_source()[1])
 
     @app.route("/upload", methods=["GET", "POST"])
     def upload():

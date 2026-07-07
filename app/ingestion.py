@@ -8,9 +8,16 @@ verstreut in einem grossen Verzeichnisbaum liegen.
 """
 from __future__ import annotations
 
+import os
+
+import yaml
+
 from .extraction import extract_snapshot
 from .mim import load_mim
 from .sources.config import build_connector
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RUNTIME_STORE = os.path.join(ROOT, "data", "canonical_store.yaml")
 
 # MIM-Feld-ID -> Schlüssel im kanonischen Snapshot (Statusampeln)
 FIELD_TO_STATUS = {
@@ -78,3 +85,12 @@ def run_ingestion(source_config: dict, mim: dict | None = None) -> dict:
     # stabile Sortierung: Projekt, dann Periode (Zeitreihe)
     records.sort(key=lambda r: (str(r["projekt"]), r["periode"]))
     return {"records": records, "scanned": scanned, "ingested": len(records), "skipped": skipped}
+
+
+def write_store(records, path: str | None = None) -> str:
+    """Schreibt den kanonischen Store (Laufzeit) – bevorzugte Datenquelle des Dashboards."""
+    path = path or RUNTIME_STORE
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(records, f, allow_unicode=True, sort_keys=False)
+    return path

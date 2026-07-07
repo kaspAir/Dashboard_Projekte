@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quellen – PSR-Verzeichnis</title>
+<style>
+  :root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb;--g:#2e9e4f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:820px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:24px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .lead{color:var(--muted);margin-top:6px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:14px}
+  label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+  input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  button{border:0;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer}
+  button.primary{background:var(--ink);color:#fff}
+  button.ghost{background:#eef1f5;color:var(--ink)}
+  .kv{display:flex;gap:26px;flex-wrap:wrap}
+  .kv .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .kv b{font-size:16px}
+  .ok{background:#eaf7ee;border:1px solid #bfe6c9;color:#1e6b34;border-radius:8px;padding:12px 14px;margin-top:14px}
+  .warn{background:#fff5e6;border:1px solid #f3d9a6;color:#a56a00;border-radius:8px;padding:12px 14px;margin-top:14px}
+  .err{background:#fdecec;border:1px solid #f3c2c2;color:#a12020;border-radius:8px;padding:12px 14px;margin-top:14px}
+  code{background:#f2f3f5;padding:1px 6px;border-radius:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Quellen</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/dashboard">← Dashboard</a></div>
+  </header>
+  <div class="lead">Bestimme das Verzeichnis, aus dem die PSR gelesen werden. Der Ordner wird
+    <b>rekursiv</b> durchsucht – die PSR dürfen beliebig tief und verstreut liegen; welche
+    Datei ein PSR ist, entscheidet das System <b>inhaltsbasiert</b>.</div>
+
+  <form method="post" class="card">
+    <label for="path">PSR-Wurzelverzeichnis</label>
+    <input type="text" id="path" name="path" value="{{ source.path }}" placeholder="/pfad/zu/Projekte">
+    <div class="row">
+      <button class="primary" type="submit" name="action" value="ingest">Neu einlesen</button>
+      <button class="ghost" type="submit" name="action" value="save">Pfad speichern</button>
+    </div>
+  </form>
+
+  {% if result %}
+    {% if result.ingested > 0 %}
+      <div class="ok"><b>Eingelesen.</b> Gescannt: {{ result.scanned }} · als PSR erkannt und übernommen:
+        <b>{{ result.ingested }}</b> · übersprungen: {{ result.skipped }}. Das Dashboard zeigt jetzt diese Daten.</div>
+    {% else %}
+      <div class="warn"><b>0 PSR gefunden</b> unter <code>{{ source.path }}</code> (gescannt: {{ result.scanned }}).
+        Der Pfad wurde gespeichert, die bestehenden Daten bleiben unverändert. Pfad prüfen –
+        auf dem Server müssen die PSR dort tatsächlich liegen.</div>
+    {% endif %}
+  {% endif %}
+  {% if error %}<div class="err">{{ error }}</div>{% endif %}
+
+  <h2>Aktueller Stand</h2>
+  <div class="card kv">
+    <div><div class="k">Quelltyp</div><b>{{ source.type }}</b></div>
+    <div><div class="k">Datenquelle Dashboard</div><b>{{ data_source }}</b></div>
+    <div><div class="k">Snapshots im Store</div><b>{{ store_snapshots }}</b></div>
+    <div><div class="k">Projekte</div><b>{{ store_projects }}</b></div>
+  </div>
+
+  <h2>Später</h2>
+  <div class="lead">Der gleiche Ablauf funktioniert mit einer SharePoint-Quelle (<code>type: sharepoint</code>):
+    ein „Verzeichnis aller Projekte" wird rekursiv durchsucht, die PSR selbst abgeholt und extrahiert –
+    hinter derselben Ingestion.</div>
+</div>
+</body>
+</html>
