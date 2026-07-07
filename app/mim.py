@@ -1,4 +1,6 @@
 """Laden des Management-Informationsmodells (MIM)."""
+from __future__ import annotations
+
 import os
 
 import yaml

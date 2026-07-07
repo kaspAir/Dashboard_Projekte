@@ -4,6 +4,8 @@ Quelle (Phase 0): die Ground-Truth-Zeitreihe (sample-data/ground_truth.yaml).
 Später wird dieselbe Struktur aus der Extraktion echter PSR gefüllt – die
 Präsentation bleibt unverändert.
 """
+from __future__ import annotations
+
 import os
 from collections import Counter, defaultdict
 

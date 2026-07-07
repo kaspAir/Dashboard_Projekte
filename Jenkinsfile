@@ -90,7 +90,7 @@ pipeline {
         stage('Regressionstests') {
             steps {
                 script {
-                    docker.image('python:3.12-slim').inside('-u root') {
+                    docker.image('python:3.9-slim').inside('-u root') {
                         sh '''
                             python --version
                             pip install --no-cache-dir -r requirements.txt -r tests/requirements.txt
