@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projekte</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  .env{font-size:12px;color:var(--muted)}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:16px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#f8fafc;cursor:pointer}
+  td a{color:inherit;text-decoration:none}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+  .status{font-weight:600}.status.g{color:var(--g)}.status.a{color:var(--a)}.status.r{color:var(--r)}
+  .g .dot{background:var(--g)}.a .dot{background:var(--a)}.r .dot{background:var(--r)}
+  .badge{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .badge.warn{background:#fff5e6;border-color:#f3d9a6;color:#a56a00}
+  .lc{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .lc.completed{color:#2563eb;border-color:#c7dbf5}.lc.aborted{color:var(--r);border-color:#f3c2c2}
+  .mini{font-size:12px;color:var(--muted)}
+  .trend.up{color:var(--g)}.trend.down{color:var(--r)}.trend.flat{color:var(--muted)}
+</style>
+</head>
+<body>
+{% macro amp(s) %}<span class="status {{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
+<div class="wrap">
+  <header>
+    <h1>Projekte{% if bereich %} · {{ bereich }}{% endif %}{% if einheit %} · {{ einheit }}{% endif %}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/dashboard">← Dashboard</a></div>
+  </header>
+  <div class="mini" style="margin-top:6px">{{ projects|length }} Projekte (alle Lebenszyklen). Zeile anklicken für den Verlauf.</div>
+
+  <table>
+    <tr><th>Projekt</th><th>Bereich</th><th>Phase</th><th>Lebenszyklus</th><th>Status</th><th>Trend</th><th>Stabilität</th></tr>
+    {% for p in projects %}
+    <tr onclick="location.href='/projekt/{{ p.key }}'">
+      <td><a href="/projekt/{{ p.key }}"><b>{{ p.name }}</b></a><br><span class="mini">{{ p.org_unit }}</span></td>
+      <td class="mini">{{ p.business_area }}</td>
+      <td class="mini">{{ p.phase }}</td>
+      <td><span class="lc {{ p.lifecycle }}">{{ lifecycle_de[p.lifecycle] }}</span></td>
+      <td>{{ amp(p.overall) }}</td>
+      <td>{% if p.trend=='besser' %}<span class="trend up">▲ besser</span>{% elif p.trend=='schlechter' %}<span class="trend down">▼ schlechter</span>{% else %}<span class="trend flat">▶ stabil</span>{% endif %}</td>
+      <td>{% if p.stability=='schwankend' %}<span class="badge warn">schwankend ({{ p.changes }})</span>{% else %}<span class="badge">stabil</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ d.summary.name }} – Verlauf</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .meta{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:14px;display:flex;flex-wrap:wrap;gap:18px}
+  .meta div{font-size:13px}.meta .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+  .status{font-weight:600}.status.g{color:var(--g)}.status.a{color:var(--a)}.status.r{color:var(--r)}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+  .g .dot{background:var(--g)}.a .dot{background:var(--a)}.r .dot{background:var(--r)}
+  .lc{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .lc.completed{color:#2563eb;border-color:#c7dbf5}.lc.aborted{color:var(--r);border-color:#f3c2c2}
+  .band{display:flex;gap:2px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+  .cell{flex:1 0 10px;height:34px;border-radius:3px}
+  .cell.g{background:#bfe6c9}.cell.a{background:#f6e0a0}.cell.r{background:#f2b9b9}
+  .axis{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:4px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+  th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  .grid8{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:2px}
+  .amcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center}
+  .amcard .l{color:var(--muted);font-size:13px}
+  .badge{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .badge.warn{background:#fff5e6;border-color:#f3d9a6;color:#a56a00}
+  @media(max-width:640px){.grid8{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{% set S = d.summary %}
+{% set LBL = {'gesamt':'Gesamtbeurteilung','termine':'Termine','kosten':'Kosten','personalaufwand':'Personalaufwand','ergebnisse':'Ergebnisse','projektziele':'Projektziele','projektrisiken':'Projektrisiken','governance':'Einhaltung Governance'} %}
+{% macro cls(s) %}{{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}{% endmacro %}
+{% macro amp(s) %}<span class="status {{ cls(s) }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
+<div class="wrap">
+
+  <header>
+    <h1>{{ S.name }}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/projekte">← Projekte</a> · <a href="/dashboard">Dashboard</a></div>
+  </header>
+
+  <div class="meta">
+    <div><div class="k">Projektnummer</div>{{ S.nummer or '–' }}</div>
+    <div><div class="k">Organisationseinheit</div>{{ S.org_unit }}</div>
+    <div><div class="k">Bereich</div>{{ S.business_area }}</div>
+    <div><div class="k">Phase</div>{{ S.phase }}</div>
+    <div><div class="k">Lebenszyklus</div><span class="lc {{ S.lifecycle }}">{{ lifecycle_de[S.lifecycle] }}</span></div>
+    <div><div class="k">Aktueller Status</div>{{ amp(S.overall) }}</div>
+    <div><div class="k">Stabilität</div>{% if S.stability=='schwankend' %}<span class="badge warn">schwankend ({{ S.changes }})</span>{% else %}<span class="badge">stabil</span>{% endif %}</div>
+    <div><div class="k">Historie</div>{{ S.months }} Monate</div>
+  </div>
+
+  <h2>Statusverlauf (Gesamtstatus je Monat)</h2>
+  <div class="band">
+    {% for t in d.timeline %}<div class="cell {{ cls(t.gesamt) }}" title="{{ t.periode }}: {{ t.gesamt }} ({{ t.phase }})"></div>{% endfor %}
+  </div>
+  <div class="axis"><span>{{ d.timeline[0].periode }}</span><span>{{ d.timeline[-1].periode }}</span></div>
+
+  <h2>Aktuelle Ampeln (letzter Bericht)</h2>
+  <div class="grid8">
+    {% for key, label in LBL.items() %}
+      {% if key in d.current %}<div class="amcard"><span class="l">{{ label }}</span>{{ amp(d.current[key]) }}</div>{% endif %}
+    {% endfor %}
+  </div>
+
+  <h2>Kostenentwicklung (letzte Perioden)</h2>
+  <table>
+    <tr><th>Periode</th><th>Status</th><th>Ist</th><th>Plan</th><th>Prognose</th></tr>
+    {% for t in d.timeline[-8:] %}
+    <tr><td>{{ t.periode }}</td><td>{{ amp(t.gesamt) }}</td><td>{{ t.kosten.ist or '–' }}</td><td>{{ t.kosten.plan or '–' }}</td><td>{{ t.kosten.prognose or '–' }}</td></tr>
+    {% endfor %}
+  </table>
+
+</div>
+</body>
+</html>

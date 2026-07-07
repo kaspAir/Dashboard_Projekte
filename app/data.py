@@ -108,3 +108,26 @@ def dashboard_data():
         total_all=len(projects),
         data_source=resolve_source()[1],
     )
+
+
+def all_projects():
+    """Alle Projekte (jeder Lebenszyklus), schlechteste zuerst."""
+    return sorted(build_projects(load_snapshots()),
+                  key=lambda p: (-RANK[p["overall"]], p["name"]))
+
+
+def project_detail(key):
+    """Zeitreihe + Zusammenfassung eines Projekts (per Projekt-Schlüssel)."""
+    snaps = [r for r in load_snapshots() if str(r.get("projekt")) == str(key)]
+    if not snaps:
+        return None
+    snaps.sort(key=lambda r: r["periode"])
+    return {
+        "summary": _project_view(snaps),
+        "timeline": [{
+            "periode": r["periode"], "gesamt": r["status"]["gesamt"],
+            "status": r["status"], "kosten": r.get("kosten", {}),
+            "phase": r["phase"], "lifecycle": r["lifecycle"],
+        } for r in snaps],
+        "current": snaps[-1]["status"],
+    }

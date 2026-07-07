@@ -2,11 +2,13 @@
 import os
 import tempfile
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, abort, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
-from .data import dashboard_data
+from .data import all_projects, dashboard_data, project_detail
 from .mim import load_mim
+
+LIFECYCLE_DE = {"active": "aktiv", "completed": "abgeschlossen", "aborted": "abgebrochen"}
 
 META_IDS = ["project_name", "project_number", "report_date", "project_lead",
             "sponsor", "org_unit", "business_area", "phase", "lifecycle_state"]
@@ -56,6 +58,27 @@ def create_app() -> Flask:
         return render_template(
             "dashboard.html", env=app.config["APP_ENV"], mim=load_mim(), d=dashboard_data()
         )
+
+    @app.get("/projekte")
+    def projekte():
+        bereich = request.args.get("bereich")
+        einheit = request.args.get("einheit")
+        projects = all_projects()
+        if bereich:
+            projects = [p for p in projects if p["business_area"] == bereich]
+        if einheit:
+            projects = [p for p in projects if p["org_unit"] == einheit]
+        return render_template("projects.html", env=app.config["APP_ENV"],
+                               projects=projects, bereich=bereich, einheit=einheit,
+                               lifecycle_de=LIFECYCLE_DE)
+
+    @app.get("/projekt/<key>")
+    def projekt(key):
+        detail = project_detail(key)
+        if not detail:
+            abort(404)
+        return render_template("project_detail.html", env=app.config["APP_ENV"],
+                               d=detail, lifecycle_de=LIFECYCLE_DE)
 
     @app.route("/upload", methods=["GET", "POST"])
     def upload():
