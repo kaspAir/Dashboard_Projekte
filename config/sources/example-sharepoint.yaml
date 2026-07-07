@@ -1,0 +1,15 @@
+# Beispiel: SharePoint-/OneDrive-Quelle über Microsoft Graph (App-only).
+# Diese Werte gehören NICHT ins Git – sie werden pro Mandant unter
+# data/sources/<mandant_id>.yaml abgelegt (client_secret ist sensibel!).
+
+type: sharepoint
+
+tenant_id: "<AZURE-AD-TENANT-ID>"       # Verzeichnis-(Mandant-)ID der Azure-App
+client_id: "<APP-CLIENT-ID>"            # Anwendungs-(Client-)ID der registrierten App
+client_secret: "<APP-CLIENT-SECRET>"    # Geheimnis der App (sensibel!)
+
+# Ziel-Site: entweder "host:/sites/Name" oder direkt eine Graph-site-id
+site: "<tenant>.sharepoint.com:/sites/Projekte"
+
+drive: "Dokumente"     # optional; leer = Standard-Dokumentbibliothek
+root: "PSR_Test"       # Ordner in der Bibliothek; leer = ganze Bibliothek (rekursiv)

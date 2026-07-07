@@ -15,7 +15,7 @@ def build_connector(config: dict):
     kind = config.get("type")
     if kind == "folder":
         return FolderConnector(config["path"])
-    # Erweiterungspunkt (später):
-    #   if kind == "sharepoint":
-    #       return SharePointConnector(config)   # Graph, rekursiv, lädt Dateien herunter
+    if kind == "sharepoint":
+        from .sharepoint import SharePointConnector   # lazy: requests erst bei Bedarf
+        return SharePointConnector(config)
     raise ValueError(f"Unbekannter Quell-Typ: {kind!r}")
