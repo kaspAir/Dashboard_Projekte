@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSR hochladen – Extraktion</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:940px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .drop{background:var(--card);border:1.5px dashed #c9ced6;border-radius:12px;padding:26px;margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .drop input[type=file]{font-size:14px}
+  button{background:var(--ink);color:#fff;border:0;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer}
+  .err{background:#fdecec;border:1px solid #f3c2c2;color:#a12020;border-radius:8px;padding:10px 14px;margin-top:16px}
+  .file{font-size:13px;color:var(--muted);margin-top:14px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:2px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
+  .g .dot{background:var(--g)}.a .dot{background:var(--a)}.r .dot{background:var(--r)}
+  .status{font-weight:600}.status.g{color:var(--g)}.status.a{color:var(--a)}.status.r{color:var(--r)}
+  .src{color:var(--muted);font-size:12.5px}
+  .conf{font-variant-numeric:tabular-nums;color:var(--muted)}
+  .lead{color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+{% macro amp(s) %}<span class="status {{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
+{% macro cell(r) %}{% if r.value is mapping %}Ist {{ r.value.ist }} · Plan {{ r.value.plan }} · Prognose {{ r.value.prognose }}{% elif r.value in ['grün','gelb','rot'] %}{{ amp(r.value) }}{% else %}{{ r.value }}{% endif %}{% endmacro %}
+<div class="wrap">
+
+  <header>
+    <h1>PSR hochladen</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/dashboard">← Dashboard</a></div>
+  </header>
+  <div class="lead">Lade einen Projektstatusbericht (.docx) hoch. Das Tool extrahiert die kanonischen Werte – jeweils mit <b>Fundstelle</b> und <b>Konfidenz</b>. Nichts wird geraten.</div>
+
+  <form method="post" enctype="multipart/form-data">
+    <div class="drop">
+      <input type="file" name="file" accept=".docx" required>
+      <button type="submit">Extrahieren</button>
+    </div>
+  </form>
+
+  {% if error %}<div class="err">{{ error }}</div>{% endif %}
+
+  {% if result %}
+    <div class="file">Datei: <b>{{ result.filename }}</b> · {{ result.count }} Felder extrahiert</div>
+
+    <h2>Metadaten</h2>
+    <table>
+      <tr><th style="width:22%">Feld</th><th style="width:30%">Wert</th><th>Fundstelle</th><th style="width:10%">Konfidenz</th></tr>
+      {% for r in result.meta %}<tr><td>{{ r.label }}</td><td>{{ cell(r) }}</td><td class="src">{{ r.source }}</td><td class="conf">{{ '%.1f'|format(r.confidence) }}</td></tr>{% endfor %}
+    </table>
+
+    <h2>Statusampeln</h2>
+    <table>
+      <tr><th style="width:22%">Bereich</th><th style="width:30%">Wert</th><th>Fundstelle</th><th style="width:10%">Konfidenz</th></tr>
+      {% for r in result.rag %}<tr><td>{{ r.label }}</td><td>{{ cell(r) }}</td><td class="src">{{ r.source }}</td><td class="conf">{{ '%.1f'|format(r.confidence) }}</td></tr>{% endfor %}
+    </table>
+
+    <h2>Kennzahlen</h2>
+    <table>
+      <tr><th style="width:22%">Feld</th><th style="width:30%">Wert</th><th>Fundstelle</th><th style="width:10%">Konfidenz</th></tr>
+      {% for r in result.metrics %}<tr><td>{{ r.label }}</td><td>{{ cell(r) }}</td><td class="src">{{ r.source }}</td><td class="conf">{{ '%.1f'|format(r.confidence) }}</td></tr>{% endfor %}
+    </table>
+  {% endif %}
+
+</div>
+</body>
+</html>
