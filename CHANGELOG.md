@@ -6,6 +6,14 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.5.1] – 2026-07-11
+
+### Betrieb / Zuverlässigkeit
+- **Watchdog** (`deploy/keepalive.sh` + Cron `@reboot` und alle 3 Minuten): Gunicorn
+  startet nach Server-Neustart oder Prozess-Absturz automatisch neu – die Umgebungen
+  bleiben online, ohne manuellen Deploy.
+- `.gitattributes`: Shell-Skripte mit LF-Zeilenenden (Linux-Kompatibilität).
+
 ## [0.5.0] – 2026-07-07
 
 Erste zusammenhängende Version – demofähig für Interessenten.

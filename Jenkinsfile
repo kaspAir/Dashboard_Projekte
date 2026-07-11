@@ -64,6 +64,16 @@ def deploy(String subdir, String branch, String port, String workers, String app
                     --access-logfile logs/access.log \\
                     --error-logfile logs/error.log > /dev/null 2>&1 &
                 echo \$! > "\$PID"
+                KA="\$APP/deploy/keepalive.sh"
+                chmod +x "\$KA" 2>/dev/null || true
+                if command -v crontab >/dev/null 2>&1; then
+                    ( crontab -l 2>/dev/null | grep -vF "\$KA"; \\
+                      echo "@reboot \$KA ${port} ${workers} ${appEnv}"; \\
+                      echo "*/3 * * * * \$KA ${port} ${workers} ${appEnv}" ) | crontab - 2>/dev/null \\
+                      && echo "Watchdog-Cron aktiv (@reboot + alle 3 Min)" || echo "WARN: crontab nicht setzbar - Cron ggf. im Infomaniak-Manager anlegen."
+                else
+                    echo "WARN: kein crontab verfuegbar - Watchdog-Cron im Infomaniak-Manager anlegen (keepalive.sh)."
+                fi
                 sleep 2 && curl -sf http://127.0.0.1:${port}/healthz > /dev/null && echo "OK: ${subdir} laeuft auf ${port}"
             '
         """
