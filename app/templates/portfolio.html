@@ -134,11 +134,15 @@
       </tr>
       {% endfor %}
     </table></div>
-    <div class="note">Der Kunde definiert eigene KPIs und ihr Gewicht. Die Prioritätszahl (0–100) ist der gewichtete, normierte Mittelwert der bewerteten KPIs; „unbekannt" wird nicht als 0 gewertet. Das Muss-Tor sticht und ist an eine Frist gekoppelt.</div>
+    <div class="note">Der Kunde definiert eigene KPIs und ihr Gewicht. Die Prioritätszahl (0–100) ist der gewichtete, normierte Mittelwert der bewerteten KPIs; „unbekannt" wird nicht als 0 gewertet. Das Muss-Tor sticht und ist an eine Frist gekoppelt.
+      {% if can_manage %}· <a href="/portfolio/kpis">KPIs &amp; Gewichte bearbeiten →</a>{% endif %}</div>
   </details>
   {% endif %}
 
-  <h2>Vorhaben (Handlungsbedarf zuerst)</h2>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+    <h2>Vorhaben (Handlungsbedarf zuerst)</h2>
+    {% if can_manage %}<a href="/portfolio/vorhaben/neu">＋ Neues Vorhaben</a>{% endif %}
+  </div>
   <div class="scroll"><table>
     <tr>
       <th>Vorhaben</th><th>Status / Hinweise</th><th>Prio</th><th>Ampel</th>
@@ -149,6 +153,7 @@
       <td>
         {% if r.reports %}<a href="/projekt/{{ r.ref }}"><b>{{ r.titel }}</b></a>{% else %}<b>{{ r.titel }}</b>{% endif %}
         <br><span class="mini">{{ r.ref }}{% if r.einheit %} · {{ r.einheit }}{% endif %}{% if r.programm %} · {{ r.programm }}{% endif %}</span>
+        {% if can_manage %}<br><a class="mini" href="/portfolio/vorhaben/{{ r.ref }}">{{ 'Auftrag erfassen' if 'ohne_auftrag' in r.flags else 'bearbeiten' }} ✎</a>{% endif %}
       </td>
       <td>
         {{ r.status_label }}

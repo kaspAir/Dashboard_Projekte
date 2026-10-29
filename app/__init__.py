@@ -163,6 +163,95 @@ def create_app() -> Flask:
         p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"))
         return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, **_ctx(user))
 
+    @app.route("/portfolio/kpis", methods=["GET", "POST"])
+    def portfolio_kpis():
+        user = current_user()
+        if not can_manage_users(user):
+            abort(403)
+        mid = (active_mandant(user) or {}).get("id")
+        from .portfolio import load_katalog, save_katalog
+
+        def _entry(prefix, kid):
+            art = request.form.get(f"{prefix}art") or "bewertung"
+            e = {"id": kid, "name": (request.form.get(f"{prefix}name") or kid).strip(), "art": art}
+            if art == "bewertung":
+                e["skala"] = int(request.form.get(f"{prefix}skala") or 4)
+                e["richtung"] = request.form.get(f"{prefix}richtung") or "positiv"
+                e["gewicht"] = int(request.form.get(f"{prefix}gewicht") or 0)
+            elif art == "messung":
+                e["quelle"] = request.form.get(f"{prefix}quelle") or "psr"
+                e["richtung"] = request.form.get(f"{prefix}richtung") or "negativ"
+                e["gewicht"] = int(request.form.get(f"{prefix}gewicht") or 0)
+            return e
+
+        if request.method == "POST":
+            katalog = []
+            for kid in request.form.getlist("id"):
+                if request.form.get(f"del__{kid}"):
+                    continue
+                katalog.append(_entry(f"{kid}__", kid))
+            nid = (request.form.get("new_id") or "").strip()
+            if nid:
+                katalog.append(_entry("new_", nid))
+            save_katalog(mid, katalog)
+            return redirect("/portfolio")
+        return render_template("portfolio_kpis.html", env=app.config["APP_ENV"],
+                               katalog=load_katalog(mid), **_ctx(user))
+
+    @app.route("/portfolio/vorhaben/<ref>", methods=["GET", "POST"])
+    def portfolio_vorhaben(ref):
+        user = current_user()
+        if not can_manage_users(user):
+            abort(403)
+        mid = (active_mandant(user) or {}).get("id")
+        from .portfolio import (delete_vorhaben, get_vorhaben, load_katalog,
+                                 upsert_vorhaben)
+        katalog = load_katalog(mid)
+
+        if request.method == "POST":
+            if request.form.get("action") == "delete":
+                delete_vorhaben(mid, request.form.get("ref") or ref)
+                return redirect("/portfolio")
+
+            def g(k):
+                return (request.form.get(k) or "").strip()
+
+            def num(k):
+                v = g(k)
+                return int(v) if v.isdigit() else (v or None)
+
+            data = {"ref": g("ref"), "art": g("art") or "projekt", "titel": g("titel")}
+            for f in ("programm", "einheit", "bereich"):
+                if g(f):
+                    data[f] = g(f)
+            auftrag = {"status": g("status") or "idee"}
+            if g("datum"):
+                auftrag["datum"] = g("datum")
+            if num("budget_soll") is not None:
+                auftrag["budget_soll"] = num("budget_soll")
+            if num("aufwand_soll") is not None:
+                auftrag["aufwand_soll"] = num("aufwand_soll")
+            data["auftrag"] = auftrag
+            kpis = {}
+            for kpi in katalog:
+                kid, art = kpi.get("id"), kpi.get("art")
+                if art == "tor":
+                    if request.form.get(f"tor__{kid}__pflicht"):
+                        kpis[kid] = {"pflicht": True, "frist": g(f"tor__{kid}__frist"),
+                                     "grund": g(f"tor__{kid}__grund"),
+                                     "konsequenz": g(f"tor__{kid}__konsequenz")}
+                elif art == "bewertung":
+                    val = g(f"kpi__{kid}")
+                    if val != "":
+                        kpis[kid] = int(val)
+            data["kpis"] = kpis
+            upsert_vorhaben(mid, data)
+            return redirect("/portfolio")
+
+        v = get_vorhaben(mid, ref) if ref != "neu" else None
+        return render_template("portfolio_vorhaben.html", env=app.config["APP_ENV"],
+                               v=v, ref=ref, katalog=katalog, **_ctx(user))
+
     @app.get("/orgs/wechsel/<oid>")
     def orgs_switch(oid):
         resp = make_response(redirect("/dashboard"))

@@ -6,6 +6,18 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.7.2] – 2026-10-29
+
+### Portfolio-Management (Slice 3): Pflege im Tool
+- **KPI-Katalog-Editor** (`/portfolio/kpis`): KPIs und Gewichte je Portfolio im Tool
+  anlegen, ändern und löschen (statt YAML).
+- **Vorhaben-Editor** (`/portfolio/vorhaben/<ref>`): Durchführungsauftrag (Status,
+  Budget-/Aufwand-Soll, Einheit/Bereich/Programm), KPI-Werte und das Muss-Tor mit
+  Frist erfassen; neues Vorhaben anlegen, Vorhaben löschen, Auftrag zu einem
+  berichtenden Projekt nacherfassen.
+- Bearbeitung nur für Admins; gespeichert als Live-Stand je Mandant
+  (`data/portfolio/<mandant>.yaml`), Seed bleibt als Vorgabe erhalten.
+
 ## [0.7.1] – 2026-10-29
 
 ### Portfolio-Management (Slice 2): konfigurierbare KPIs & Priorisierung
@@ -93,7 +105,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.1...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.2...dev
+[0.7.2]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.2
 [0.7.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.1
 [0.7.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.0
 [0.6.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.6.0

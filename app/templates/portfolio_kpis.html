@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPI-Katalog bearbeiten</title>
+<style>
+  :root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1040px;margin:0 auto;padding:24px 20px 60px}
+  h1{font-size:22px;margin:0}
+  h2{font-size:13px;margin:24px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .lead{color:var(--muted);margin:8px 0 4px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:6px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  input[type=text],input[type=number],select{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
+  input[type=number]{text-align:right}
+  .idcell{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--muted)}
+  .actions{margin-top:18px;display:flex;gap:10px}
+  button{font:inherit;font-weight:600;border-radius:8px;padding:9px 16px;border:1px solid var(--line);cursor:pointer}
+  button.primary{background:#1f2937;color:#fff;border-color:#1f2937}
+  .note{color:var(--muted);font-size:12px;margin-top:10px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:6px}
+  .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+{% macro artsel(name, val) %}
+  <select name="{{ name }}">
+    <option value="bewertung" {{ 'selected' if val=='bewertung' else '' }}>Bewertung</option>
+    <option value="tor" {{ 'selected' if val=='tor' else '' }}>Muss (Tor, mit Frist)</option>
+    <option value="messung" {{ 'selected' if val=='messung' else '' }}>Messung (aus PSR)</option>
+  </select>
+{% endmacro %}
+{% macro richtungsel(name, val) %}
+  <select name="{{ name }}">
+    <option value="positiv" {{ 'selected' if val=='positiv' else '' }}>erhöht ⬆</option>
+    <option value="negativ" {{ 'selected' if val=='negativ' else '' }}>senkt ⬇</option>
+  </select>
+{% endmacro %}
+<div class="wrap">
+  {% include '_nav.html' %}
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+    <h1>KPI-Katalog bearbeiten{% if mandant %} · {{ mandant.name }}{% endif %}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/portfolio">← Portfolio</a></div>
+  </div>
+  <p class="lead">Diese KPIs und Gewichte gelten für das ganze Portfolio. Die Prioritätszahl ist der
+    gewichtete, normierte Mittelwert der bewerteten KPIs; das Muss-Tor sticht und ist an eine Frist gekoppelt.</p>
+
+  <form method="post">
+    <h2>Bestehende KPIs</h2>
+    <table>
+      <tr><th>ID</th><th>Name</th><th>Art</th><th>Skala</th><th>Richtung</th><th>Quelle</th><th>Gewicht</th><th>löschen</th></tr>
+      {% for k in katalog %}
+      <tr>
+        <td class="idcell">{{ k.id }}<input type="hidden" name="id" value="{{ k.id }}"></td>
+        <td><input type="text" name="{{ k.id }}__name" value="{{ k.name }}"></td>
+        <td>{{ artsel(k.id ~ '__art', k.art) }}</td>
+        <td><input type="number" name="{{ k.id }}__skala" value="{{ k.skala or 4 }}" min="1" max="10"></td>
+        <td>{{ richtungsel(k.id ~ '__richtung', k.richtung) }}</td>
+        <td>
+          <select name="{{ k.id }}__quelle">
+            <option value="manuell" {{ 'selected' if k.quelle!='psr' else '' }}>manuell</option>
+            <option value="psr" {{ 'selected' if k.quelle=='psr' else '' }}>aus PSR</option>
+          </select>
+        </td>
+        <td><input type="number" name="{{ k.id }}__gewicht" value="{{ k.gewicht if k.gewicht is not none else 0 }}" min="0" max="10"></td>
+        <td style="text-align:center"><input type="checkbox" name="del__{{ k.id }}"></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <h2>Neuen KPI hinzufügen</h2>
+    <div class="card">
+      <div class="grid">
+        <div><label>ID (kurz, eindeutig)</label><input type="text" name="new_id" placeholder="z. B. datenschutz"></div>
+        <div><label>Name</label><input type="text" name="new_name" placeholder="Datenschutz-Sensibilität"></div>
+        <div><label>Art</label>{{ artsel('new_art', 'bewertung') }}</div>
+        <div><label>Skala (0–n)</label><input type="number" name="new_skala" value="4" min="1" max="10"></div>
+        <div><label>Richtung</label>{{ richtungsel('new_richtung', 'positiv') }}</div>
+        <div><label>Gewicht</label><input type="number" name="new_gewicht" value="1" min="0" max="10"></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit">Speichern</button>
+      <a href="/portfolio"><button type="button">Abbrechen</button></a>
+    </div>
+    <div class="note">Gespeichert wird als Live-Stand dieses Mandanten (überschreibt die Seed-Vorgabe).</div>
+  </form>
+</div>
+</body>
+</html>

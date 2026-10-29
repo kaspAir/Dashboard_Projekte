@@ -64,6 +64,60 @@ def load_vorhaben(mandant_id=None):
     return _load_doc(mandant_id).get("vorhaben", []) or []
 
 
+def load_katalog(mandant_id=None):
+    return _load_doc(mandant_id).get("kpi_katalog", []) or []
+
+
+def get_vorhaben(mandant_id, ref):
+    for v in load_vorhaben(mandant_id):
+        if str(v.get("ref")) == str(ref):
+            return v
+    return None
+
+
+def save_doc(mandant_id, doc):
+    """Schreibt den (bearbeiteten) Portfolio-Store als Live-Override."""
+    os.makedirs(PORTFOLIO_DIR, exist_ok=True)
+    path = os.path.join(PORTFOLIO_DIR, f"{mandant_id}.yaml")
+    with open(path, "w", encoding="utf-8") as f:
+        yaml.safe_dump(doc, f, allow_unicode=True, sort_keys=False)
+    return path
+
+
+def _editable_doc(mandant_id):
+    """Arbeitskopie des aktuellen Stands (Live falls vorhanden, sonst Seed)."""
+    import copy
+    doc = copy.deepcopy(_load_doc(mandant_id))
+    doc.setdefault("kpi_katalog", [])
+    doc.setdefault("vorhaben", [])
+    doc.setdefault("budgetrahmen", {})
+    return doc
+
+
+def save_katalog(mandant_id, katalog):
+    doc = _editable_doc(mandant_id)
+    doc["kpi_katalog"] = katalog
+    return save_doc(mandant_id, doc)
+
+
+def upsert_vorhaben(mandant_id, data):
+    doc = _editable_doc(mandant_id)
+    vs = doc["vorhaben"]
+    for i, v in enumerate(vs):
+        if str(v.get("ref")) == str(data.get("ref")):
+            vs[i] = data
+            break
+    else:
+        vs.append(data)
+    return save_doc(mandant_id, doc)
+
+
+def delete_vorhaben(mandant_id, ref):
+    doc = _editable_doc(mandant_id)
+    doc["vorhaben"] = [v for v in doc["vorhaben"] if str(v.get("ref")) != str(ref)]
+    return save_doc(mandant_id, doc)
+
+
 def _num(x):
     """'920000' / 920000 / '' -> float | None (kein Raten bei leer/unbekannt)."""
     if x is None or x == "":

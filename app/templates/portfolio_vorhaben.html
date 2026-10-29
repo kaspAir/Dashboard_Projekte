@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vorhaben bearbeiten</title>
+<style>
+  :root{--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb;--r:#d23b3b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:840px;margin:0 auto;padding:24px 20px 60px}
+  h1{font-size:22px;margin:0}
+  h2{font-size:13px;margin:22px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:6px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;margin:0 0 4px}
+  input[type=text],input[type=number],input[type=date],select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
+  input[type=number]{text-align:right}
+  .kpi{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .kpi:last-child{border-bottom:none}
+  .kpi .nm{flex:1;font-weight:600}
+  .kpi .nm small{display:block;color:var(--muted);font-weight:400}
+  .kpi input[type=number]{width:90px}
+  .tor{background:#fbfbfc;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:6px}
+  .actions{margin-top:20px;display:flex;gap:10px;align-items:center}
+  button{font:inherit;font-weight:600;border-radius:8px;padding:9px 16px;border:1px solid var(--line);cursor:pointer;background:#fff}
+  button.primary{background:#1f2937;color:#fff;border-color:#1f2937}
+  button.danger{color:var(--r);border-color:#f3c2c2}
+  .muted{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+{% set a = (v.auftrag if v else {}) or {} %}
+{% set kv = (v.kpis if v else {}) or {} %}
+<div class="wrap">
+  {% include '_nav.html' %}
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+    <h1>{{ 'Vorhaben bearbeiten' if v else 'Neues Vorhaben' }}{% if v %} · {{ v.titel or v.ref }}{% endif %}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/portfolio">← Portfolio</a></div>
+  </div>
+
+  <form method="post">
+    <h2>Durchführungsauftrag</h2>
+    <div class="card">
+      <div class="grid3">
+        <div><label>Referenz (Projekt-/Programmnr.)</label><input type="text" name="ref" value="{{ v.ref if v else (ref if ref != 'neu' else '') }}" {{ 'readonly' if v else '' }} placeholder="z. B. M-2026-014"></div>
+        <div><label>Art</label>
+          <select name="art">
+            <option value="projekt" {{ 'selected' if (v.art if v else 'projekt')!='programm' else '' }}>Projekt</option>
+            <option value="programm" {{ 'selected' if (v.art if v else '')=='programm' else '' }}>Programm</option>
+          </select>
+        </div>
+        <div><label>Status</label>
+          <select name="status">
+            {% for s,lbl in [('idee','Idee'),('beantragt','Beantragt'),('freigegeben','Freigegeben'),('laufend','Laufend'),('zurueckgestellt','Zurückgestellt'),('abgeschlossen','Abgeschlossen'),('abgebrochen','Abgebrochen')] %}
+            <option value="{{ s }}" {{ 'selected' if a.status==s else '' }}>{{ lbl }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div><label>Titel</label><input type="text" name="titel" value="{{ v.titel if v else '' }}"></div>
+        <div><label>Auftragsdatum</label><input type="date" name="datum" value="{{ a.datum or '' }}"></div>
+        <div><label>Programm (Titel)</label><input type="text" name="programm" value="{{ v.programm if v else '' }}"></div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div><label>Einheit (Amt/Abteilung)</label><input type="text" name="einheit" value="{{ v.einheit if v else '' }}"></div>
+        <div><label>Bereich (Ressort)</label><input type="text" name="bereich" value="{{ v.bereich if v else '' }}"></div>
+        <div></div>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <div><label>Budget-Soll (CHF)</label><input type="number" name="budget_soll" value="{{ a.budget_soll or '' }}" step="1000"></div>
+        <div><label>Aufwand-Soll (PT)</label><input type="number" name="aufwand_soll" value="{{ a.aufwand_soll or '' }}"></div>
+      </div>
+    </div>
+
+    <h2>KPI-Werte</h2>
+    <div class="card">
+      {% for k in katalog %}
+        {% if k.art == 'tor' %}
+          {% set tor = kv.get(k.id) or {} %}
+          <div class="tor">
+            <label style="display:inline-flex;align-items:center;gap:8px;text-transform:none;font-size:14px;font-weight:600;color:var(--ink)">
+              <input type="checkbox" name="tor__{{ k.id }}__pflicht" {{ 'checked' if tor.pflicht else '' }}> {{ k.name }} (Muss)
+            </label>
+            <div class="grid3" style="margin-top:8px">
+              <div><label>Frist</label><input type="date" name="tor__{{ k.id }}__frist" value="{{ tor.frist or '' }}"></div>
+              <div style="grid-column:span 2"><label>Grund</label><input type="text" name="tor__{{ k.id }}__grund" value="{{ tor.grund or '' }}"></div>
+            </div>
+            <div style="margin-top:8px"><label>Konsequenz bei Nichteinhaltung</label><input type="text" name="tor__{{ k.id }}__konsequenz" value="{{ tor.konsequenz or '' }}"></div>
+          </div>
+        {% elif k.art == 'messung' %}
+          <div class="kpi"><div class="nm">{{ k.name }}<small>wird aus den Statusberichten berechnet</small></div><span class="muted">automatisch</span></div>
+        {% else %}
+          {% set val = kv.get(k.id) %}
+          <div class="kpi">
+            <div class="nm">{{ k.name }}<small>0–{{ k.skala or 4 }} · {{ 'senkt Priorität' if k.richtung=='negativ' else 'erhöht Priorität' }} · Gewicht {{ k.gewicht }}</small></div>
+            <input type="number" name="kpi__{{ k.id }}" value="{{ val if val is not none else '' }}" min="0" max="{{ k.skala or 4 }}" placeholder="–">
+          </div>
+        {% endif %}
+      {% endfor %}
+      <div class="muted" style="margin-top:8px">Feld leer lassen = „unbekannt" (wird nicht als 0 gewertet).</div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="submit">Speichern</button>
+      <a href="/portfolio"><button type="button">Abbrechen</button></a>
+      {% if v %}
+        <span style="flex:1"></span>
+        <button class="danger" type="submit" name="action" value="delete" onclick="return confirm('Vorhaben wirklich löschen?')">Löschen</button>
+      {% endif %}
+    </div>
+  </form>
+</div>
+</body>
+</html>

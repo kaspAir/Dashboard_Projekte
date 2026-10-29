@@ -1,4 +1,8 @@
-"""Portfolio Slice 1: Soll-Ist-Join, Governance-Befunde, Budget-Roll-up je Bereich."""
+"""Portfolio: Soll-Ist-Join, Governance-Befunde, Budget-Roll-up, KPI-Scoring,
+konfigurierbarer Katalog und Pflege-Roundtrip."""
+import os
+
+from app import portfolio as P
 from app.portfolio import portfolio_view
 
 
@@ -43,3 +47,19 @@ def test_bereichsrahmen_und_abgebrochen_ausgenommen():
     assert bau["ueber_rahmen"] is True                         # Prognose über dem Rahmen
     # abgebrochenes 1.1-Mio-Vorhaben zählt nicht in die Budgetsumme
     assert p["kpi"]["budget_soll"] < 5000000
+
+
+def test_pflege_roundtrip(tmp_path, monkeypatch):
+    # isolierter Portfolio-Store, damit echte Seeds unberührt bleiben
+    monkeypatch.setattr(P, "PORTFOLIO_DIR", str(tmp_path))
+    mid = "pytest-portfolio"
+    P.save_katalog(mid, [{"id": "nutzen", "name": "Nutzen", "art": "bewertung",
+                          "skala": 4, "richtung": "positiv", "gewicht": 2}])
+    P.upsert_vorhaben(mid, {"ref": "X-1", "art": "projekt", "titel": "Test",
+                            "auftrag": {"status": "laufend", "budget_soll": 100000},
+                            "kpis": {"nutzen": 4}})
+    v = P.get_vorhaben(mid, "X-1")
+    assert v and v["kpis"]["nutzen"] == 4
+    assert any(k["id"] == "nutzen" for k in P.load_katalog(mid))
+    P.delete_vorhaben(mid, "X-1")
+    assert P.get_vorhaben(mid, "X-1") is None
