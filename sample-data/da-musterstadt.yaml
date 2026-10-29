@@ -302,7 +302,7 @@
     person: Gina Roth
     pt: 140
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Olaf Ziegler
     pt: 280
   - rolle: Test & Qualitätssicherung
     person: Hans Vogel
@@ -497,16 +497,16 @@
     person: R. Hofer
     pt: 54
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Sabine Vogt
     pt: 72
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Nina Weber
     pt: 144
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 54
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 36
   risiken:
   - nr: R1
@@ -598,10 +598,10 @@
     person: S. Brunner
     pt: 27
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Marco Lang
     pt: 36
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Olaf Ziegler
     pt: 72
   - rolle: Test & Qualitätssicherung
     person: Hans Vogel
@@ -702,13 +702,13 @@
     person: Gina Roth
     pt: 38
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Paula Brandt
     pt: 76
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 28
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 19
   risiken:
   - nr: R1
@@ -796,7 +796,7 @@
     person: U. Graf
     pt: 45
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Sabine Vogt
     pt: 60
   - rolle: Realisierung / Entwicklung
     person: Daniel Huber
@@ -897,16 +897,16 @@
     person: V. Moser
     pt: 81
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Marco Lang
     pt: 108
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Nina Weber
     pt: 216
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 81
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 54
   risiken:
   - nr: R1
@@ -994,16 +994,16 @@
     person: X. Keller
     pt: 54
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Sabine Vogt
     pt: 72
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Paula Brandt
     pt: 144
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 54
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 36
   risiken:
   - nr: R1
@@ -1095,7 +1095,7 @@
     person: Y. Lehmann
     pt: 24
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Marco Lang
     pt: 32
   - rolle: Realisierung / Entwicklung
     person: Daniel Huber
@@ -1196,10 +1196,10 @@
     person: B. Küng
     pt: 21
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Sabine Vogt
     pt: 28
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Olaf Ziegler
     pt: 56
   - rolle: Test & Qualitätssicherung
     person: Hans Vogel
@@ -1296,13 +1296,13 @@
     person: Gina Roth
     pt: 30
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Nina Weber
     pt: 60
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 22
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 15
   risiken:
   - nr: R1
@@ -1394,16 +1394,16 @@
     person: Daniel Huber
     pt: 33
   - rolle: Business-/Fachanalyse
-    person: Gina Roth
+    person: Marco Lang
     pt: 44
   - rolle: Realisierung / Entwicklung
-    person: Daniel Huber
+    person: Paula Brandt
     pt: 88
   - rolle: Test & Qualitätssicherung
-    person: Hans Vogel
+    person: Rita Suter
     pt: 33
   - rolle: Einführung & Schulung
-    person: Beat Küng
+    person: Timo Frei
     pt: 22
   risiken:
   - nr: R1

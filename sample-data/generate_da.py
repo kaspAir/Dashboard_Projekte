@@ -64,6 +64,13 @@ PMO = ("Clara Meier", "cme", "Leiterin PMO")
 AUSSCHUSS = ("Felix Baumann", "fba", "Vertreter Stadtrat")
 ANWENDER = ("Gina Roth", "gro", "Anwendervertretung Fachbereich")
 
+# Personen-Pools je Projektrolle – über die Projekte rotierend verteilt, damit die
+# Auslastung je Person realistisch ist (manche Personen auf mehreren Projekten).
+POOL_BA = ["Gina Roth", "Sabine Vogt", "Marco Lang"]
+POOL_DEV = ["Daniel Huber", "Nina Weber", "Olaf Ziegler", "Paula Brandt"]
+POOL_TEST = ["Hans Vogel", "Rita Suter"]
+POOL_EINF = ["Beat Küng", "Timo Frei"]
+
 
 def cl(s):
     return re.sub(r"\s+", " ", (s or "").translate(TRANS)).strip()
@@ -272,7 +279,7 @@ def set_doc_title(doc, title):
 
 
 # ---- Projekt-DA -----------------------------------------------------------
-def build_projekt_da(p, soll, zeit, path):
+def build_projekt_da(p, soll, zeit, path, pi=0):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     a = soll.get("auftrag", {})
     z = zeit or {}
@@ -338,10 +345,10 @@ def build_projekt_da(p, soll, zeit, path):
         "auf die folgenden Rollen und Personen (Baseline für die Ressourcenplanung):"])
     if rz:
         res = [("Projektleitung", p["pl"], round(aufwand * 0.15)),
-               ("Business-/Fachanalyse", "Gina Roth", round(aufwand * 0.20)),
-               ("Realisierung / Entwicklung", "Daniel Huber", round(aufwand * 0.40)),
-               ("Test & Qualitätssicherung", "Hans Vogel", round(aufwand * 0.15)),
-               ("Einführung & Schulung", "Beat Küng", round(aufwand * 0.10))]
+               ("Business-/Fachanalyse", POOL_BA[pi % len(POOL_BA)], round(aufwand * 0.20)),
+               ("Realisierung / Entwicklung", POOL_DEV[pi % len(POOL_DEV)], round(aufwand * 0.40)),
+               ("Test & Qualitätssicherung", POOL_TEST[pi % len(POOL_TEST)], round(aufwand * 0.15)),
+               ("Einführung & Schulung", POOL_EINF[pi % len(POOL_EINF)], round(aufwand * 0.10))]
         rows = [[rolle, pers, pt] for rolle, pers, pt in res]
         rows.append(["Total", "", sum(r[2] for r in res)])
         insert_table_after(doc, rz[-1], ["Rolle", "Person", "Geplanter Aufwand (PT)"], rows)
@@ -623,7 +630,7 @@ def main():
             prog = v.get("programm")
             folder = (os.path.join(OUT, "Programme", _safe(prog), _safe(p["name"])) if prog
                       else os.path.join(OUT, "Fachbereiche", _safe(p["gb"]), _safe(p["name"])))
-            build_projekt_da(p, v, zeit.get(ref), os.path.join(folder, "Durchfuehrungsauftrag.docx"))
+            build_projekt_da(p, v, zeit.get(ref), os.path.join(folder, "Durchfuehrungsauftrag.docx"), pi=n_proj)
             n_proj += 1
 
     print(f"Durchführungsaufträge (vollständig, vorlagengetreu) in {OUT}")

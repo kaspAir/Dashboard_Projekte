@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ressourcen-Auslastung</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb;--today:#d23b3b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:24px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .lead{color:var(--muted);font-size:13px;margin:6px 0 2px}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+  .pill .n{font-size:22px;font-weight:700}.pill .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .pill.warn .n{color:var(--r)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted);margin:6px 0}
+  .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:5px;border:1px solid rgba(0,0,0,.06)}
+  .c0{background:#f3f4f6}.c1{background:#cfe9d6}.c2{background:#8ed3a3}.c3{background:#f6d680}.c4{background:#ef9a9a}
+  .ov{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:4px}
+  .ov .row{display:flex;gap:8px;align-items:center;padding:4px 0;border-bottom:1px solid #f1f2f4;flex-wrap:wrap}
+  .ov .row:last-child{border-bottom:none}
+  .ov .who{font-weight:700;min-width:150px}
+  .tag{font-size:11px;background:#fdecec;border:1px solid #f3c2c2;color:#b42318;border-radius:999px;padding:1px 8px;white-space:nowrap}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+  table.heat{border-collapse:collapse;font-size:11px}
+  table.heat th,table.heat td{border:1px solid #fff;padding:0}
+  table.heat thead th{position:sticky;top:0;background:#fbfbfc;color:var(--muted);font-weight:600;height:46px;white-space:nowrap}
+  table.heat thead th.yr{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;width:16px}
+  table.heat td.name,table.heat th.name{position:sticky;left:0;background:#fbfbfc;text-align:left;padding:4px 10px;min-width:170px;white-space:nowrap;border-right:1px solid var(--line);z-index:2}
+  table.heat td.name b{font-weight:600}.name .mini{color:var(--muted);font-size:11px}
+  table.heat td.cell{width:16px;height:22px;text-align:center}
+  td.cell.today,th.today{border-left:2px solid var(--today)}
+  .note{color:var(--muted);font-size:12px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  {% include '_nav.html' %}
+  <header>
+    <h1>Ressourcen-Auslastung je Person</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/portfolio">← Portfolio</a> · <a href="/portfolio/timeline">Timeline</a></div>
+  </header>
+  <div class="lead">Geplanter Personaleinsatz aus den Durchführungsaufträgen (Rolle · Person · PT) über die Projektphasen verteilt und über alle Projekte summiert. Kapazität: <b>{{ a.capacity }} PT/Monat</b> je Person.</div>
+
+  <div class="pills">
+    <div class="pill"><div class="n">{{ a.persons|length }}</div><div class="l">Personen</div></div>
+    <div class="pill {{ 'warn' if a.n_personen_ueberlastet }}"><div class="n">{{ a.n_personen_ueberlastet }}</div><div class="l">überlastete Personen</div></div>
+    <div class="pill {{ 'warn' if a.n_overloads }}"><div class="n">{{ a.n_overloads }}</div><div class="l">Überlast-Monate</div></div>
+    <div class="pill"><div class="n">{{ a.capacity }}</div><div class="l">Kapazität (PT/Monat)</div></div>
+  </div>
+
+  {% if a.overloads %}
+  <h2>Geplante Überlasten (Handlungsbedarf)</h2>
+  <div class="ov">
+    {% set by_person = a.overloads|groupby('person') %}
+    {% for person, items in by_person %}
+    <div class="row">
+      <span class="who">{{ person }}</span>
+      <span class="mini">Spitze {{ (items|map(attribute='ratio')|max*100)|round|int }}% ·</span>
+      {% for o in items %}<span class="tag">{{ o.month }}: {{ (o.ratio*100)|round|int }}%</span>{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="note">Führungsfrage: Vorhaben verschieben, im Umfang anpassen oder zusätzliche Ressourcen bereitstellen?</div>
+  {% endif %}
+
+  <h2>Auslastungs-Heatmap (PT je Person und Monat)</h2>
+  <div class="legend">
+    <span><span class="sw c1"></span>gering</span><span><span class="sw c2"></span>&lt; 80%</span>
+    <span><span class="sw c3"></span>80–100%</span><span><span class="sw c4"></span>&gt; 100% (Überlast)</span>
+    <span style="border-left:2px solid var(--today);padding-left:6px">heute ({{ a.today_m }})</span>
+  </div>
+  <div class="scroll">
+    <table class="heat">
+      <thead><tr><th class="name">Person</th>
+        {% for m in a.months %}<th class="yr {{ 'today' if m==a.today_m }}">{{ m }}</th>{% endfor %}
+      </tr></thead>
+      <tbody>
+        {% for p in a.persons %}
+        <tr>
+          <td class="name"><b>{{ p }}</b> <span class="mini">· {{ a.projekte[p] }} Proj.</span></td>
+          {% for m in a.months %}
+            {% set pt = a.grid[p][m] %}
+            {% set ratio = (pt / a.capacity) if a.capacity else 0 %}
+            <td class="cell {{ 'c0' if pt==0 else 'c1' if ratio<0.6 else 'c2' if ratio<0.8 else 'c3' if ratio<=1.0 else 'c4' }} {{ 'today' if m==a.today_m }}"
+                title="{{ p }} · {{ m }}: {{ pt }} PT ({{ (ratio*100)|round|int }}%)">{{ pt|round|int if pt>0 else '' }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="note">Verteilung phasengewichtet (Realisierung/Umsetzung tragen am meisten). Basis: Durchführungsaufträge × Zeitplan. Kapazität anpassbar via <code>?cap=</code>.</div>
+</div>
+</body>
+</html>

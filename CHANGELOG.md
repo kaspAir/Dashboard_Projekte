@@ -6,6 +6,18 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.9.0] – 2026-10-29
+
+### Ressourcen-/Auslastungsanalyse pro Person über die Zeitachse
+- Neue Seite `/portfolio/ressourcen`: der **Personaleinsatz je Person** (Rolle ·
+  Person · PT) aus den Durchführungsaufträgen wird phasengewichtet über die
+  Projektmonate verteilt und über alle Projekte summiert.
+- **Heatmap** (Person × Monat), eingefärbt nach Auslastung; **geplante Überlasten**
+  (> Kapazität) werden als Handlungsbedarf aufgelistet (Person, Monate, Spitzenlast).
+  Kapazität je Person/Monat über `?cap=` anpassbar.
+- DA-Generator verteilt die Projektrollen auf einen Personen-Pool (variiert je
+  Projekt), damit die Auslastung realistisch ist.
+
 ## [0.8.1] – 2026-10-29
 
 ### Projektseite: Bedienung
@@ -142,7 +154,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.8.1...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.9.0...dev
+[0.9.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.0
 [0.8.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.1
 [0.8.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.0
 [0.7.3]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.3

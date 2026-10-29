@@ -182,6 +182,14 @@ def create_app() -> Flask:
         return render_template("programm_detail.html", env=app.config["APP_ENV"],
                                da=da, prog=prog, name=name, members=members, **_ctx(user))
 
+    @app.get("/portfolio/ressourcen")
+    def portfolio_ressourcen():
+        user = current_user()
+        from .resources import resource_analysis
+        cap = request.args.get("cap", type=int) or 18
+        a = resource_analysis(active_org(user), (active_mandant(user) or {}).get("id"), cap)
+        return render_template("portfolio_ressourcen.html", env=app.config["APP_ENV"], a=a, **_ctx(user))
+
     @app.get("/portfolio/timeline")
     def portfolio_timeline():
         user = current_user()
