@@ -51,7 +51,7 @@
 
   <header>
     <h1>Portfolio{% if mandant %} · {{ mandant.name }}{% endif %}</h1>
-    <div class="env">Umgebung: <b>{{ env }}</b> · Soll-Daten: {{ p.data_source }} · <a href="/dashboard">← Dashboard</a></div>
+    <div class="env">Umgebung: <b>{{ env }}</b> · Soll-Daten: {{ p.data_source }} · <a href="/portfolio/timeline">📅 Timeline / Roadmap</a> · <a href="/dashboard">← Dashboard</a></div>
   </header>
   <div class="note">Soll (genehmigtes Budget, Aufwand, Priorität) = gepflegt im Portfolio · Ist &amp; Prognose = aus den Statusberichten.</div>
 
@@ -73,7 +73,7 @@
         <tr><th>Bereich</th><th>Status</th><th class="num">Rahmen</th><th class="num">Soll</th><th class="num">Prognose</th><th class="num">Δ Rahmen</th></tr>
         {% for b in p.by_bereich %}
         <tr class="{{ 'hot' if b.ueber_rahmen }}">
-          <td><b>{{ b.name }}</b><br><span class="mini">{{ b.projekte }} Projekte</span></td>
+          <td><a href="/projekte?bereich={{ b.name|urlencode }}"><b>{{ b.name }}</b></a> <a class="mini" href="/portfolio/timeline?bereich={{ b.name|urlencode }}" title="Timeline dieses Bereichs">📅</a><br><span class="mini">{{ b.projekte }} Projekte</span></td>
           <td>{{ amp(b.ampel) }}</td>
           <td class="num">{{ chf(b.rahmen) }}</td>
           <td class="num">{{ chf(b.summe_soll) }}</td>
@@ -107,7 +107,7 @@
       <tr><th>Einheit</th><th>Status</th><th class="num">Rahmen</th><th class="num">Soll</th><th class="num">Prognose</th><th class="num">Δ Rahmen</th></tr>
       {% for e in p.by_einheit %}
       <tr class="{{ 'hot' if e.ueber_rahmen }}">
-        <td><b>{{ e.name }}</b><br><span class="mini">{{ e.projekte }} Projekte</span></td>
+        <td><a href="/projekte?einheit={{ e.name|urlencode }}"><b>{{ e.name }}</b></a> <a class="mini" href="/portfolio/timeline?einheit={{ e.name|urlencode }}" title="Timeline dieser Einheit">📅</a><br><span class="mini">{{ e.projekte }} Projekte</span></td>
         <td>{{ amp(e.ampel) }}</td>
         <td class="num">{{ chf(e.rahmen) }}</td>
         <td class="num">{{ chf(e.summe_soll) }}</td>

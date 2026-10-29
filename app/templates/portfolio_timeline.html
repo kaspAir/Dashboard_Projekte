@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio-Timeline</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb;--today:#d23b3b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0 6px;font-size:12px;color:var(--muted);align-items:center}
+  .legend .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+  .sw.g{background:var(--g)}.sw.a{background:var(--a)}.sw.r{background:var(--r)}.sw.x{background:#c3c9d2}
+  .todaykey{display:inline-block;width:0;height:12px;border-left:2px solid var(--today);margin-right:7px;vertical-align:-2px}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px 16px;overflow-x:auto}
+  .inner{min-width:860px}
+  .LBL{width:250px;flex:none}
+  .row{display:flex;align-items:center;height:30px}
+  .axis{position:relative;flex:1;height:22px}
+  .axis .yr{position:absolute;top:0;font-size:11px;color:var(--muted);transform:translateX(-50%)}
+  .track{position:relative;flex:1;height:30px;border-top:1px solid #f1f2f4}
+  .grid{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed #eceef1}
+  .today{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px solid var(--today);z-index:3}
+  .bar{position:absolute;top:5px;height:20px;border-radius:5px;border:1px solid rgba(0,0,0,.08);overflow:hidden;background:#f3f4f6}
+  .ph{position:absolute;top:0;bottom:0;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap}
+  .ph span{font-size:10px;color:#13331f;padding:0 4px;opacity:.95}
+  .bar.g .ph{background:var(--g)}.bar.a .ph{background:var(--a)}.bar.r .ph{background:var(--r)}.bar.x .ph{background:#9aa4b2}
+  .bar.a .ph span{color:#3d2e00}.bar.r .ph span{color:#fff}.bar.x .ph span{color:#fff}
+  .lbl{display:flex;align-items:center;gap:7px;width:250px;flex:none;padding-right:10px;overflow:hidden}
+  .lbl.ind{padding-left:18px}
+  .lbl .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lbl.prog .nm{font-weight:700}
+  .lbl .nm small{color:var(--muted);font-weight:400}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .dot.g{background:var(--g)}.dot.a{background:var(--a)}.dot.r{background:var(--r)}.dot.x{background:#c3c9d2}
+  .prio{font-size:11px;color:var(--muted);flex:none;width:26px;text-align:right}
+  .note{color:var(--muted);font-size:12px;margin-top:10px}
+  a.bare{color:inherit}
+</style>
+</head>
+<body>
+{% macro cls(s) %}{{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' if s=='rot' else 'x' }}{% endmacro %}
+<div class="wrap">
+  {% include '_nav.html' %}
+  <header>
+    <h1>Portfolio-Timeline{% if t.bereich %} · {{ t.bereich }}{% elif t.einheit %} · {{ t.einheit }}{% endif %}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/portfolio">← Portfolio</a></div>
+  </header>
+
+  <div class="legend">
+    <span><span class="sw g"></span>grün</span><span><span class="sw a"></span>gelb</span>
+    <span><span class="sw r"></span>rot</span><span><span class="sw x"></span>kein Bericht</span>
+    <span><span class="todaykey"></span>heute ({{ t.heute }})</span>
+    <span>Phasen: heller → dunkler = Fortschritt · nach Priorität (oben = wichtigstes)</span>
+  </div>
+
+  {% if not t.lanes %}
+    <div class="chart"><div class="note">Keine Vorhaben mit Zeitplan in dieser Sicht.</div></div>
+  {% else %}
+  <div class="chart"><div class="inner">
+    <div class="row">
+      <div class="LBL"></div>
+      <div class="axis">
+        {% for j in t.jahre %}<span class="yr" style="left:{{ j.pct }}%">{{ j.jahr }}</span>{% endfor %}
+      </div>
+    </div>
+    {% for l in t.lanes %}
+    <div class="row">
+      <div class="lbl {{ 'ind' if l.indent }} {{ 'prog' if l.kind=='programm' }}">
+        <span class="dot {{ cls(l.status) }}"></span>
+        <span class="prio">{{ l.prio if l.prio is not none else '' }}</span>
+        <span class="nm">{% if l.reports %}<a class="bare" href="/projekt/{{ l.ref }}">{{ l.name }}</a>{% else %}{{ l.name }}{% endif %}
+          {% if l.kind=='programm' %}<small>Programm</small>{% endif %}</span>
+      </div>
+      <div class="track">
+        {% for j in t.jahre %}<div class="grid" style="left:{{ j.pct }}%"></div>{% endfor %}
+        {% if t.today_pct is not none %}<div class="today" style="left:{{ t.today_pct }}%"></div>{% endif %}
+        <div class="bar {{ cls(l.status) }}" style="left:{{ l.left }}%;width:{{ l.width }}%">
+          {% for ph in l.phasen %}
+          <div class="ph" style="left:{{ (ph.left/l.width*100) if l.width else 0 }}%;width:{{ (ph.width/l.width*100) if l.width else 0 }}%;opacity:{{ ph.op }}" title="{{ ph.name }}">
+            {% if l.width and (ph.width/l.width*100) > 16 %}<span>{{ ph.name }}</span>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div></div>
+  <div class="note">Balken = geplante Laufzeit mit Phasen; Farbe = aktueller Status; rote Linie = heute.
+    Programme zeigen Programminitialisierung / -durchführung / -abschluss; ihre Projekte stehen darunter und laufen innerhalb der Programmdurchführung. Klick auf ein Projekt öffnet den Verlauf/Statusbericht.</div>
+  {% endif %}
+</div>
+</body>
+</html>

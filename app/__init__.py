@@ -163,6 +163,14 @@ def create_app() -> Flask:
         p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"))
         return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, **_ctx(user))
 
+    @app.get("/portfolio/timeline")
+    def portfolio_timeline():
+        user = current_user()
+        from .portfolio import timeline_view
+        t = timeline_view(active_org(user), (active_mandant(user) or {}).get("id"),
+                          request.args.get("bereich"), request.args.get("einheit"))
+        return render_template("portfolio_timeline.html", env=app.config["APP_ENV"], t=t, **_ctx(user))
+
     @app.route("/portfolio/kpis", methods=["GET", "POST"])
     def portfolio_kpis():
         user = current_user()

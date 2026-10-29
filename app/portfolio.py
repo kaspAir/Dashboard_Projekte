@@ -386,3 +386,117 @@ def portfolio_view(org=None, mandant_id=None):
         "status_counts": dict(status_counts),
         "data_source": resolve_portfolio(mandant_id)[1],
     }
+
+
+# --- Roadmap / Timeline ----------------------------------------------------
+PHASEN = {
+    "klassisch": [("Initialisierung", 0.10), ("Konzept", 0.20), ("Realisierung", 0.40),
+                  ("Einführung", 0.20), ("Abschluss", 0.10)],
+    "agil": [("Initialisierung", 0.15), ("Umsetzung", 0.70), ("Abschluss", 0.15)],
+    "programm": [("Programminitialisierung", 0.10), ("Programmdurchführung", 0.80),
+                 ("Programmabschluss", 0.10)],
+}
+
+
+def _date(s):
+    """'YYYY-MM-DD' oder 'YYYY-MM' -> date (sonst None)."""
+    if not s:
+        return None
+    s = str(s)
+    try:
+        return datetime.date.fromisoformat(s if len(s) >= 10 else s + "-01")
+    except ValueError:
+        return None
+
+
+def _phasen(method, start, ende):
+    """Phasensegmente proportional über [start, ende] für die gewählte Methode."""
+    defs = PHASEN.get(method, PHASEN["klassisch"])
+    span = (ende - start).days or 1
+    out, cum = [], 0.0
+    for i, (name, prop) in enumerate(defs):
+        s = start + datetime.timedelta(days=round(cum * span))
+        cum += prop
+        e = start + datetime.timedelta(days=round(cum * span))
+        out.append({"name": name, "start": s, "ende": e,
+                    "op": round(0.35 + 0.6 * (i + 1) / len(defs), 2)})
+    return out
+
+
+def timeline_view(org=None, mandant_id=None, bereich=None, einheit=None):
+    pv = portfolio_view(org, mandant_id)
+    doc = _load_doc(mandant_id)
+    zeit = doc.get("zeitplan", {}) or {}
+
+    rows = pv["rows"]
+    if bereich:
+        rows = [r for r in rows if r.get("bereich") == bereich]
+    if einheit:
+        rows = [r for r in rows if r.get("einheit") == einheit]
+
+    prog_ampel = {p["name"]: p["ampel"] for p in pv["programme"]}
+    prog_ref = {}
+    for v in doc.get("vorhaben", []):
+        if v.get("art") == "programm":
+            prog_ref[v.get("titel") or v.get("ref")] = str(v.get("ref"))
+
+    def make(ref, name, status, prio, kind, indent, reports):
+        z = zeit.get(str(ref)) or {}
+        s, e = _date(z.get("start")), _date(z.get("ende"))
+        method = z.get("method") or ("programm" if kind == "programm" else "klassisch")
+        if not s or not e:
+            return None
+        return {"ref": ref, "name": name, "status": status, "prio": prio,
+                "kind": kind, "indent": indent, "reports": reports,
+                "method": method, "start": s, "ende": e}
+
+    # Projekte gruppiert: je Programm (Projekte darunter), dann eigenständige
+    by_prog = defaultdict(list)
+    standalone = []
+    for r in rows:
+        (by_prog[r["programm"]] if r.get("programm") else standalone).append(r)
+
+    def prio_key(r):
+        return (0 if r.get("muss") else 1, -(r.get("prio_score") or -1), r["titel"])
+
+    lanes = []
+    for pname in sorted(by_prog, key=lambda n: (-RANK.get(prog_ampel.get(n), -1), n)):
+        pl = make(prog_ref.get(pname, pname), pname, prog_ampel.get(pname), None, "programm", False, True)
+        if pl:
+            lanes.append(pl)
+        for r in sorted(by_prog[pname], key=prio_key):
+            lane = make(r["ref"], r["titel"], r["ampel"], r.get("prio_score"), "projekt", True, r["reports"])
+            if lane:
+                lanes.append(lane)
+    for r in sorted(standalone, key=prio_key):
+        lane = make(r["ref"], r["titel"], r["ampel"], r.get("prio_score"), "projekt", False, r["reports"])
+        if lane:
+            lanes.append(lane)
+
+    if not lanes:
+        return {"lanes": [], "jahre": [], "today_pct": None, "heute": datetime.date.today().isoformat()}
+
+    t_min = min(l["start"] for l in lanes)
+    t_max = max(l["ende"] for l in lanes)
+    total = (t_max - t_min).days or 1
+
+    def pct(d):
+        return round(100 * (d - t_min).days / total, 3)
+
+    for l in lanes:
+        l["left"] = pct(l["start"])
+        l["width"] = round(pct(l["ende"]) - pct(l["start"]), 3)
+        l["phasen"] = [{"name": ph["name"], "op": ph["op"],
+                        "left": round(pct(ph["start"]) - l["left"], 3),
+                        "width": round(pct(ph["ende"]) - pct(ph["start"]), 3)}
+                       for ph in _phasen(l["method"], l["start"], l["ende"])]
+
+    jahre = [{"jahr": y, "pct": pct(datetime.date(y, 1, 1))}
+             for y in range(t_min.year, t_max.year + 1)
+             if t_min <= datetime.date(y, 1, 1) <= t_max]
+    heute = datetime.date.today()
+    today_pct = pct(heute) if t_min <= heute <= t_max else (0 if heute < t_min else 100)
+
+    return {"lanes": lanes, "jahre": jahre, "today_pct": today_pct,
+            "heute": heute.isoformat(), "t_min": t_min.isoformat(), "t_max": t_max.isoformat(),
+            "bereich": bereich, "einheit": einheit}

@@ -6,6 +6,18 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.7.3] – 2026-10-29
+
+### Portfolio: Roadmap/Timeline & klickbare Bereiche
+- **Timeline/Roadmap** (`/portfolio/timeline`): alle Vorhaben als Balken auf einer
+  Zeitachse mit **Phasen** (klassisch 5, agil 3, Programme 3), **Status-Farbe**,
+  Sortierung **nach Priorität** (wichtigstes oben) und einer **vertikalen Heute-Linie**.
+  Programme mit Programminitialisierung/-durchführung/-abschluss; ihre Projekte
+  darunter gruppiert. Filterbar je Bereich/Einheit; Klick auf ein Projekt öffnet den
+  Statusbericht.
+- **Bereiche und Einheiten sind klickbar** (Budget-Tabellen): öffnen die gefilterte
+  Projektliste bzw. die Timeline des Bereichs/der Einheit.
+
 ## [0.7.2] – 2026-10-29
 
 ### Portfolio-Management (Slice 3): Pflege im Tool
@@ -105,7 +117,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.2...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.3...dev
+[0.7.3]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.3
 [0.7.2]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.2
 [0.7.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.1
 [0.7.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.0

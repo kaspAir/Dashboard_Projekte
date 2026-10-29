@@ -27,6 +27,26 @@ budgetrahmen:
     "Ressort Soziales & Gesundheit": 650000
     "Ressort Sicherheit": 1200000
 
+# Zeitplan je Vorhaben für die Roadmap/Timeline: geplanter Start/Ende + Methode.
+# Methode bestimmt die Phasen (klassisch: 5, agil: 3, programm: 3).
+zeitplan:
+  PG-DV:      { start: "2023-06-01", ende: "2027-06-01", method: programm }
+  PG-SC:      { start: "2023-11-01", ende: "2027-03-01", method: programm }
+  PG-GS:      { start: "2024-06-01", ende: "2026-12-01", method: programm }
+  M-2023-001: { start: "2023-09-01", ende: "2027-03-01", method: agil }
+  M-2024-002: { start: "2024-06-01", ende: "2026-12-01", method: klassisch }
+  M-2024-003: { start: "2024-02-01", ende: "2025-06-01", method: klassisch }
+  M-2024-004: { start: "2024-08-01", ende: "2026-12-01", method: klassisch }
+  M-2024-005: { start: "2024-10-01", ende: "2027-06-01", method: agil }
+  M-2024-006: { start: "2024-01-01", ende: "2027-03-01", method: klassisch }
+  M-2022-007: { start: "2023-03-01", ende: "2025-06-01", method: klassisch }
+  M-2024-008: { start: "2024-08-01", ende: "2026-12-01", method: agil }
+  M-2024-009: { start: "2024-06-01", ende: "2025-12-01", method: klassisch }
+  M-2025-010: { start: "2025-03-01", ende: "2026-12-01", method: agil }
+  M-2024-012: { start: "2024-09-01", ende: "2025-09-01", method: klassisch }
+  M-2026-013: { start: "2026-11-01", ende: "2027-12-01", method: klassisch }
+  M-2025-011: { start: "2025-04-01", ende: "2026-10-01", method: agil }
+
 vorhaben:
   # ---- Programme (eigener Durchführungsauftrag, Rahmen) --------------------
   - { ref: PG-DV, art: programm, titel: Digitale Verwaltung Musterstadt,
