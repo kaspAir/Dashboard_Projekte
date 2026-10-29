@@ -156,6 +156,13 @@ def create_app() -> Flask:
         return render_template("project_detail.html", env=app.config["APP_ENV"],
                                d=detail, lifecycle_de=LIFECYCLE_DE, **_ctx(user))
 
+    @app.get("/portfolio")
+    def portfolio():
+        user = current_user()
+        from .portfolio import portfolio_view
+        p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"))
+        return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, **_ctx(user))
+
     @app.get("/orgs/wechsel/<oid>")
     def orgs_switch(oid):
         resp = make_response(redirect("/dashboard"))

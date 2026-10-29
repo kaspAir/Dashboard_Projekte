@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+  .pill .n{font-size:22px;font-weight:700}.pill .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .pill.warn .n{color:var(--r)}.pill.info .n{color:#2563eb}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:6px}
+  th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  .status{font-weight:600}.status.g{color:var(--g)}.status.a{color:var(--a)}.status.r{color:var(--r)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+  .g .dot{background:var(--g)}.a .dot{background:var(--a)}.r .dot{background:var(--r)}
+  .mini{font-size:12px;color:var(--muted)}
+  .badge{font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+  .b-pflicht{background:#eef2ff;border-color:#c7d2fe;color:#3730a3}
+  .b-budget{background:#fdecec;border-color:#f3c2c2;color:#b42318}
+  .b-auftrag{background:#fdecec;border-color:#f3c2c2;color:#b42318}
+  .b-bericht{background:#fff5e6;border-color:#f3d9a6;color:#a56a00}
+  .over{color:var(--r);font-weight:600}.under{color:var(--g)}
+  tr.hot{background:#fdf5f5}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .scroll{overflow-x:auto}
+  details summary{cursor:pointer;color:var(--link);font-weight:600;font-size:13px;margin-top:8px}
+  .note{color:var(--muted);font-size:12px;margin-top:8px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{% macro cls(s) %}{{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' if s=='rot' else '' }}{% endmacro %}
+{% macro amp(s) %}{% if s %}<span class="status {{ cls(s) }}"><span class="dot"></span>{{ s }}</span>{% else %}<span class="mini">–</span>{% endif %}{% endmacro %}
+{% macro chf(x) %}{% if x is none %}<span class="mini">–</span>{% else %}{{ "{:,.0f}".format(x).replace(",", "'") }}{% endif %}{% endmacro %}
+{% macro pct(x) %}{% if x is none %}–{% else %}{{ (x*100)|round(0)|int }}%{% endif %}{% endmacro %}
+<div class="wrap">
+  {% include '_nav.html' %}
+
+  <header>
+    <h1>Portfolio{% if mandant %} · {{ mandant.name }}{% endif %}</h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · Soll-Daten: {{ p.data_source }} · <a href="/dashboard">← Dashboard</a></div>
+  </header>
+  <div class="note">Soll (genehmigtes Budget, Aufwand, Priorität) = gepflegt im Portfolio · Ist &amp; Prognose = aus den Statusberichten.</div>
+
+  <div class="pills">
+    <div class="pill"><div class="n">{{ p.kpi.vorhaben }}</div><div class="l">Vorhaben</div></div>
+    <div class="pill"><div class="n">{{ chf(p.kpi.budget_soll) }}</div><div class="l">Budget-Soll (CHF)</div></div>
+    <div class="pill"><div class="n">{{ chf(p.kpi.prognose) }}</div><div class="l">Prognose (CHF)</div></div>
+    <div class="pill {{ 'warn' if p.kpi.ueber_budget else '' }}"><div class="n">{{ p.kpi.ueber_budget }}</div><div class="l">Prognose über Budget</div></div>
+    <div class="pill {{ 'warn' if p.kpi.ohne_auftrag else '' }}"><div class="n">{{ p.kpi.ohne_auftrag }}</div><div class="l">ohne Auftrag</div></div>
+    <div class="pill {{ 'warn' if p.kpi.ohne_bericht else '' }}"><div class="n">{{ p.kpi.ohne_bericht }}</div><div class="l">ohne Bericht</div></div>
+    <div class="pill info"><div class="n">{{ p.kpi.pflicht }}</div><div class="l">Pflichtvorhaben</div></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h2>Budget je Bereich (Ressort-Rahmen)</h2>
+      <div class="scroll"><table>
+        <tr><th>Bereich</th><th>Status</th><th class="num">Rahmen</th><th class="num">Soll</th><th class="num">Prognose</th><th class="num">Δ Rahmen</th></tr>
+        {% for b in p.by_bereich %}
+        <tr class="{{ 'hot' if b.ueber_rahmen }}">
+          <td><b>{{ b.name }}</b><br><span class="mini">{{ b.projekte }} Projekte</span></td>
+          <td>{{ amp(b.ampel) }}</td>
+          <td class="num">{{ chf(b.rahmen) }}</td>
+          <td class="num">{{ chf(b.summe_soll) }}</td>
+          <td class="num">{{ chf(b.summe_prognose) }}</td>
+          <td class="num">{% if b.abweichung is none %}–{% else %}<span class="{{ 'over' if b.ueber_rahmen else 'under' }}">{{ '+' if b.abweichung>0 else '' }}{{ chf(b.abweichung) }}</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </table></div>
+      <div class="note">Eine Abteilung/ein Ressort erhält einen Budgetrahmen und führt damit ihre Projekte durch. Rot = Prognose über dem Rahmen.</div>
+    </div>
+    <div>
+      <h2>Status je Programm (Rahmen vs. Projekte)</h2>
+      <div class="scroll"><table>
+        <tr><th>Programm</th><th>Status</th><th class="num">Rahmen</th><th class="num">Σ Projekt-Soll</th><th class="num">Σ Prognose</th></tr>
+        {% for pr in p.programme %}
+        <tr>
+          <td><a href="/projekte?programm={{ pr.name|urlencode }}"><b>{{ pr.name }}</b></a><br><span class="mini">{{ pr.kinder }} Projekte</span></td>
+          <td>{{ amp(pr.ampel) }}</td>
+          <td class="num">{{ chf(pr.budget_soll) }}</td>
+          <td class="num">{{ chf(pr.summe_soll) }}</td>
+          <td class="num">{{ chf(pr.summe_prognose) }}</td>
+        </tr>
+        {% endfor %}
+      </table></div>
+    </div>
+  </div>
+
+  <details>
+    <summary>Budget je Einheit (Amt/Abteilung) anzeigen</summary>
+    <div class="scroll"><table>
+      <tr><th>Einheit</th><th>Status</th><th class="num">Rahmen</th><th class="num">Soll</th><th class="num">Prognose</th><th class="num">Δ Rahmen</th></tr>
+      {% for e in p.by_einheit %}
+      <tr class="{{ 'hot' if e.ueber_rahmen }}">
+        <td><b>{{ e.name }}</b><br><span class="mini">{{ e.projekte }} Projekte</span></td>
+        <td>{{ amp(e.ampel) }}</td>
+        <td class="num">{{ chf(e.rahmen) }}</td>
+        <td class="num">{{ chf(e.summe_soll) }}</td>
+        <td class="num">{{ chf(e.summe_prognose) }}</td>
+        <td class="num">{% if e.abweichung is none %}–{% else %}<span class="{{ 'over' if e.ueber_rahmen else 'under' }}">{{ '+' if e.abweichung>0 else '' }}{{ chf(e.abweichung) }}</span>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table></div>
+  </details>
+
+  <h2>Vorhaben (Handlungsbedarf zuerst)</h2>
+  <div class="scroll"><table>
+    <tr>
+      <th>Vorhaben</th><th>Status / Hinweise</th><th>Prio</th><th>Ampel</th>
+      <th class="num">Budget-Soll</th><th class="num">Ist</th><th class="num">Prognose</th><th class="num">Aufwand S→P</th>
+    </tr>
+    {% for r in p.rows %}
+    <tr class="{{ 'hot' if 'budget' in r.flags or 'ohne_auftrag' in r.flags }}">
+      <td>
+        {% if r.reports %}<a href="/projekt/{{ r.ref }}"><b>{{ r.titel }}</b></a>{% else %}<b>{{ r.titel }}</b>{% endif %}
+        <br><span class="mini">{{ r.ref }}{% if r.einheit %} · {{ r.einheit }}{% endif %}{% if r.programm %} · {{ r.programm }}{% endif %}</span>
+      </td>
+      <td>
+        {{ r.status_label }}
+        <div style="margin-top:3px;display:flex;gap:4px;flex-wrap:wrap">
+          {% if 'pflicht' in r.flags %}<span class="badge b-pflicht">Pflicht</span>{% endif %}
+          {% if 'budget' in r.flags %}<span class="badge b-budget">Prognose über Budget</span>{% endif %}
+          {% if 'ohne_auftrag' in r.flags %}<span class="badge b-auftrag">ohne Auftrag</span>{% endif %}
+          {% if 'ohne_bericht' in r.flags %}<span class="badge b-bericht">ohne Bericht</span>{% endif %}
+          {% if 'aufwand' in r.flags %}<span class="badge b-budget">Aufwand über Soll</span>{% endif %}
+        </div>
+      </td>
+      <td>{% if r.prio_wert is not none %}<b>{{ r.prio_wert }}</b>{% else %}<span class="mini">–</span>{% endif %}</td>
+      <td>{{ amp(r.ampel) }}{% if r.periode %}<br><span class="mini">{{ r.periode }}</span>{% endif %}</td>
+      <td class="num">{{ chf(r.budget_soll) }}</td>
+      <td class="num">{{ chf(r.k_ist) }}</td>
+      <td class="num">{% if r.k_prog is none %}<span class="mini">–</span>{% else %}<span class="{{ 'over' if r.km.ueber_budget else '' }}">{{ chf(r.k_prog) }}</span>{% if r.km.prognose_pct is not none %}<br><span class="mini">{{ pct(r.km.prognose_pct) }} v. Soll</span>{% endif %}{% endif %}</td>
+      <td class="num">{% if r.aufwand_soll is none and r.a_prog is none %}<span class="mini">–</span>{% else %}{{ chf(r.aufwand_soll) }} → <span class="{{ 'over' if r.am.ueber_budget else '' }}">{{ chf(r.a_prog) }}</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table></div>
+  <div class="note">Prio = beschlossene Prioritätszahl (Pflichtvorhaben sind separat gekennzeichnet). „ohne Auftrag" = Projekt berichtet, hat aber keinen erfassten Durchführungsauftrag. „ohne Bericht" = freigegeben, aber noch kein PSR.</div>
+
+</div>
+</body>
+</html>

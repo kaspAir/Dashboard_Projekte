@@ -6,6 +6,21 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.7.0] – 2026-10-29
+
+### Portfolio-Management (Slice 1)
+- Neue **Portfolio-Übersicht** (`/portfolio`): verbindet das gepflegte **Soll**
+  (Durchführungsaufträge, genehmigtes Budget, Aufwand-Soll, Priorität inkl.
+  Pflicht-Kennzeichen) mit dem **Ist/Prognose aus den Statusberichten**.
+- **Soll-Ist-Warnungen**: Prognose über genehmigtem Budget bzw. Aufwand-Soll
+  (nur für laufende Vorhaben); abgebrochene zählen nicht in die Budgetsummen.
+- **Budget mehrdimensional**: Roll-up je **Bereich (Ressort)** und **Einheit
+  (Amt/Abteilung)** gegen den zugeteilten **Budgetrahmen**, plus Programm-Rahmen.
+- **Governance-Befunde** aus dem Join: Projekt berichtet *ohne erfassten Auftrag*;
+  Vorhaben *freigegeben, aber ohne Bericht*.
+- Portfolio-Soll als gepflegte Daten (`sample-data/portfolio-<mandant>.yaml`,
+  Live-Override unter `data/portfolio/`), getrennt vom PSR-Ist.
+
 ## [0.6.0] – 2026-10-29
 
 ### Fachlichkeit
@@ -66,7 +81,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.6.0...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.0...dev
+[0.7.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.0
 [0.6.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.6.0
 [0.5.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.5.1
 [0.5.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.5.0
