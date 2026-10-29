@@ -76,6 +76,17 @@
   .datab tr:last-child td{border-bottom:none}
   .rz{font-weight:600}.rz.hi{color:var(--r)}.rz.mid{color:var(--a)}
   .mini{font-size:12px;color:var(--muted)}.datab th.num{text-align:right}
+  .da-box{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:6px 0 4px;padding:0 14px}
+  .da-box>summary{cursor:pointer;padding:12px 2px;color:var(--ink);list-style:none}
+  .da-box>summary::-webkit-details-marker{display:none}
+  .da-box>summary::before{content:'▸ ';color:var(--muted)}
+  .da-box[open]>summary::before{content:'▾ '}
+  .da-box[open]{padding-bottom:16px}
+  .da-sumtitle{font-weight:700}
+  .btn{display:inline-block;background:#1f2937;color:#fff !important;border-radius:6px;padding:4px 10px;font-size:12px}
+  tr.sel{background:#fff8e6}
+  a.cell{text-decoration:none}.cell.sel{outline:2px solid var(--ink);outline-offset:-2px}
+  .note{color:var(--muted);font-size:12px;margin-top:8px}
   @media(max-width:720px){.da-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -106,7 +117,8 @@
   </div>
 
   {% if da %}
-  <h2>Durchführungsauftrag — Baseline / Startbedingung</h2>
+  <details class="da-box">
+  <summary><span class="da-sumtitle">Durchführungsauftrag — Baseline / Startbedingung</span> <span class="mini">· für Portfolio-Management, zum Aufklappen</span></summary>
   <div class="da-meta">
     Auftraggeber: <b>{{ da.ag }}</b> · Projektleitung: <b>{{ da.pl }}</b> ·
     Vorgehensmodell: {{ 'Agil' if da.method=='agil' else 'Klassisch' }} ·
@@ -171,15 +183,17 @@
       <td class="mini">{{ r.massnahme }}</td><td class="mini">{{ r.verantwortlich }}</td></tr>{% endfor %}
   </table>
   {% endif %}
+  </details>
   {% endif %}
 
   <h2>Statusverlauf (Gesamtstatus je Monat)</h2>
   <div class="band">
-    {% for t in d.timeline %}<div class="cell {{ cls(t.gesamt) }}" title="{{ t.periode }}: {{ t.gesamt }} ({{ t.phase }})"></div>{% endfor %}
+    {% for t in d.timeline %}<a class="cell {{ cls(t.gesamt) }}{{ ' sel' if t.periode==d.selected_periode }}" href="/projekt/{{ S.key }}?periode={{ t.periode }}" title="{{ t.periode }}: {{ t.gesamt }} ({{ t.phase }}) – Bericht ansehen"></a>{% endfor %}
   </div>
   <div class="axis"><span>{{ d.timeline[0].periode }}</span><span>{{ d.timeline[-1].periode }}</span></div>
 
-  <h2>Aktuelle Ampeln (letzter Bericht) — zum Aufklappen anklicken</h2>
+  <h2>Ampeln — Bericht {{ d.selected_periode }}{% if d.is_latest %} · aktuell{% endif %} — zum Aufklappen anklicken</h2>
+  {% if not d.is_latest %}<div class="note" style="margin:-2px 0 10px"><b>Du siehst einen früheren Bericht ({{ d.selected_periode }}).</b> <a class="btn" href="/projekt/{{ S.key }}">Aktueller Bericht ({{ d.latest_periode }}) →</a></div>{% endif %}
   <div class="ampeln">
     {% for a in d.ampeln %}
     <div class="am {{ cls(a.value) }}">
@@ -240,9 +254,10 @@
   <table>
     <tr><th>Periode</th><th>Status</th><th>Ist</th><th>Plan</th><th>Prognose</th></tr>
     {% for t in d.timeline[-8:] %}
-    <tr><td>{{ t.periode }}</td><td>{{ amp(t.gesamt) }}</td><td>{{ t.kosten.ist or '–' }}</td><td>{{ t.kosten.plan or '–' }}</td><td>{{ t.kosten.prognose or '–' }}</td></tr>
+    <tr class="{{ 'sel' if t.periode==d.selected_periode }}"><td><a href="/projekt/{{ S.key }}?periode={{ t.periode }}">{{ t.periode }}</a></td><td>{{ amp(t.gesamt) }}</td><td>{{ t.kosten.ist or '–' }}</td><td>{{ t.kosten.plan or '–' }}</td><td>{{ t.kosten.prognose or '–' }}</td></tr>
     {% endfor %}
   </table>
+  <div class="note">Periode anklicken, um den Bericht dieser Periode anzusehen.</div>
 
 </div>
 <script>

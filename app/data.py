@@ -213,20 +213,31 @@ def _ampeln(snaps):
     return out
 
 
-def project_detail(key, org=None, mandant_id=None):
-    """Zeitreihe + Zusammenfassung eines Projekts (per Projekt-Schlüssel)."""
+def project_detail(key, org=None, mandant_id=None, periode=None):
+    """Zeitreihe + Zusammenfassung eines Projekts. Mit `periode` zeigt die Sicht
+    den Stand DIESES Berichts (Ampeln/Belege wie damals gemeldet); sonst den letzten."""
     snaps = [r for r in _snaps(org, mandant_id) if str(r.get("projekt")) == str(key)]
     if not snaps:
         return None
     snaps.sort(key=lambda r: r["periode"])
+    idx = len(snaps) - 1
+    if periode:
+        for i, s in enumerate(snaps):
+            if s["periode"] == periode:
+                idx = i
+                break
+    sub = snaps[:idx + 1]                       # Stand bis zum gewählten Bericht
     return {
-        "summary": _project_view(snaps),
+        "summary": _project_view(sub),
         "timeline": [{
             "periode": r["periode"], "gesamt": r["status"]["gesamt"],
             "status": r["status"], "kosten": r.get("kosten", {}),
             "phase": r["phase"], "lifecycle": r["lifecycle"],
-        } for r in snaps],
-        "current": snaps[-1]["status"],
-        "ampeln": _ampeln(snaps),
-        "method": snaps[-1].get("method", "klassisch"),
+        } for r in snaps],                      # volle Zeitreihe (Band + Kostentabelle)
+        "current": sub[-1]["status"],
+        "ampeln": _ampeln(sub),
+        "method": sub[-1].get("method", "klassisch"),
+        "selected_periode": sub[-1]["periode"],
+        "latest_periode": snaps[-1]["periode"],
+        "is_latest": idx == len(snaps) - 1,
     }

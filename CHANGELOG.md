@@ -6,6 +6,15 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.8.1] – 2026-10-29
+
+### Projektseite: Bedienung
+- **DA-Baseline einklappbar** (standardmässig zu) – der Statusbericht zeigt zuerst
+  den aktuellen Status; die Baseline ist für das Portfolio-Management aufklappbar.
+- **Bericht je Periode ansehen**: Perioden in der Kostenentwicklung und Zellen im
+  Statusverlauf sind verlinkt und zeigen die Ampeln/Belege wie in diesem Bericht
+  gemeldet; Button **„Aktueller Bericht"** springt zurück auf den neuesten Stand.
+
 ## [0.8.0] – 2026-10-29
 
 ### Durchführungsaufträge (Baseline) — Extraktion, Routing, Projekt-/Programmseite
@@ -133,7 +142,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.8.0...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.8.1...dev
+[0.8.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.1
 [0.8.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.0
 [0.7.3]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.3
 [0.7.2]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.2

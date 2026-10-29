@@ -151,7 +151,7 @@ def create_app() -> Flask:
     def projekt(key):
         user = current_user()
         mid = (active_mandant(user) or {}).get("id")
-        detail = project_detail(key, active_org(user), mid)
+        detail = project_detail(key, active_org(user), mid, request.args.get("periode"))
         if not detail:
             abort(404)
         from .da import get_da
