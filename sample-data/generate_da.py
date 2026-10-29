@@ -24,6 +24,7 @@ import yaml
 from docx import Document
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.shared import Pt
 from docx.text.paragraph import Paragraph
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -185,14 +186,63 @@ def insert_paras_after(heading, texts, style=None):
 
 
 def fill_section(doc, heading_text, texts):
-    """Fügt Fliesstext direkt nach der (ersten) passenden Überschrift ein."""
+    """Fügt Fliesstext direkt nach der (ersten) passenden Überschrift ein.
+    Gibt die eingefügten Absätze zurück (für nachgelagerte Tabellen)."""
     if isinstance(texts, str):
         texts = [texts]
     for p in doc.paragraphs:
         if is_heading(p) and cl(p.text).lower().startswith(heading_text.lower()):
-            insert_paras_after(p, texts, style="Normal")
-            return True
-    return False
+            return insert_paras_after(p, texts, style="Normal")
+    return []
+
+
+def insert_table_after(doc, anchor_para, headers, rows):
+    """Erzeugt eine Tabelle und verschiebt sie direkt hinter anchor_para."""
+    t = doc.add_table(rows=1, cols=len(headers))
+    try:
+        t.style = "Table Grid"
+    except Exception:
+        pass
+    for i, h in enumerate(headers):
+        set_cell(t.rows[0].cells[i], h)
+    for r in rows:
+        cells = t.add_row().cells
+        for i, v in enumerate(r):
+            set_cell(cells[i], v)
+    anchor_para._p.addnext(t._tbl)
+    return t
+
+
+def insert_subtitle(doc, text):
+    for p in doc.paragraphs:
+        if p.style and p.style.name == "Title":
+            paras = insert_paras_after(p, [text], style=None)
+            if paras and paras[0].runs:
+                r = paras[0].runs[0]
+                r.bold = True
+                r.font.size = Pt(15)
+            return
+
+
+def set_sdt(doc, alias, text):
+    for sdt in doc.element.findall(".//" + qn("w:sdt")):
+        pr = sdt.find(qn("w:sdtPr"))
+        al = pr.find(qn("w:alias")) if pr is not None else None
+        if al is not None and al.get(qn("w:val")) == alias:
+            ts = sdt.findall(".//" + qn("w:t"))
+            if ts:
+                ts[0].text = text
+                for n in ts[1:]:
+                    n.text = ""
+            return
+
+
+def remove_placeholder_rows(doc):
+    """Entfernt leere '…'-Platzhalterzeilen aus den Tabellen (nicht die Kopfzeile)."""
+    for t in doc.tables:
+        for row in list(t.rows[1:]):
+            if cl(row.cells[0].text) == "…":
+                row._tr.getparent().remove(row._tr)
 
 
 def remove_guidance(doc):
@@ -230,10 +280,12 @@ def build_projekt_da(p, soll, zeit, path):
     budget = a.get("budget_soll", p["cost_plan"])
     aufwand = a.get("aufwand_soll", p["eff_plan"])
     freigegeben = status in ("freigegeben", "laufend", "abgeschlossen")
-    vm = "agile Umsetzung mit Releases" if method == "agil" else "klassisches Vorgehen (Konzept, Realisierung, Einführung)"
+    vm = ("agile Umsetzung mit Releases und Inkrementen" if method == "agil"
+          else "klassisches Vorgehen mit den Phasen Konzept, Realisierung und Einführung")
     ag_name, ag_k, ag_f = AG_PERSON.get(p["gb"], (p["ag"], kuerzel(p["ag"]), p["gb"]))
 
     doc = Document(TPL_PROJEKT)
+    insert_subtitle(doc, f"{p['name']} ({p['nummer']})")
 
     # Fliesstext je Kapitel (vor dem Entfernen der Platzhalter einfügen)
     fill_section(doc, "Ziel und Zweck", [
@@ -246,15 +298,32 @@ def build_projekt_da(p, soll, zeit, path):
         f"Es besteht Handlungsbedarf, um {p['ziel'][1].lower()}.",
         "Eine Standortbestimmung hat den Verbesserungsbedarf bestätigt; das Vorhaben wurde in der "
         "Initialisierung als umsetzungswürdig beurteilt."])
-    fill_section(doc, "Lösungsziele", [
-        f"Leitziel ({p['ziel'][0]}): {p['ziel'][1]}. Die Lösung soll medienbruchfrei, "
-        "benutzerfreundlich und datenschutzkonform umgesetzt werden und messbare Wirkung erzielen."])
+    lz = fill_section(doc, "Lösungsziele", [
+        "Die Lösungsziele werden gemessen und über den Projektverlauf nachverfolgt:"])
+    if lz:
+        insert_table_after(doc, lz[-1],
+                           ["Nr.", "Kategorie", "Zielbeschreibung", "Messgrösse", "Priorität", "Prognose"],
+                           [["LZ-01", p["ziel"][0], p["ziel"][1], "Grad der Zielerreichung in %", "hoch", "on track"],
+                            ["LZ-02", "Qualität", "Medienbruchfreie, datenschutzkonforme Lösung",
+                             "Abnahmekriterien erfüllt", "mittel", "on track"]])
     fill_section(doc, "Projektvorgehensziele", [
         f"Das Projekt wird nach HERMES 2022 geführt ({vm}). Qualität, Termine und Kosten werden über "
         "die Phasenfreigaben gesteuert; die Projektleitung berichtet monatlich mittels Projektstatusbericht (PSR)."])
     fill_section(doc, "Klassische / agile Vorgehensweise", [
         f"Gewähltes Vorgehen: {'Agil (Scrum)' if method == 'agil' else 'Klassisch (HERMES)'} – "
         f"{vm}. Die Wahl ergibt sich aus Umfang, Unsicherheit und Lieferkadenz des Vorhabens."])
+    fill_section(doc, "Szenario", [
+        "Umgesetzt wird das Zielszenario mit vollständiger Ablösung der bisherigen Lösung. Alternative "
+        "Szenarien (Teilablösung, Zukauf) wurden in der Initialisierung geprüft und als weniger "
+        "wirtschaftlich beurteilt."])
+    fill_section(doc, "Weitere Projektvorgehensziele", [
+        "Wissenstransfer in die Linie, durchgängige Dokumentation und ein geregelter Betriebsübergang "
+        "an die Stammorganisation sind sicherzustellen."])
+    fill_section(doc, "Rahmenbedingungen, Strategiebezug und Abgrenzungen", [
+        f"Das Projekt zahlt auf die Digitalisierungs- und Servicestrategie der Stadt Musterstadt ein. "
+        f"Massgebliche Rahmenbedingungen sind das genehmigte Budget ({chf(budget)} CHF), der Endtermin "
+        f"und die Vorgaben der Stammorganisation. Nicht Teil des Projekts sind der Dauerbetrieb der "
+        "Lösung sowie Anpassungen an angrenzenden Fachverfahren."])
     fill_section(doc, "Zusammenfassende Lösungsbeschreibung", [
         f"Umgesetzt wird eine Fachlösung mit dem Ziel: {p['ziel'][1]}. Bestehende Systeme werden über "
         "standardisierte Schnittstellen angebunden; die Einführung erfolgt begleitet durch Kommunikation, "
@@ -263,10 +332,18 @@ def build_projekt_da(p, soll, zeit, path):
         "Massgebend sind die einschlägigen kommunalen und kantonalen Rechtsgrundlagen (u. a. Gemeinde- "
         "und Organisationsrecht sowie die Datenschutzgesetzgebung). Die konkreten Erlasse sind mit dem "
         "Rechtsdienst der Stadt Musterstadt vor Umsetzung zu verifizieren."])
-    fill_section(doc, "Ressourcen- und Hilfsmittelbedarf", [
-        f"Der Personalaufwand beträgt rund {chf(aufwand)} Personentage über die Projektlaufzeit. "
-        "Benötigt werden Projekträume, IT-Arbeitsplätze, eine Test-/Integrationsumgebung sowie "
-        "fachliche Mitwirkung der betroffenen Organisationseinheiten."])
+    rz = fill_section(doc, "Ressourcen- und Hilfsmittelbedarf", [
+        f"Der Personalaufwand beträgt rund {chf(aufwand)} Personentage über die Projektlaufzeit, verteilt "
+        "auf die folgenden Rollen und Personen (Baseline für die Ressourcenplanung):"])
+    if rz:
+        res = [("Projektleitung", p["pl"], round(aufwand * 0.15)),
+               ("Business-/Fachanalyse", "Gina Roth", round(aufwand * 0.20)),
+               ("Realisierung / Entwicklung", "Daniel Huber", round(aufwand * 0.40)),
+               ("Test & Qualitätssicherung", "Hans Vogel", round(aufwand * 0.15)),
+               ("Einführung & Schulung", "Beat Küng", round(aufwand * 0.10))]
+        rows = [[rolle, pers, pt] for rolle, pers, pt in res]
+        rows.append(["Total", "", sum(r[2] for r in res)])
+        insert_table_after(doc, rz[-1], ["Rolle", "Person", "Geplanter Aufwand (PT)"], rows)
     fill_section(doc, "Kosten / Nutzen / Wirtschaftlichkeit", [
         f"Das genehmigte Projektbudget beträgt {chf(budget)} CHF. Dem stehen Effizienzgewinne, bessere "
         "Servicequalität und Reduktion manueller Arbeit gegenüber; die Wirtschaftlichkeit wird im "
@@ -289,7 +366,9 @@ def build_projekt_da(p, soll, zeit, path):
         "Verwaltungseinheit": p["ve"],
         "Geschäftsbereich": p["gb"],
         "Projektnummer": p["nummer"],
+        "Innenauftragsnr.": f"IA-{p['nummer']}",
     })
+    set_sdt(doc, "Dokument Status", "Freigegeben" if freigegeben else "In Arbeit")
 
     # Kennzahlen + Organisation + Tabellen
     defs = PHASE_AGIL if method == "agil" else PHASE_KLASSISCH
@@ -332,19 +411,34 @@ def build_projekt_da(p, soll, zeit, path):
     if ref and len(ref.rows) > 1:
         set_cell(ref.rows[1].cells[1], "Projektinitialisierungsauftrag")
         set_cell(ref.rows[1].cells[2], p["nummer"])
+    for t in doc.tables:                                   # Mitgeltende Unterlagen (Name|Nummer/Link, 2 Sp.)
+        h = [cl(c.text) for c in t.rows[0].cells]
+        if len(h) == 2 and h[0] == "Name" and "Nummer" in h[1] and len(t.rows) > 1:
+            set_cell(t.rows[1].cells[0], "Projektmanagementplan")
+            set_cell(t.rows[1].cells[1], "–")
+            break
     hm = find_table(doc, "Hilfsmittel", "Beschreibung")
     if hm:
         fill_rows_col(hm, ["Projektraum für Sitzungen", "IT-Arbeitsplätze und Test-/Integrationsumgebung",
                            "Fachanwendung / Lizenzen"], col=1, start=1)
 
-    for t in doc.tables:
+    datum = de(a.get("datum", z.get("start", "")))
+    for t in doc.tables:                                   # Dokument-Protokoll: alle drei Versionen
         hdr = " | ".join(cl(c.text) for c in t.rows[0].cells).lower()
-        if "version" in hdr and "bemerkungen" in hdr and len(t.rows) > 1 and cl(t.rows[1].cells[0].text).startswith("1.0"):
-            set_cell(t.rows[1].cells[1], ag_name)
-            set_cell(t.rows[1].cells[2], de(a.get("datum", "")))
-            set_cell(t.rows[1].cells[3], "Durchführung freigegeben" if freigegeben else "Entwurf")
+        if "version" in hdr and "bemerkungen" in hdr and len(t.rows) > 1:
+            v = cl(t.rows[1].cells[0].text)
+            if v.startswith("1.0"):
+                nm, bem = ag_name, ("Durchführung freigegeben" if freigegeben else "Entwurf")
+            elif v.startswith("0.1"):
+                nm, bem = PMO[0], "Entwurf erstellt"
+            else:
+                nm, bem = p["pl"], "Geprüft"
+            set_cell(t.rows[1].cells[1], nm)
+            set_cell(t.rows[1].cells[2], datum)
+            set_cell(t.rows[1].cells[3], bem)
 
     remove_guidance(doc)
+    remove_placeholder_rows(doc)
     doc.save(path)
 
 
@@ -479,6 +573,7 @@ def build_programm_da(name, ref, soll, zeit, kinder, path):
         set_cell(vt.rows[1].cells[3], "Programmleitung")
 
     remove_guidance(doc)
+    remove_placeholder_rows(doc)
     doc.save(path)
 
 
