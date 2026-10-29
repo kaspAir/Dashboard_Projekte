@@ -143,13 +143,18 @@ def build_doc(s, path):
     doc.styles["Normal"].font.size = Pt(10)
     doc.add_heading("Projektstatusbericht", level=0)
 
-    m = doc.add_table(rows=0, cols=2)
-    m.style = "Table Grid"
-    for k, v in [("Projektname", s["name"]), ("Projektnummer", s["nummer"]),
+    meta_rows = [("Projektname", s["name"]), ("Projektnummer", s["nummer"]),
                  ("Bearbeitungsdatum", s["datum"]), ("Berichtsperiode", s["periode"]),
                  ("Projektleiter/in", s["pl"]), ("Auftraggeber/in", s["ag"]),
-                 ("Verwaltungseinheit", s["ve"]), ("Geschäftsbereich", s["gb"]),
-                 ("Projektphase", s["phase"]), ("Projektstatus (Lebenszyklus)", s["lifecycle_de"])]:
+                 ("Verwaltungseinheit", s["ve"]), ("Geschäftsbereich", s["gb"])]
+    if s.get("programm"):
+        meta_rows.append(("Programm", s["programm"]))
+    meta_rows += [("Vorgehensmodell", "Agil (Scrum)" if s.get("method") == "agil" else "Klassisch (HERMES)"),
+                  ("Projektphase", s["phase"]),
+                  ("Projektstatus (Lebenszyklus)", s["lifecycle_de"])]
+    m = doc.add_table(rows=0, cols=2)
+    m.style = "Table Grid"
+    for k, v in meta_rows:
         cells = m.add_row().cells
         cells[0].text = k
         shade(cells[0], "F2F2F2")
@@ -176,10 +181,18 @@ def build_doc(s, path):
     tbl(doc, ["Position", "Ist", "Plan gesamt", "Prognose gesamt", "Differenz"],
         [("Total", s["a_ist"], s["a_plan"], s["a_prog"], s["a_diff"])])
 
-    doc.add_heading("Erreichte Meilensteine (vergangene Berichtsperioden)", level=2)
-    tbl(doc, ["Meilenstein", "Plan", "Prognose", "Ist"], s["ms_erreicht"] or [("–", "", "", "")])
-    doc.add_heading("Geplante Meilensteine (nächste Berichtsperioden)", level=2)
-    tbl(doc, ["Meilenstein", "Plan", "Prognose", "Ist"], s["ms_geplant"] or [("–", "", "", "")])
+    if s.get("method") == "agil":
+        doc.add_heading("Abgeschlossene Sprints (vergangene Berichtsperioden)", level=2)
+        tbl(doc, ["Sprint", "Zeitraum", "Inkrement", "Story Points"],
+            s.get("sp_erreicht") or [("–", "", "", "")])
+        doc.add_heading("Nächste Sprints (nächste Berichtsperioden)", level=2)
+        tbl(doc, ["Sprint", "Zeitraum", "Ziel", "Story Points"],
+            s.get("sp_geplant") or [("–", "", "", "")])
+    else:
+        doc.add_heading("Erreichte Meilensteine (vergangene Berichtsperioden)", level=2)
+        tbl(doc, ["Meilenstein", "Plan", "Prognose", "Ist"], s["ms_erreicht"] or [("–", "", "", "")])
+        doc.add_heading("Geplante Meilensteine (nächste Berichtsperioden)", level=2)
+        tbl(doc, ["Meilenstein", "Plan", "Prognose", "Ist"], s["ms_geplant"] or [("–", "", "", "")])
 
     if s["probleme"]:
         doc.add_heading("Probleme und Massnahmen", level=2)

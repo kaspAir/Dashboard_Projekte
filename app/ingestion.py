@@ -53,21 +53,38 @@ def is_psr(prov: dict) -> bool:
     return sum(1 for fid in FIELD_TO_STATUS if fid in prov) >= MIN_STATUS_FIELDS
 
 
+# Belegfelder (Drilldown je Ampel): Extraktions-Feld-ID -> Schlüssel im Snapshot.
+EVIDENCE_FIELDS = (
+    "status_notes", "fazit", "objectives", "effort",
+    "milestones_done", "milestones_next", "sprints_done", "sprints_next",
+    "issues", "risks",
+)
+
+
 def to_record(prov: dict) -> dict:
     status = {gt: prov[fid]["value"] for fid, gt in FIELD_TO_STATUS.items() if fid in prov}
     cost = _val(prov, "cost", {}) or {}
     key = _val(prov, "project_number") or _val(prov, "project_name")
+    evidence = {fid: prov[fid]["value"] for fid in EVIDENCE_FIELDS if fid in prov}
+    quellen = {fid: prov[fid]["source"] for fid in EVIDENCE_FIELDS if fid in prov}
+    for fid in ("cost",):
+        if fid in prov:
+            quellen[fid] = prov[fid]["source"]
     return {
         "projekt": key,
         "name": _val(prov, "project_name"),
         "nummer": _val(prov, "project_number"),
         "verwaltungseinheit": _val(prov, "org_unit"),
         "geschaeftsbereich": _val(prov, "business_area"),
+        "programm": _val(prov, "programm"),
         "lifecycle": _val(prov, "lifecycle_state", "active"),
+        "method": _val(prov, "method", "klassisch"),
         "phase": _val(prov, "phase"),
         "periode": _period(_val(prov, "report_date")),
         "status": status,
         "kosten": {k: cost.get(k, "") for k in ("plan", "ist", "prognose")},
+        "evidence": evidence,
+        "quellen": quellen,
     }
 
 

@@ -135,13 +135,17 @@ def create_app() -> Flask:
         user = current_user()
         bereich = request.args.get("bereich")
         einheit = request.args.get("einheit")
+        programm = request.args.get("programm")
         projects = all_projects(active_org(user), (active_mandant(user) or {}).get("id"))
         if bereich:
             projects = [p for p in projects if p["business_area"] == bereich]
         if einheit:
             projects = [p for p in projects if p["org_unit"] == einheit]
+        if programm:
+            projects = [p for p in projects if p.get("programm") == programm]
         return render_template("projects.html", env=app.config["APP_ENV"], projects=projects,
-                               bereich=bereich, einheit=einheit, lifecycle_de=LIFECYCLE_DE, **_ctx(user))
+                               bereich=bereich, einheit=einheit, programm=programm,
+                               lifecycle_de=LIFECYCLE_DE, **_ctx(user))
 
     @app.get("/projekt/<key>")
     def projekt(key):

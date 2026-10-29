@@ -34,7 +34,31 @@
   .amcard .l{color:var(--muted);font-size:13px}
   .badge{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
   .badge.warn{background:#fff5e6;border-color:#f3d9a6;color:#a56a00}
-  @media(max-width:640px){.grid8{grid-template-columns:1fr}}
+  .method{font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid #c7dbf5;color:#2563eb}
+  .method.agil{border-color:#cdbdf0;color:#6d28d9;background:#f5f1fe}
+  .ampeln{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:2px}
+  .am{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;align-self:start}
+  .am.open{grid-column:1 / -1}
+  .am.open .am-head{background:#f3f6fb}
+  .am-body{overflow-x:auto}
+  .am-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;background:none;border:0;cursor:pointer;font:inherit;text-align:left}
+  .am-head:hover{background:#f8fafc}
+  .am-label{font-weight:600}
+  .am-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .chev{color:var(--muted);transition:transform .15s;font-size:12px}
+  .am.open .chev{transform:rotate(90deg)}
+  .am-body{display:none;padding:2px 12px 14px;border-top:1px solid var(--line)}
+  .am.open .am-body{display:block}
+  .am-band{display:flex;gap:2px;margin-top:12px;overflow-x:auto}
+  .am-band .cell{flex:1 0 6px;height:22px;border-radius:2px}
+  .am-note{margin-top:10px;background:#fbfbfc;border:1px solid var(--line);border-left:3px solid var(--a);border-radius:6px;padding:8px 10px}
+  .am-text{margin:10px 0 0}
+  .am-sub{margin-top:14px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  table.ev{margin-top:8px}
+  table.ev th,table.ev td{padding:6px 10px;font-size:13px}
+  .fund{margin-top:12px;font-size:11px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px}
+  .fund.muted{font-style:italic}
+  @media(max-width:640px){.grid8,.ampeln{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -53,6 +77,8 @@
     <div><div class="k">Projektnummer</div>{{ S.nummer or '–' }}</div>
     <div><div class="k">Organisationseinheit</div>{{ S.org_unit }}</div>
     <div><div class="k">Bereich</div>{{ S.business_area }}</div>
+    <div><div class="k">Vorgehensmodell</div><span class="method {{ 'agil' if S.method=='agil' else '' }}">{{ 'Agil' if S.method=='agil' else 'Klassisch' }}</span></div>
+    {% if S.programm %}<div><div class="k">Programm</div><a href="/projekte?programm={{ S.programm|urlencode }}">{{ S.programm }}</a></div>{% endif %}
     <div><div class="k">Phase</div>{{ S.phase }}</div>
     <div><div class="k">Lebenszyklus</div><span class="lc {{ S.lifecycle }}">{{ lifecycle_de[S.lifecycle] }}</span></div>
     <div><div class="k">Aktueller Status</div>{{ amp(S.overall) }}</div>
@@ -66,10 +92,60 @@
   </div>
   <div class="axis"><span>{{ d.timeline[0].periode }}</span><span>{{ d.timeline[-1].periode }}</span></div>
 
-  <h2>Aktuelle Ampeln (letzter Bericht)</h2>
-  <div class="grid8">
-    {% for key, label in LBL.items() %}
-      {% if key in d.current %}<div class="amcard"><span class="l">{{ label }}</span>{{ amp(d.current[key]) }}</div>{% endif %}
+  <h2>Aktuelle Ampeln (letzter Bericht) — zum Aufklappen anklicken</h2>
+  <div class="ampeln">
+    {% for a in d.ampeln %}
+    <div class="am {{ cls(a.value) }}">
+      <button class="am-head" aria-expanded="false" onclick="toggleAm(this)">
+        <span class="am-label">{{ a.label }}</span>
+        <span class="am-right">{{ amp(a.value) }}<span class="chev">▸</span></span>
+      </button>
+      <div class="am-body">
+        {% if a.history %}
+        <div class="am-band">
+          {% for h in a.history %}<span class="cell {{ cls(h.status) }}" title="{{ h.periode }}: {{ h.status }}"></span>{% endfor %}
+        </div>
+        <div class="axis"><span>{{ a.history[0].periode }}</span><span>seit {{ a.history|selectattr('status','equalto',a.value)|list|length }} Berichten {{ a.value }}</span><span>{{ a.history[-1].periode }}</span></div>
+        {% endif %}
+
+        {% if a.note %}<div class="am-note"><b>Erläuterung aus dem PSR:</b> {{ a.note }}</div>{% endif %}
+        {% if a.kind=='text' and a.text %}<p class="am-text">{{ a.text }}</p>{% endif %}
+
+        {% if a.kind in ('cost','effort') and a.cost %}
+        <table class="ev"><tr><th>Ist</th><th>Plan</th><th>Prognose</th></tr>
+          <tr><td>{{ a.cost.ist or '–' }}</td><td>{{ a.cost.plan or '–' }}</td><td>{{ a.cost.prognose or '–' }}</td></tr></table>
+        {% endif %}
+
+        {% if a.kind=='milestones' and a.rows %}
+        <table class="ev"><tr><th>Meilenstein</th><th>Plan</th><th>Prognose</th><th>Ist</th></tr>
+          {% for r in a.rows %}<tr><td>{{ r.name }}</td><td>{{ r.plan or '–' }}</td><td>{{ r.prognose or '–' }}</td><td>{{ r.ist or '–' }}</td></tr>{% endfor %}</table>
+        {% endif %}
+
+        {% if a.kind=='sprints' and a.rows %}
+        <table class="ev"><tr><th>Sprint</th><th>Zeitraum</th><th>Inkrement / Ziel</th><th>Story Points</th></tr>
+          {% for r in a.rows %}<tr><td>{{ r.sprint }}</td><td>{{ r.zeitraum or '–' }}</td><td>{{ r.inhalt or '–' }}</td><td>{{ r.points or '–' }}</td></tr>{% endfor %}</table>
+        {% endif %}
+
+        {% if a.kind=='objectives' and a.rows %}
+        <table class="ev"><tr><th>Nr.</th><th>Kategorie</th><th>Ziel</th><th>Prognose Zielerreichung</th></tr>
+          {% for r in a.rows %}<tr><td>{{ r.nr }}</td><td>{{ r.kategorie }}</td><td>{{ r.ziel }}</td><td>{{ r.prognose or '–' }}</td></tr>{% endfor %}</table>
+        {% endif %}
+
+        {% if a.kind=='risks' and a.rows %}
+        <table class="ev"><tr><th>Nr.</th><th>Risiko</th><th>EW</th><th>AG</th><th>RZ</th><th>Verantw.</th></tr>
+          {% for r in a.rows %}<tr><td>{{ r.nr }}</td><td>{{ r.risiko }}</td><td>{{ r.ew }}</td><td>{{ r.ag }}</td><td>{{ r.rz }}</td><td>{{ r.verantwortlich }}</td></tr>{% endfor %}</table>
+        {% endif %}
+
+        {% if a.issues %}
+        <div class="am-sub">Probleme &amp; Massnahmen</div>
+        <table class="ev"><tr><th>Nr.</th><th>Problem</th><th>Massnahme</th><th>Verantw.</th><th>Termin</th></tr>
+          {% for r in a.issues %}<tr><td>{{ r.nr }}</td><td>{{ r.problem }}</td><td>{{ r.massnahme }}</td><td>{{ r.verantwortlich }}</td><td>{{ r.termin or '–' }}</td></tr>{% endfor %}</table>
+        {% endif %}
+
+        {% if a.fundstelle %}<div class="fund">📄 Quelle: {{ a.fundstelle }} · Konfidenz: hoch (deterministisch extrahiert)</div>
+        {% elif not a.note and not a.text and not a.rows %}<div class="fund muted">Keine zusätzlichen Angaben im PSR – Status ohne Erläuterung gemeldet.</div>{% endif %}
+      </div>
+    </div>
     {% endfor %}
   </div>
 
@@ -82,5 +158,12 @@
   </table>
 
 </div>
+<script>
+function toggleAm(btn){
+  var am = btn.parentElement;
+  var open = am.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+</script>
 </body>
 </html>

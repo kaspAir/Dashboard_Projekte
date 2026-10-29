@@ -35,17 +35,18 @@
 <div class="wrap">
   {% include '_nav.html' %}
   <header>
-    <h1>Projekte{% if bereich %} · {{ bereich }}{% endif %}{% if einheit %} · {{ einheit }}{% endif %}</h1>
+    <h1>Projekte{% if bereich %} · {{ bereich }}{% endif %}{% if einheit %} · {{ einheit }}{% endif %}{% if programm %} · Programm {{ programm }}{% endif %}</h1>
     <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/dashboard">← Dashboard</a></div>
   </header>
   <div class="mini" style="margin-top:6px">{{ projects|length }} Projekte (alle Lebenszyklen). Zeile anklicken für den Verlauf.</div>
 
   <table>
-    <tr><th>Projekt</th><th>Bereich</th><th>Phase</th><th>Lebenszyklus</th><th>Status</th><th>Trend</th><th>Stabilität</th></tr>
+    <tr><th>Projekt</th><th>Programm</th><th>Methode</th><th>Phase</th><th>Lebenszyklus</th><th>Status</th><th>Trend</th><th>Stabilität</th></tr>
     {% for p in projects %}
     <tr onclick="location.href='/projekt/{{ p.key }}'">
-      <td><a href="/projekt/{{ p.key }}"><b>{{ p.name }}</b></a><br><span class="mini">{{ p.org_unit }}</span></td>
-      <td class="mini">{{ p.business_area }}</td>
+      <td><a href="/projekt/{{ p.key }}"><b>{{ p.name }}</b></a><br><span class="mini">{{ p.org_unit }} · {{ p.business_area }}</span></td>
+      <td class="mini">{{ p.programm or '–' }}</td>
+      <td><span class="badge">{{ 'agil' if p.method=='agil' else 'klassisch' }}</span></td>
       <td class="mini">{{ p.phase }}</td>
       <td><span class="lc {{ p.lifecycle }}">{{ lifecycle_de[p.lifecycle] }}</span></td>
       <td>{{ amp(p.overall) }}</td>

@@ -9,6 +9,24 @@ def read_tables(path: str):
     return [[[cell.text.strip() for cell in row.cells] for row in t.rows] for t in doc.tables]
 
 
+def read_paragraphs(path: str):
+    """Alle nichtleeren Absätze (Fliesstext) in Dokumentreihenfolge."""
+    doc = Document(path)
+    return [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+
+
+def text_after_heading(paragraphs, heading: str) -> str:
+    """Erster Absatz nach einer Überschrift (Überschrift per Teilstring erkannt)."""
+    h = heading.lower()
+    seen = False
+    for t in paragraphs:
+        if seen:
+            return t
+        if h in t.lower():
+            seen = True
+    return ""
+
+
 def metadata_kv(tables):
     """Die Metadaten-Tabelle (Key/Value) anhand der Zeile 'Projektname' finden."""
     for t in tables:

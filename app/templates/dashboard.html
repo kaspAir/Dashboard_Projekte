@@ -65,6 +65,17 @@
     <div class="pill r"><div class="n">{{ d.kpi['rot'] }}</div><div class="l">rot</div></div>
   </div>
 
+  {% if d.by_programm %}
+  <h2>Status je Programm</h2>
+  <table>
+    <tr><th>Programm</th><th>Status</th><th>Projekte</th></tr>
+    {% for name, status, count, dist in d.by_programm %}
+    <tr><td><a href="/projekte?programm={{ name|urlencode }}"><b>{{ name }}</b></a></td><td>{{ amp(status) }}</td><td>{{ mini(dist) }} <span class="mini">({{ count }})</span></td></tr>
+    {% endfor %}
+  </table>
+  <div class="note">Programm-Status als Roll-up (schlechteste Ampel seiner Projekte). Klick öffnet die Projekte des Programms.</div>
+  {% endif %}
+
   <div class="grid">
     <div>
       <h2>Status je Bereich</h2>

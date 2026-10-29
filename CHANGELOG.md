@@ -6,6 +6,27 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.6.0] – 2026-10-29
+
+### Fachlichkeit
+- **Ampel-Drilldown** auf der Projekt-Detailseite: jede der 8 Ampeln ist aufklappbar
+  und zeigt ihren **eigenen Verlauf**, die **Erläuterung aus dem PSR**, die konkreten
+  **Belegdaten** (Kosten/Aufwand, Meilensteine bzw. Sprints, Ziele, Risiken, Probleme
+  & Massnahmen) sowie **Fundstelle + Konfidenz** – „warum ist diese Ampel gelb?".
+- **Klassische und agile Projekte**: Vorgehensmodell je Projekt (nie gemischt);
+  methodengerechte Belege (Meilensteine klassisch / Sprints & Inkremente agil). Die
+  Management-Sicht (8 Ampeln) normalisiert beide Welten auf dieselbe Darstellung.
+- **Programm → Projekt**: Programm-Status als Roll-up (worst-of seiner Projekte) auf
+  dem Dashboard; Programm als Filter auf der Projektliste.
+
+### Extraktion & Testdaten
+- Extraktion erfasst zusätzlich: Erläuterungen je Ampel, Fazit, Ziele, Meilensteine
+  bzw. Sprints, Probleme/Massnahmen, Risiken sowie Vorgehensmodell und Programm –
+  jeweils mit Fundstelle (kein Raten: leer, wenn nicht im PSR).
+- **Musterstadt-„Projektlaufwerk"** (verschachtelte Programm-/Projektordner, agile und
+  klassische PSR, dazu bewusst Nicht-PSR-Dateien) belegt den rekursiven Root-Scan mit
+  inhaltsbasiertem PSR-Filter: gescannt 236, als PSR erkannt 228, übersprungen 8.
+
 ## [0.5.1] – 2026-07-11
 
 ### Betrieb / Zuverlässigkeit
@@ -45,5 +66,7 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.5.0...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.6.0...dev
+[0.6.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.6.0
+[0.5.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.5.1
 [0.5.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.5.0
