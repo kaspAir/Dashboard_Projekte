@@ -67,7 +67,8 @@ vorhaben:
     einheit: IT-Abteilung
     bereich: Ressort Finanzen
     auftrag: { status: laufend, datum: "2023-09-01", budget_soll: 800000, aufwand_soll: 620 }
-    kpis: { strategie: 4, nutzen: 3, politisch: 3, dringlichkeit: 2, risiko: 2 }
+    # Trade-off: strategisch zentral, direkter Bürgernutzen aber noch gering
+    kpis: { strategie: 4, nutzen: 1, politisch: 3, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-002
     art: projekt
@@ -76,7 +77,8 @@ vorhaben:
     einheit: Bauamt
     bereich: Ressort Bau & Umwelt
     auftrag: { status: laufend, datum: "2024-06-01", budget_soll: 460000, aufwand_soll: 360 }
-    kpis: { strategie: 3, nutzen: 3, politisch: 2, dringlichkeit: 2, risiko: 2 }
+    # Trade-off: hoher direkter Nutzen, strategisch aber nicht zentral
+    kpis: { strategie: 1, nutzen: 4, politisch: 2, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-003
     art: projekt

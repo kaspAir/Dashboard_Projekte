@@ -140,8 +140,12 @@
   {% endif %}
 
   <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
-    <h2>Vorhaben (Handlungsbedarf zuerst)</h2>
-    {% if can_manage %}<a href="/portfolio/vorhaben/neu">＋ Neues Vorhaben</a>{% endif %}
+    <h2>Vorhaben{% if sort=='prioritaet' %} · nach Priorität{% else %} · Handlungsbedarf zuerst{% endif %}</h2>
+    <div class="mini">Sortierung:
+      <a href="/portfolio?sort=prioritaet" style="{{ 'text-decoration:underline' if sort=='prioritaet' else 'font-weight:400' }}">Priorität</a> ·
+      <a href="/portfolio?sort=handlungsbedarf" style="{{ 'text-decoration:underline' if sort!='prioritaet' else 'font-weight:400' }}">Handlungsbedarf</a>
+      {% if can_manage %} · <a href="/portfolio/vorhaben/neu">＋ Neues Vorhaben</a>{% endif %}
+    </div>
   </div>
   <div class="scroll"><table>
     <tr>

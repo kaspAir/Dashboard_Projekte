@@ -6,6 +6,15 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.9.2] – 2026-10-29
+
+### Portfolio: Sortierung nach Priorität
+- Die Vorhaben-Liste ist standardmässig **nach Prioritätszahl sortiert** (höchste
+  oben, Vorhaben ohne Auftrag zuunterst); Umschalter auf «Handlungsbedarf».
+- Demo-Daten: ein echtes **Trade-off-Paar** (Bürgerportal strategisch stark/Nutzen
+  gering vs. Baugenehmigung umgekehrt), damit ein Ändern der KPI-Gewichte die
+  Reihenfolge sichtbar umwirft – in der Liste und in der Timeline.
+
 ## [0.9.1] – 2026-10-29
 
 ### Betrieb / Demo
@@ -165,7 +174,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.9.1...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.9.2...dev
+[0.9.2]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.2
 [0.9.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.1
 [0.9.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.0
 [0.8.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.1

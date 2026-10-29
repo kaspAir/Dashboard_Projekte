@@ -162,8 +162,9 @@ def create_app() -> Flask:
     def portfolio():
         user = current_user()
         from .portfolio import portfolio_view
-        p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"))
-        return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, **_ctx(user))
+        sort = request.args.get("sort", "prioritaet")
+        p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"), sort)
+        return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, sort=sort, **_ctx(user))
 
     @app.get("/programm/<ref>")
     def programm(ref):

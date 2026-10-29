@@ -237,7 +237,7 @@ def _budget_rollup(rows, dim, rahmen_map):
     return out
 
 
-def portfolio_view(org=None, mandant_id=None):
+def portfolio_view(org=None, mandant_id=None, sort="prioritaet"):
     doc = _load_doc(mandant_id)
     vorhaben = doc.get("vorhaben", []) or []
     rahmen = (doc.get("budgetrahmen", {}) or {})
@@ -321,17 +321,22 @@ def portfolio_view(org=None, mandant_id=None):
             "frist_ueberfaellig": False, "frist_knapp": False, "flags": ["ohne_auftrag"],
         })
 
-    # Sortierung: Handlungsbedarf zuerst, dann Muss (nach Frist), dann Prioritätszahl
+    # Sortierung: standardmässig nach Prioritätszahl (höchste oben, ohne Auftrag zuunterst);
+    # alternativ nach Handlungsbedarf (Warnungen/Muss zuerst).
     sev = {"frist_ueberfaellig": 5, "ohne_auftrag": 4, "budget": 3, "frist_knapp": 3,
            "ohne_bericht": 2, "aufwand": 2, "pflicht": 1}
 
-    def rank(r):
+    def rank_handlungsbedarf(r):
         s = max((sev.get(f, 0) for f in r["flags"]), default=0)
         frist_key = r["frist_tage"] if (r["muss"] and r["frist_tage"] is not None) else 10**9
         score = r["prio_score"] if r["prio_score"] is not None else -1
         return (-s, 0 if r["muss"] else 1, frist_key, -score, r["titel"])
 
-    rows.sort(key=rank)
+    def rank_prioritaet(r):
+        score = r["prio_score"] if r["prio_score"] is not None else -1
+        return (-score, r["titel"])
+
+    rows.sort(key=rank_prioritaet if sort == "prioritaet" else rank_handlungsbedarf)
 
     # Programm-Rahmen: Soll des Programms vs. Summe der Projekte
     programme = []
