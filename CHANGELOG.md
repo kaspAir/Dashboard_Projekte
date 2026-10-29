@@ -6,6 +6,18 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.7.1] – 2026-10-29
+
+### Portfolio-Management (Slice 2): konfigurierbare KPIs & Priorisierung
+- **Konfigurierbarer KPI-Katalog je Portfolio**: der Kunde definiert eigene KPIs
+  (Art tor/bewertung/messung, Skala, Richtung, Gewicht, Quelle manuell/PSR).
+- **Berechnete Prioritätszahl (0–100)** als gewichteter, normierter Mittelwert der
+  bewerteten KPIs; fehlende Werte gelten als „unbekannt" (nicht 0).
+- **Muss-Tor an eine Frist gekoppelt** (z. B. Inkrafttreten eines Gesetzes): sticht
+  das Scoring, Vorhaben werden nach Pflichtfrist geordnet, mit Warnung bei
+  **überfälliger** oder **knapper** Frist.
+- KPI-Katalog-Ansicht (Gewichte sichtbar) und Prioritäts-Aufschlüsselung je Vorhaben.
+
 ## [0.7.0] – 2026-10-29
 
 ### Portfolio-Management (Slice 1)
@@ -81,7 +93,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.0...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.1...dev
+[0.7.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.1
 [0.7.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.0
 [0.6.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.6.0
 [0.5.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.5.1

@@ -20,11 +20,20 @@ def test_budget_warnung_nur_bei_laufenden():
     assert "budget" not in _row(p, "M-2022-007")["flags"]      # abgebrochen -> keine Warnung
 
 
-def test_pflicht_und_prioritaet():
+def test_muss_tor_mit_frist():
     p = portfolio_view(mandant_id="musterstadt")
-    r = _row(p, "M-2024-004")                                  # E-Rechnung (rechtlich Pflicht)
-    assert r["pflicht"] is True
-    assert r["prio_wert"] == 9
+    er = _row(p, "M-2024-004")                                 # E-Rechnung: Pflicht, Frist 2026-12-31
+    assert er["muss"] is True and er["frist"] == "2026-12-31"
+    assert er["frist_knapp"] is True                           # Frist nah -> knapp
+    ew = _row(p, "M-2022-007")                                 # Einwohnerregister: Frist überschritten
+    assert ew["muss"] is True and "frist_ueberfaellig" in ew["flags"]
+
+
+def test_prioritaetszahl_berechnet():
+    p = portfolio_view(mandant_id="musterstadt")
+    r = _row(p, "M-2023-001")                                  # bewertete KPIs -> Score 0..100
+    assert isinstance(r["prio_score"], int) and 0 <= r["prio_score"] <= 100
+    assert any(k["id"] == "strategie" for k in p["katalog"])   # Katalog ausgeliefert
 
 
 def test_bereichsrahmen_und_abgebrochen_ausgenommen():

@@ -63,6 +63,7 @@
     <div class="pill {{ 'warn' if p.kpi.ohne_auftrag else '' }}"><div class="n">{{ p.kpi.ohne_auftrag }}</div><div class="l">ohne Auftrag</div></div>
     <div class="pill {{ 'warn' if p.kpi.ohne_bericht else '' }}"><div class="n">{{ p.kpi.ohne_bericht }}</div><div class="l">ohne Bericht</div></div>
     <div class="pill info"><div class="n">{{ p.kpi.pflicht }}</div><div class="l">Pflichtvorhaben</div></div>
+    <div class="pill {{ 'warn' if p.kpi.frist_kritisch else '' }}"><div class="n">{{ p.kpi.frist_kritisch }}</div><div class="l">Pflichtfrist kritisch</div></div>
   </div>
 
   <div class="grid2">
@@ -117,6 +118,26 @@
     </table></div>
   </details>
 
+  {% if p.katalog %}
+  <details>
+    <summary>KPI-Katalog & Gewichte (kundenspezifisch konfigurierbar)</summary>
+    <div class="scroll"><table>
+      <tr><th>KPI</th><th>Art</th><th>Skala</th><th>Richtung</th><th>Quelle</th><th class="num">Gewicht</th></tr>
+      {% for k in p.katalog %}
+      <tr>
+        <td><b>{{ k.name }}</b></td>
+        <td>{{ {'tor':'Muss (Tor, mit Frist)','bewertung':'Bewertung','messung':'Messung'}.get(k.art, k.art) }}</td>
+        <td class="mini">{% if k.skala %}0–{{ k.skala }}{% else %}–{% endif %}</td>
+        <td class="mini">{% if k.richtung=='negativ' %}senkt ⬇{% elif k.richtung=='positiv' %}erhöht ⬆{% else %}–{% endif %}</td>
+        <td class="mini">{{ 'aus PSR' if k.quelle=='psr' else 'manuell' }}</td>
+        <td class="num">{% if k.art=='tor' %}sticht{% else %}{{ k.gewicht if k.gewicht is not none else '–' }}{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </table></div>
+    <div class="note">Der Kunde definiert eigene KPIs und ihr Gewicht. Die Prioritätszahl (0–100) ist der gewichtete, normierte Mittelwert der bewerteten KPIs; „unbekannt" wird nicht als 0 gewertet. Das Muss-Tor sticht und ist an eine Frist gekoppelt.</div>
+  </details>
+  {% endif %}
+
   <h2>Vorhaben (Handlungsbedarf zuerst)</h2>
   <div class="scroll"><table>
     <tr>
@@ -132,14 +153,19 @@
       <td>
         {{ r.status_label }}
         <div style="margin-top:3px;display:flex;gap:4px;flex-wrap:wrap">
-          {% if 'pflicht' in r.flags %}<span class="badge b-pflicht">Pflicht</span>{% endif %}
+          {% if r.muss %}
+            {% set fd = (r.frist[8:10] ~ '.' ~ r.frist[5:7] ~ '.' ~ r.frist[0:4]) if r.frist else '' %}
+            {% if r.frist_ueberfaellig %}<span class="badge b-budget" title="{{ r.muss_grund }}">Pflicht überfällig{% if fd %} seit {{ fd }}{% endif %}</span>
+            {% elif r.frist_knapp %}<span class="badge b-bericht" title="{{ r.muss_grund }}">Pflicht bis {{ fd }} ({{ r.frist_tage }} T)</span>
+            {% else %}<span class="badge b-pflicht" title="{{ r.muss_grund }}">Pflicht{% if fd %} bis {{ fd }}{% endif %}</span>{% endif %}
+          {% endif %}
           {% if 'budget' in r.flags %}<span class="badge b-budget">Prognose über Budget</span>{% endif %}
           {% if 'ohne_auftrag' in r.flags %}<span class="badge b-auftrag">ohne Auftrag</span>{% endif %}
           {% if 'ohne_bericht' in r.flags %}<span class="badge b-bericht">ohne Bericht</span>{% endif %}
           {% if 'aufwand' in r.flags %}<span class="badge b-budget">Aufwand über Soll</span>{% endif %}
         </div>
       </td>
-      <td>{% if r.prio_wert is not none %}<b>{{ r.prio_wert }}</b>{% else %}<span class="mini">–</span>{% endif %}</td>
+      <td>{% if r.prio_score is not none %}<b title="{% for b in r.kpi_breakdown %}{{ b.name }}: {{ b.wert }} (×{{ b.gewicht }}){{ '\n' if not loop.last }}{% endfor %}">{{ r.prio_score }}</b>{% else %}<span class="mini">–</span>{% endif %}</td>
       <td>{{ amp(r.ampel) }}{% if r.periode %}<br><span class="mini">{{ r.periode }}</span>{% endif %}</td>
       <td class="num">{{ chf(r.budget_soll) }}</td>
       <td class="num">{{ chf(r.k_ist) }}</td>
@@ -148,7 +174,7 @@
     </tr>
     {% endfor %}
   </table></div>
-  <div class="note">Prio = beschlossene Prioritätszahl (Pflichtvorhaben sind separat gekennzeichnet). „ohne Auftrag" = Projekt berichtet, hat aber keinen erfassten Durchführungsauftrag. „ohne Bericht" = freigegeben, aber noch kein PSR.</div>
+  <div class="note">Prio = berechnete Prioritätszahl (0–100) aus dem KPI-Katalog; über der Zahl stehen die Einzelwerte. Muss-Vorhaben stehen oben, nach Pflichtfrist geordnet. „ohne Auftrag" = Projekt berichtet ohne erfassten Durchführungsauftrag; „ohne Bericht" = freigegeben, aber noch kein PSR.</div>
 
 </div>
 </body>

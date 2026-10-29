@@ -1,14 +1,23 @@
 # Portfolio-Soll der Stadt Musterstadt (gepflegt, NICHT aus den PSR abgeleitet).
-# Durchführungsaufträge je Projekt/Programm: Status, genehmigtes Budget, Aufwand-Soll,
-# Priorität, zuständige Einheit/Bereich. Das Ist (Kosten/Aufwand, Ampel) kommt zur
-# Laufzeit aus den Statusberichten.
 #
-# budgetrahmen: der einer Abteilung/einem Ressort zugeteilte Projektbudget-Rahmen,
-# innerhalb dessen sie ihre Projekte durchführt (Rahmen vs. Verbrauch/Prognose).
+# kpi_katalog: je Portfolio konfigurierbar. Der Kunde definiert eigene KPIs, ihre
+#   Art, Skala, Richtung und ihr Gewicht -> daraus berechnet das Tool die Priorität.
+#     art: tor       = Muss (sticht das Scoring), an eine Frist gekoppelt
+#          bewertung = manuell bewertet (0..skala), treibt die Priorität
+#          messung   = aus den PSR gemessen (hier angezeigt; Gewicht optional)
+#     richtung: positiv = höher erhöht Priorität, negativ = höher senkt sie
 #
-# Bewusste Demo-Fälle:
-#   - M-2026-013 (freigegeben, noch kein PSR)  -> "ohne Bericht"
-#   - M-2025-011 (BiblioCloud) fehlt hier      -> "läuft ohne erfassten Auftrag"
+# vorhaben[].kpis: die erfassten Werte je Vorhaben. Fehlt ein Wert -> "unbekannt"
+#   (wird NICHT als 0 gewertet). Das Tor trägt { pflicht, frist, grund, konsequenz }.
+
+kpi_katalog:
+  - { id: rechtlich,     name: "Rechtliche Verpflichtung", art: tor }
+  - { id: strategie,     name: "Strategiebeitrag",   art: bewertung, skala: 4, richtung: positiv, gewicht: 3 }
+  - { id: nutzen,        name: "Nutzen / Wirkung",    art: bewertung, skala: 4, richtung: positiv, gewicht: 3 }
+  - { id: politisch,     name: "Politische Priorität", art: bewertung, skala: 4, richtung: positiv, gewicht: 2 }
+  - { id: dringlichkeit, name: "Dringlichkeit",       art: bewertung, skala: 4, richtung: positiv, gewicht: 2 }
+  - { id: risiko,        name: "Umsetzungsrisiko",    art: bewertung, skala: 4, richtung: negativ, gewicht: 2 }
+  - { id: budgettreue,   name: "Budgettreue",         art: messung,   quelle: psr, richtung: negativ, gewicht: 0 }
 
 budgetrahmen:
   bereich:
@@ -27,7 +36,7 @@ vorhaben:
   - { ref: PG-GS, art: programm, titel: Gesundheit & Soziales digital,
       auftrag: { status: laufend, datum: "2024-06-01", budget_soll: 620000, aufwand_soll: 480 } }
 
-  # ---- Projekte (Durchführungsauftrag) ------------------------------------
+  # ---- Projekte (Durchführungsauftrag + KPI-Werte) ------------------------
   - ref: M-2023-001
     art: projekt
     titel: Bürgerportal Musterstadt
@@ -35,11 +44,7 @@ vorhaben:
     einheit: IT-Abteilung
     bereich: Ressort Finanzen
     auftrag: { status: laufend, datum: "2023-09-01", budget_soll: 800000, aufwand_soll: 620 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 3, rechtlich: 1, strategie: 4, kosten: 2 }
-      wert: 10
-      begruendung: Zentrale Komponente der Digitalstrategie; hohe politische Sichtbarkeit.
+    kpis: { strategie: 4, nutzen: 3, politisch: 3, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-002
     art: projekt
@@ -48,11 +53,7 @@ vorhaben:
     einheit: Bauamt
     bereich: Ressort Bau & Umwelt
     auftrag: { status: laufend, datum: "2024-06-01", budget_soll: 460000, aufwand_soll: 360 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 2, strategie: 3, kosten: 2 }
-      wert: 9
-      begruendung: Spürbare Verfahrensbeschleunigung für Bürger und Wirtschaft.
+    kpis: { strategie: 3, nutzen: 3, politisch: 2, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-003
     art: projekt
@@ -61,11 +62,7 @@ vorhaben:
     einheit: Schulamt
     bereich: Ressort Bildung
     auftrag: { status: abgeschlossen, datum: "2024-02-01", budget_soll: 320000, aufwand_soll: 180 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 0, strategie: 2, kosten: 1 }
-      wert: 5
-      begruendung: Infrastrukturvoraussetzung für digitale Lehrmittel.
+    kpis: { strategie: 2, nutzen: 2, politisch: 2, dringlichkeit: 1, risiko: 1 }
 
   - ref: M-2024-004
     art: projekt
@@ -74,12 +71,15 @@ vorhaben:
     einheit: Stadtkasse
     bereich: Ressort Finanzen
     auftrag: { status: laufend, datum: "2024-08-01", budget_soll: 240000, aufwand_soll: 190 }
-    prioritaet:
-      pflicht: true
-      pflicht_grund: Gesetzliche Pflicht zur Verarbeitung elektronischer Rechnungen.
-      kriterien: { politisch: 1, rechtlich: 4, strategie: 2, kosten: 2 }
-      wert: 9
-      begruendung: Rechtlich verpflichtend; Nichtumsetzung keine Option.
+    kpis:
+      rechtlich: { pflicht: true, frist: "2026-12-31",
+                   grund: "Gesetzliche Pflicht zur Verarbeitung elektronischer Rechnungen.",
+                   konsequenz: "Rechtsverstoss und Zahlungsabwicklung blockiert ab Inkrafttreten." }
+      strategie: 2
+      nutzen: 2
+      politisch: 1
+      dringlichkeit: 3
+      risiko: 1
 
   - ref: M-2024-005
     art: projekt
@@ -88,11 +88,7 @@ vorhaben:
     einheit: Sozialamt
     bereich: Ressort Soziales & Gesundheit
     auftrag: { status: laufend, datum: "2024-10-01", budget_soll: 410000, aufwand_soll: 300 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 3, rechtlich: 2, strategie: 3, kosten: 2 }
-      wert: 10
-      begruendung: Hoher Nutzen für vulnerable Gruppen; datenschutzsensibel.
+    kpis: { strategie: 3, nutzen: 4, politisch: 3, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-006
     art: projekt
@@ -101,11 +97,7 @@ vorhaben:
     einheit: Bauamt
     bereich: Ressort Bau & Umwelt
     auftrag: { status: laufend, datum: "2024-01-15", budget_soll: 920000, aufwand_soll: 540 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 3, rechtlich: 1, strategie: 3, kosten: 1 }
-      wert: 8
-      begruendung: Hoher strategischer Beitrag, aber Kostenrisiko (Budgetnachtrag geprüft).
+    kpis: { strategie: 3, nutzen: 3, politisch: 3, dringlichkeit: 2, risiko: 3 }
 
   - ref: M-2022-007
     art: projekt
@@ -113,12 +105,15 @@ vorhaben:
     einheit: Einwohneramt
     bereich: Ressort Sicherheit
     auftrag: { status: abgebrochen, datum: "2023-03-01", budget_soll: 1100000, aufwand_soll: 700 }
-    prioritaet:
-      pflicht: true
-      pflicht_grund: Fachgesetzliche Pflicht zur Führung des Einwohnerregisters.
-      kriterien: { politisch: 2, rechtlich: 4, strategie: 2, kosten: 1 }
-      wert: 9
-      begruendung: Abgebrochen wegen wiederholt gescheiterter Migration; Neuausschreibung nötig.
+    kpis:
+      rechtlich: { pflicht: true, frist: "2025-06-30",
+                   grund: "Fachgesetzliche Pflicht zur Führung des Einwohnerregisters.",
+                   konsequenz: "Pflicht unerfüllt; Altsystem über Frist hinaus betrieben." }
+      strategie: 2
+      nutzen: 2
+      politisch: 2
+      dringlichkeit: 4
+      risiko: 4
 
   - ref: M-2024-008
     art: projekt
@@ -126,11 +121,7 @@ vorhaben:
     einheit: Stadtpolizei
     bereich: Ressort Sicherheit
     auftrag: { status: laufend, datum: "2024-08-01", budget_soll: 560000, aufwand_soll: 360 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 1, strategie: 2, kosten: 2 }
-      wert: 7
-      begruendung: Verbessert Reaktionszeiten; 24/7-Betriebsanforderungen.
+    kpis: { strategie: 2, nutzen: 2, politisch: 2, dringlichkeit: 2, risiko: 2 }
 
   - ref: M-2024-009
     art: projekt
@@ -139,11 +130,7 @@ vorhaben:
     einheit: Bauamt
     bereich: Ressort Bau & Umwelt
     auftrag: { status: abgeschlossen, datum: "2024-06-01", budget_soll: 240000, aufwand_soll: 160 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 1, strategie: 2, kosten: 2 }
-      wert: 6
-      begruendung: Datenbasis für Umwelt- und Lärmschutzmassnahmen.
+    kpis: { strategie: 2, nutzen: 2, politisch: 2, dringlichkeit: 1, risiko: 1 }
 
   - ref: M-2025-010
     art: projekt
@@ -152,11 +139,7 @@ vorhaben:
     einheit: IT-Abteilung
     bereich: Ressort Finanzen
     auftrag: { status: laufend, datum: "2025-03-01", budget_soll: 180000, aufwand_soll: 150 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 1, strategie: 2, kosten: 3 }
-      wert: 6
-      begruendung: Erhöht Transparenz; geringe Kosten, moderater Nutzen.
+    kpis: { strategie: 2, nutzen: 2, politisch: 2, dringlichkeit: 1, risiko: 1 }
 
   - ref: M-2024-012
     art: projekt
@@ -165,11 +148,7 @@ vorhaben:
     einheit: Sozialamt
     bereich: Ressort Soziales & Gesundheit
     auftrag: { status: abgeschlossen, datum: "2024-09-01", budget_soll: 160000, aufwand_soll: 140 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 1, rechtlich: 1, strategie: 2, kosten: 3 }
-      wert: 5
-      begruendung: Serviceverbesserung mit gutem Kosten-Nutzen-Verhältnis.
+    kpis: { strategie: 2, nutzen: 2, politisch: 1, dringlichkeit: 1, risiko: 1 }
 
   # ---- Geplantes Vorhaben: freigegeben, aber noch kein Statusbericht -------
   - ref: M-2026-013
@@ -179,8 +158,4 @@ vorhaben:
     einheit: Bauamt
     bereich: Ressort Bau & Umwelt
     auftrag: { status: freigegeben, datum: "2026-02-15", budget_soll: 300000, aufwand_soll: 220 }
-    prioritaet:
-      pflicht: false
-      kriterien: { politisch: 2, rechtlich: 2, strategie: 3, kosten: 2 }
-      wert: 8
-      begruendung: Baut auf Digitaler Baugenehmigung auf; Start fürs nächste Quartal freigegeben.
+    kpis: { strategie: 3, nutzen: 2, politisch: 2, dringlichkeit: 2, risiko: 2 }

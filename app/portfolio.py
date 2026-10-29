@@ -12,12 +12,15 @@ ein Auftrag, wird genau das ausgewiesen (Governance-Befund), nicht geraten.
 """
 from __future__ import annotations
 
+import datetime
 import os
 from collections import defaultdict
 
 import yaml
 
 from .data import RANK, _snaps, worst_of
+
+FRIST_FENSTER_TAGE = 180        # ab hier gilt eine Pflichtfrist als "knapp"
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORTFOLIO_DIR = os.path.join(ROOT, "data", "portfolio")        # gepflegt (Laufzeit)
@@ -95,11 +98,58 @@ def _metrics(budget_soll, ist, prognose):
     return m
 
 
-def _prio_score(prio):
-    """Summe der gestaltbaren Kriterien (0–4 je Kriterium). Pflicht sticht separat."""
-    krit = (prio or {}).get("kriterien") or {}
-    werte = [v for v in krit.values() if isinstance(v, (int, float))]
-    return sum(werte) if werte else None
+def _priority(values, katalog):
+    """Berechnet die Prioritätszahl aus dem konfigurierten KPI-Katalog.
+
+    Gewichteter, normierter Mittelwert der bewerteten KPIs (0–100). Fehlende Werte
+    gelten als „unbekannt" und werden NICHT als 0 gewertet. Das Muss-Tor sticht:
+    es setzt kein Score, sondern eine Pflicht mit Frist.
+    """
+    muss = False
+    tor = {"frist": None, "grund": "", "konsequenz": ""}
+    num = den = 0.0
+    breakdown = []
+    for kpi in katalog:
+        kid, art = kpi.get("id"), kpi.get("art")
+        if art == "tor":
+            t = values.get(kid)
+            if isinstance(t, dict) and t.get("pflicht"):
+                muss = True
+                tor = {"frist": t.get("frist"), "grund": t.get("grund", ""),
+                       "konsequenz": t.get("konsequenz", "")}
+            continue
+        if art != "bewertung":
+            continue                               # Mess-KPIs getrennt (angezeigt, nicht hier gewertet)
+        v = values.get(kid)
+        w = kpi.get("gewicht", 0) or 0
+        if v is None or w <= 0:
+            continue                               # unbekannt oder ungewichtet -> überspringen
+        skala = kpi.get("skala", 4) or 4
+        norm = max(0.0, min(1.0, float(v) / skala))
+        if kpi.get("richtung") == "negativ":
+            norm = 1.0 - norm
+        num += norm * w
+        den += w
+        breakdown.append({"name": kpi.get("name", kid), "wert": v, "gewicht": w})
+    score = round(100 * num / den) if den else None
+    return {"score": score, "muss": muss, "breakdown": breakdown, **tor}
+
+
+def _frist_info(frist, status):
+    """Restzeit bis zur Pflichtfrist + Ampelung (überfällig / knapp)."""
+    out = {"frist": frist, "tage": None, "ueberfaellig": False, "knapp": False}
+    if not frist:
+        return out
+    try:
+        d = datetime.date.fromisoformat(str(frist))
+    except ValueError:
+        return out
+    tage = (d - datetime.date.today()).days
+    offen = status != "abgeschlossen"
+    out["tage"] = tage
+    out["ueberfaellig"] = tage < 0 and offen
+    out["knapp"] = 0 <= tage <= FRIST_FENSTER_TAGE and offen
+    return out
 
 
 def _budget_rollup(rows, dim, rahmen_map):
@@ -137,6 +187,7 @@ def portfolio_view(org=None, mandant_id=None):
     doc = _load_doc(mandant_id)
     vorhaben = doc.get("vorhaben", []) or []
     rahmen = (doc.get("budgetrahmen", {}) or {})
+    katalog = doc.get("kpi_katalog", []) or []
     last = _last_by_project(_snaps(org, mandant_id))      # Ist je Projekt (letzter Bericht)
     referenced = set()
 
@@ -166,10 +217,15 @@ def portfolio_view(org=None, mandant_id=None):
             referenced.add(ref)
         km = _metrics(budget_soll, k_ist, k_prog)
         am = _metrics(aufwand_soll, a_ist, a_prog)
-        prio = v.get("prioritaet", {}) or {}
+        pr = _priority(v.get("kpis", {}) or {}, katalog)
+        fi = _frist_info(pr["frist"], status)
         flags = []
-        if prio.get("pflicht"):
+        if pr["muss"]:
             flags.append("pflicht")
+        if fi["ueberfaellig"]:
+            flags.append("frist_ueberfaellig")
+        elif fi["knapp"]:
+            flags.append("frist_knapp")
         if km["ueber_budget"] and status == "laufend":          # nur laufende = Handlungsbedarf
             flags.append("budget")
         if am["ueber_budget"] and status == "laufend":
@@ -187,9 +243,10 @@ def portfolio_view(org=None, mandant_id=None):
             "ampel": ampel, "periode": periode, "reports": reports,
             "budget_soll": budget_soll, "k_ist": k_ist, "k_prog": k_prog, "km": km,
             "aufwand_soll": aufwand_soll, "a_prog": a_prog, "am": am,
-            "pflicht": bool(prio.get("pflicht")), "pflicht_grund": prio.get("pflicht_grund", ""),
-            "prio_score": _prio_score(prio), "prio_wert": prio.get("wert"),
-            "prio_begruendung": prio.get("begruendung", ""),
+            "prio_score": pr["score"], "kpi_breakdown": pr["breakdown"],
+            "muss": pr["muss"], "muss_grund": pr["grund"], "muss_konsequenz": pr["konsequenz"],
+            "frist": fi["frist"], "frist_tage": fi["tage"],
+            "frist_ueberfaellig": fi["ueberfaellig"], "frist_knapp": fi["knapp"],
             "flags": flags,
         })
 
@@ -205,17 +262,20 @@ def portfolio_view(org=None, mandant_id=None):
             "reports": True, "budget_soll": None, "k_ist": _num((snap.get("kosten") or {}).get("ist")),
             "k_prog": _num((snap.get("kosten") or {}).get("prognose")), "km": _metrics(None, None, None),
             "aufwand_soll": None, "a_prog": None, "am": _metrics(None, None, None),
-            "pflicht": False, "pflicht_grund": "", "prio_score": None, "prio_wert": None,
-            "prio_begruendung": "", "flags": ["ohne_auftrag"],
+            "prio_score": None, "kpi_breakdown": [], "muss": False, "muss_grund": "",
+            "muss_konsequenz": "", "frist": None, "frist_tage": None,
+            "frist_ueberfaellig": False, "frist_knapp": False, "flags": ["ohne_auftrag"],
         })
 
-    # Sortierung: Handlungsbedarf zuerst
-    sev = {"ohne_auftrag": 4, "budget": 3, "ohne_bericht": 2, "aufwand": 2, "pflicht": 1}
+    # Sortierung: Handlungsbedarf zuerst, dann Muss (nach Frist), dann Prioritätszahl
+    sev = {"frist_ueberfaellig": 5, "ohne_auftrag": 4, "budget": 3, "frist_knapp": 3,
+           "ohne_bericht": 2, "aufwand": 2, "pflicht": 1}
 
     def rank(r):
         s = max((sev.get(f, 0) for f in r["flags"]), default=0)
-        amp = RANK.get(r["ampel"], -1)
-        return (-s, -amp, r["titel"])
+        frist_key = r["frist_tage"] if (r["muss"] and r["frist_tage"] is not None) else 10**9
+        score = r["prio_score"] if r["prio_score"] is not None else -1
+        return (-s, 0 if r["muss"] else 1, frist_key, -score, r["titel"])
 
     rows.sort(key=rank)
 
@@ -254,7 +314,8 @@ def portfolio_view(org=None, mandant_id=None):
         "ueber_budget": sum(1 for r in rows if "budget" in r["flags"]),
         "ohne_auftrag": sum(1 for r in rows if "ohne_auftrag" in r["flags"]),
         "ohne_bericht": sum(1 for r in rows if "ohne_bericht" in r["flags"]),
-        "pflicht": sum(1 for r in rows if r["pflicht"]),
+        "pflicht": sum(1 for r in rows if r["muss"]),
+        "frist_kritisch": sum(1 for r in rows if r["frist_ueberfaellig"] or r["frist_knapp"]),
     }
     status_counts = defaultdict(int)
     for r in rows:
@@ -267,6 +328,7 @@ def portfolio_view(org=None, mandant_id=None):
     return {
         "rows": rows, "programme": programme, "kpi": kpi,
         "by_bereich": by_bereich, "by_einheit": by_einheit,
+        "katalog": katalog,
         "status_counts": dict(status_counts),
         "data_source": resolve_portfolio(mandant_id)[1],
     }
