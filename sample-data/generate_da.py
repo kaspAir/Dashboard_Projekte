@@ -1,44 +1,46 @@
 # -*- coding: utf-8 -*-
-"""Generator für Durchführungsaufträge (DA) je Projekt und Programmdurchführungs-
-aufträge (PDA) je Programm der Stadt Musterstadt – HERMES-Struktur (Vorlage
-durchfuehrungsauftrag.dotx).
+"""Erzeugt vorlagengetreue Durchführungsaufträge (DA) je Projekt und
+Programmdurchführungsaufträge je Programm, indem die ORIGINAL-HERMES-Vorlage
+(sample-data/vorlagen/durchfuehrungsauftrag.docx) je Vorhaben chirurgisch
+befüllt wird – Titelseite, Kosten/Aufwand je Phase, Projektorganisation,
+Risiken, Konsequenzen, Verbindlichkeiten, Dokument-Protokoll.
 
-Ablage spiegelt die PSR-Struktur (da-drive/), damit der rekursive SharePoint-Scan
-später PSR UND DA findet und inhaltsbasiert unterscheidet. Inhalte sind konsistent
-zu Portfolio-Soll (Budget/Aufwand/Status/Daten) und PSR-Stammdaten (AG/PL/Risiken).
+Der DA ist die Baseline / Startbedingung → speist später das Portfolio-Soll.
+Inhalte sind konsistent zu portfolio-musterstadt.yaml und den PSR-Stammdaten.
 
 Aufruf (Repo-Root):  python sample-data/generate_da.py
 """
 import os
+import re
 import shutil
 import sys
 
 import yaml
 from docx import Document
-from docx.shared import Pt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from generate_psr import bold, chf, shade, tbl  # noqa: E402
+from generate_psr import chf  # noqa: E402
 from psr_data_demo import PROJECTS  # noqa: E402
 
+TEMPLATE = os.path.join(HERE, "vorlagen", "durchfuehrungsauftrag.docx")
 OUT = os.path.join(HERE, "da-drive")
 
-# Phasen-Aufteilung (Anteile) je Methode – für Kosten und Aufwand.
-SPLIT = {
-    "klassisch": [("Initialisierung", 0.10), ("Konzept (klassisch)", 0.20),
-                  ("Realisierung (klassisch)", 0.40), ("Einführung (klassisch)", 0.20),
-                  ("Abschluss", 0.10)],
-    "agil": [("Initialisierung", 0.15), ("Umsetzung (agil)", 0.70), ("Abschluss", 0.15)],
-}
-# Vollständige Zeilenreihenfolge der Vorlage (Kosten/Aufwand je Phase).
-PHASE_ROWS = ["Initialisierung", "Konzept (klassisch)", "Realisierung (klassisch)",
+PHASE_KLASSISCH = [("Initialisierung", 0.10), ("Konzept (klassisch)", 0.20),
+                   ("Realisierung (klassisch)", 0.40), ("Einführung (klassisch)", 0.20),
+                   ("Abschluss", 0.10)]
+PHASE_AGIL = [("Initialisierung", 0.15), ("Umsetzung (agil)", 0.70), ("Abschluss", 0.15)]
+PHASE_PROGRAMM = [("Initialisierung", 0.10), ("Realisierung (klassisch)", 0.80), ("Abschluss", 0.10)]
+ALL_PHASES = ["Initialisierung", "Konzept (klassisch)", "Realisierung (klassisch)",
               "Einführung (klassisch)", "Umsetzung (agil)", "Abschluss"]
-PROG_SPLIT = [("Programminitialisierung", 0.10), ("Programmdurchführung", 0.80),
-              ("Programmabschluss", 0.10)]
 STATUS_DE = {"idee": "Idee", "beantragt": "Beantragt", "freigegeben": "Freigegeben",
              "laufend": "In Durchführung", "zurueckgestellt": "Zurückgestellt",
              "abgeschlossen": "Abgeschlossen", "abgebrochen": "Abgebrochen"}
+TRANS = {ord(c): " " for c in "  ​ ﻿   \t"}
+
+
+def cl(s):
+    return re.sub(r"\s+", " ", (s or "").translate(TRANS)).strip()
 
 
 def _safe(name):
@@ -51,51 +53,128 @@ def kuerzel(name):
     parts = [p for p in name.replace(".", " ").split() if p]
     if not parts:
         return ""
-    return (parts[0][0] + parts[-1][:2]).upper() if len(parts) > 1 else parts[0][:3].upper()
+    return (parts[0][0] + parts[-1][:2]).lower() if len(parts) > 1 else parts[0][:3].lower()
 
 
-def de(d):  # '2024-01-15' -> '15.01.2024'
-    y, m, day = (d.split("-") + ["01", "01"])[:3]
+def de(d):
+    if not d:
+        return ""
+    y, m, day = (str(d).split("-") + ["01", "01"])[:3]
     return f"{day}.{m}.{y}"
 
 
-def split_values(total, method):
-    out = {ph: "" for ph in PHASE_ROWS}
+# ---- Füll-Helfer ----------------------------------------------------------
+def set_cell(cell, text):
+    """Setzt den Zelltext und behält die Formatierung des ersten Runs."""
+    p = cell.paragraphs[0]
+    if p.runs:
+        p.runs[0].text = str(text)
+        for r in p.runs[1:]:
+            r.text = ""
+    else:
+        p.add_run(str(text))
+
+
+def set_title_meta(doc, meta):
+    for p in doc.paragraphs:
+        if not p.runs:
+            continue
+        lab = cl(p.runs[0].text)
+        if lab not in meta:
+            continue
+        val = meta[lab]
+        last = p.runs[-1]
+        if len(p.runs) > 1 and cl(last.text):
+            last.text = str(val)                     # Platzhalter-Wert ersetzen (auch wenn = Label)
+        else:
+            p.add_run("\t\t" + str(val))             # Label-Zeile ohne Wert-Run: Wert anfügen
+
+
+def find_table(doc, *keys):
+    for t in doc.tables:
+        hdr = " | ".join(cl(c.text) for c in t.rows[0].cells).lower()
+        if all(k.lower() in hdr for k in keys):
+            return t
+    return None
+
+
+def fill_phase_table(t, values):
+    if not t:
+        return
+    for row in t.rows[1:]:
+        key = cl(row.cells[0].text).rstrip("*").strip()
+        if key in values:
+            set_cell(row.cells[1], values[key])
+
+
+def phase_values(total, defs, suffix=""):
+    vals = {ph: "–" for ph in ALL_PHASES}
     acc = 0
-    defs = SPLIT.get(method, SPLIT["klassisch"])
-    for ph, prop in defs:
+    for lab, prop in defs:
         v = round(total * prop)
-        out[ph] = v
         acc += v
-    return out, acc
+        vals[lab] = f"{chf(v)}{suffix}"
+    vals["Total"] = f"{chf(total)}{suffix}"
+    return vals
 
 
-def meta_table(doc, rows):
-    t = doc.add_table(rows=0, cols=2)
-    t.style = "Table Grid"
-    for k, v in rows:
-        cells = t.add_row().cells
-        cells[0].text = k
-        shade(cells[0], "F2F2F2")
-        bold(cells[0])
-        cells[1].text = str(v)
+def fill_org(doc, ag, ag_kuerzel, ag_funktion, pl, pl_kuerzel, pl_funktion):
+    t = find_table(doc, "Rolle in der Projektorganisation") or find_table(doc, "Projektorganisation")
+    if not t:
+        return
+    for row in t.rows[1:]:
+        rolle = cl(row.cells[0].text)
+        if rolle.startswith("Auftraggeber"):
+            set_cell(row.cells[2], ag); set_cell(row.cells[4], ag_kuerzel); set_cell(row.cells[6], ag_funktion)
+        elif rolle.startswith("Projektleiter") or rolle.startswith("Programmleit"):
+            set_cell(row.cells[2], pl); set_cell(row.cells[4], pl_kuerzel); set_cell(row.cells[6], pl_funktion)
 
 
-def kosten_tabelle(doc, titel, einheit, werte, total, suffix=""):
-    doc.add_heading(titel, level=3)
-    rows = [(ph, (f"{chf(werte[ph])}{suffix}" if werte[ph] != "" else "–")) for ph in PHASE_ROWS]
-    rows.append(("Total", f"{chf(total)}{suffix}"))
-    tbl(doc, ["Phase", einheit], rows)
-
-
-def risiko_rows(risks, pl):
-    out = []
+def fill_risiken(doc, risks, pl):
+    t = find_table(doc, "Risikobeschreibung")
+    if not t:
+        return
+    data = [r for r in t.rows[1:] if re.match(r"R\d", cl(r.cells[0].text))]
     sev = [(2, 2), (3, 2), (2, 3)]
-    for i, r in enumerate(risks):
-        ew, ag = sev[i % len(sev)]
-        out.append((f"R{i+1}", r, ew, ag, ew * ag,
-                    "Gegensteuernde Massnahme definiert", pl, ""))
-    return out
+    for i, row in enumerate(data):
+        if i < len(risks):
+            ew, ag = sev[i % len(sev)]
+            set_cell(row.cells[1], risks[i]); set_cell(row.cells[2], ew)
+            set_cell(row.cells[3], ag); set_cell(row.cells[4], ew * ag)
+            set_cell(row.cells[5], "Gegensteuernde Massnahme definiert")
+            set_cell(row.cells[6], pl); set_cell(row.cells[7], "")
+        else:
+            for c in range(1, 8):
+                set_cell(row.cells[c], "")
+
+
+def fill_rows_col(t, texts, col=1, start=1):
+    if not t:
+        return
+    data = [r for r in t.rows[start:] if cl(r.cells[0].text) and cl(r.cells[0].text) != "…"]
+    for row, txt in zip(data, texts):
+        set_cell(row.cells[col], txt)
+
+
+def fill_protokoll(doc, version, name, datum, bemerkung):
+    for t in doc.tables:
+        hdr = " | ".join(cl(c.text) for c in t.rows[0].cells).lower()
+        if "version" in hdr and "bemerkungen" in hdr and len(t.rows) > 1:
+            if cl(t.rows[1].cells[0].text).startswith(version):
+                set_cell(t.rows[1].cells[1], name)
+                set_cell(t.rows[1].cells[2], datum)
+                set_cell(t.rows[1].cells[3], bemerkung)
+                return
+
+
+def set_doc_title(doc, title):
+    for p in doc.paragraphs:
+        if (p.style and p.style.name == "Title") and cl(p.text).startswith("Durchführungsauftrag"):
+            if p.runs:
+                p.runs[0].text = title
+                for r in p.runs[1:]:
+                    r.text = ""
+            return
 
 
 # ---- Projekt-DA -----------------------------------------------------------
@@ -107,175 +186,110 @@ def build_projekt_da(p, soll, zeit, path):
     status = a.get("status", "freigegeben")
     budget = a.get("budget_soll", p["cost_plan"])
     aufwand = a.get("aufwand_soll", p["eff_plan"])
-
-    doc = Document()
-    doc.styles["Normal"].font.name = "Arial"
-    doc.styles["Normal"].font.size = Pt(10)
-    doc.add_heading("Durchführungsauftrag", level=0)
-
-    meta_table(doc, [
-        ("Projektname", p["name"]), ("Projektnummer", p["nummer"]),
-        ("Auftraggeber/in", p["ag"]), ("Projektleiter/in", p["pl"]),
-        ("Verwaltungseinheit", p["ve"]), ("Geschäftsbereich", p["gb"]),
-        ("Programm", soll.get("programm", "–") or "–"),
-        ("Vorgehensmodell", "Agil (Scrum)" if method == "agil" else "Klassisch (HERMES)"),
-        ("Geplanter Start", de(z.get("start", a.get("datum", "")))),
-        ("Geplantes Ende", de(z.get("ende", ""))),
-        ("Status", STATUS_DE.get(status, status)),
-    ])
-
-    doc.add_heading("Ausgangslage und Handlungsbedarf", level=1)
-    doc.add_paragraph(f"Das Vorhaben «{p['name']}» adressiert {p['ziel'][1].lower()}. "
-                      "Die heutige Lösung genügt den Anforderungen nicht mehr; es besteht Handlungsbedarf.")
-
-    doc.add_heading("Ziele", level=1)
-    doc.add_paragraph(f"Lösungsziel ({p['ziel'][0]}): {p['ziel'][1]}.")
-
-    doc.add_heading("Investitionsbedarf", level=1)
-    kw, kt = split_values(budget, method)
-    kosten_tabelle(doc, "Projektkosten", "Geplant CHF", kw, kt)
-    aw, at = split_values(aufwand, method)
-    kosten_tabelle(doc, "Arbeitstage", "Geplant Arbeitstage", aw, at)
-
-    doc.add_heading("Planung und Organisation", level=1)
-    doc.add_heading("Projektorganisation", level=2)
-    tbl(doc, ["Rolle in der Projektorganisation", "Name", "Kürzel", "Funktion / Vertretene Organisation"],
-        [("Auftraggeber/in", p["ag"], kuerzel(p["ag"]), p["gb"]),
-         ("Projektleiter/in", p["pl"], kuerzel(p["pl"]), p["ve"]),
-         ("Fachverantwortung", "N. N.", "", p["ve"]),
-         ("Qualitätssicherung", "N. N.", "", "Stabsstelle PMO")])
-
-    doc.add_heading("Risiken", level=1)
-    tbl(doc, ["Nr.", "Risikobeschreibung", "EW", "AG", "RZ", "Massnahmen", "Verantwortlich", "Termin"],
-        risiko_rows(p["risks"], p["pl"]))
-
-    doc.add_heading("Konsequenzen", level=1)
-    tbl(doc, ["Zeitpunkt", "Beschreibung"],
-        [("Bei Durchführungsfreigabe", f"{p['ziel'][1]} kann termingerecht umgesetzt werden."),
-         ("Bei verspäteter Durchführungsfreigabe", "Verzögerung mit Mehrkosten; der Nutzen tritt später ein."),
-         ("Bei ausbleibender / abgelehnter Freigabe", "Handlungsbedarf bleibt ungelöst; Ziel wird nicht erreicht.")])
-
-    doc.add_heading("Verbindlichkeiten", level=1)
-    tbl(doc, ["Nr.", "Verbindlichkeit", "Beschreibung", "Verantwortlich"],
-        [("01", "Budget", f"Das genehmigte Budget von {chf(budget)} CHF ist einzuhalten.", p["pl"]),
-         ("02", "Berichterstattung", "Monatlicher Projektstatusbericht (PSR) an den Auftraggeber.", p["pl"])])
-
-    doc.add_heading("Dokument-Protokoll", level=1)
     freigegeben = status in ("freigegeben", "laufend", "abgeschlossen")
-    tbl(doc, ["Version", "Name", "Datum", "Bemerkungen"],
-        [("1.0", p["ag"], de(a.get("datum", "")),
-          "Durchführung freigegeben" if freigegeben else "Entwurf zur Prüfung")])
 
+    doc = Document(TEMPLATE)
+    set_title_meta(doc, {
+        "Projektname / Projektnummer": f"{p['name']} / {p['nummer']}",
+        "Bearbeitungsdatum": de(a.get("datum", z.get("start", ""))),
+        "Version": "1.0" if freigegeben else "0.1",
+        "Autor/-in": p["pl"],
+        "Projektleiter/in": p["pl"],
+        "Auftraggeber/in": p["ag"],
+        "Verwaltungseinheit": p["ve"],
+        "Geschäftsbereich": p["gb"],
+        "Projektnummer": p["nummer"],
+    })
+    defs = PHASE_AGIL if method == "agil" else PHASE_KLASSISCH
+    fill_phase_table(find_table(doc, "Phase", "Geplant CHF"), phase_values(budget, defs, ".--"))
+    fill_phase_table(find_table(doc, "Phase", "Arbeitstage"), phase_values(aufwand, defs))
+    fill_org(doc, p["ag"], kuerzel(p["ag"]), p["gb"], p["pl"], kuerzel(p["pl"]), p["ve"])
+    fill_risiken(doc, p["risks"], p["pl"])
+    fill_rows_col(find_table(doc, "Zeitpunkt", "Beschreibung"), [
+        f"Das Projektziel «{p['ziel'][1]}» kann termingerecht erreicht werden.",
+        "Verzögerung mit Mehrkosten; der Nutzen tritt später ein.",
+        "Handlungsbedarf bleibt ungelöst; das Ziel wird nicht erreicht."])
+    vt = find_table(doc, "Verbindlichkeit", "Verantwortlich")
+    if vt and len(vt.rows) > 2:
+        set_cell(vt.rows[1].cells[1], "Budget")
+        set_cell(vt.rows[1].cells[2], f"Genehmigtes Budget {chf(budget)} CHF einhalten.")
+        set_cell(vt.rows[1].cells[3], p["pl"])
+        set_cell(vt.rows[2].cells[1], "Berichterstattung")
+        set_cell(vt.rows[2].cells[2], "Monatlicher Projektstatusbericht (PSR) an den Auftraggeber.")
+        set_cell(vt.rows[2].cells[3], p["pl"])
+    fill_protokoll(doc, "1.0", p["ag"], de(a.get("datum", "")),
+                   "Durchführung freigegeben" if freigegeben else "Entwurf zur Prüfung")
     doc.save(path)
 
 
-# ---- Programm-DA (PDA) ----------------------------------------------------
-def build_programm_da(name, ref, soll, zeit, kinder, path):
+# ---- Programm-DA ----------------------------------------------------------
+def build_programm_da(name, ref, soll, zeit, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     a = soll.get("auftrag", {})
     z = zeit or {}
     budget = a.get("budget_soll", 0)
     aufwand = a.get("aufwand_soll", 0)
-    status = a.get("status", "laufend")
 
-    doc = Document()
-    doc.styles["Normal"].font.name = "Arial"
-    doc.styles["Normal"].font.size = Pt(10)
-    doc.add_heading("Programmdurchführungsauftrag", level=0)
-
-    meta_table(doc, [
-        ("Programmname", name), ("Programmnummer", ref),
-        ("Auftraggeber/in", "Stadtrat Musterstadt"),
-        ("Programmleitung", "N. N."),
-        ("Geplanter Start", de(z.get("start", a.get("datum", "")))),
-        ("Geplantes Ende", de(z.get("ende", ""))),
-        ("Status", STATUS_DE.get(status, status)),
-    ])
-
-    doc.add_heading("Ausgangslage und Handlungsbedarf", level=1)
-    doc.add_paragraph(f"Das Programm «{name}» bündelt {len(kinder)} Projekte zu einem "
-                      "koordinierten Veränderungsvorhaben der Stadtverwaltung.")
-
-    doc.add_heading("Investitionsbedarf", level=1)
-    doc.add_heading("Programmkosten", level=3)
-    rows, acc = [], 0
-    for ph, prop in PROG_SPLIT:
-        v = round(budget * prop)
-        acc += v
-        rows.append((ph, f"{chf(v)}"))
-    rows.append(("Total", chf(acc)))
-    tbl(doc, ["Phase", "Geplant CHF"], rows)
-    doc.add_heading("Arbeitstage", level=3)
-    rows = []
-    for ph, prop in PROG_SPLIT:
-        rows.append((ph, chf(round(aufwand * prop))))
-    rows.append(("Total", chf(aufwand)))
-    tbl(doc, ["Phase", "Geplant Arbeitstage"], rows)
-
-    doc.add_heading("Enthaltene Projekte", level=1)
-    doc.add_paragraph("Die folgenden Projekte werden innerhalb der Programmdurchführung geführt:")
-    tbl(doc, ["Nr.", "Projekt", "Budget CHF", "Status"],
-        [(k["nummer"], k["name"], chf(k["budget"]), STATUS_DE.get(k["status"], k["status"]))
-         for k in kinder] or [("–", "", "", "")])
-
-    doc.add_heading("Programmorganisation", level=1)
-    tbl(doc, ["Rolle in der Programmorganisation", "Name", "Kürzel", "Funktion / Vertretene Organisation"],
-        [("Auftraggeber/in", "Stadtrat Musterstadt", "STR", "Stadtrat"),
-         ("Programmleitung", "N. N.", "", "Stabsstelle PMO"),
-         ("Programmausschuss", "N. N.", "", "Ressortleitungen")])
-
-    doc.add_heading("Konsequenzen", level=1)
-    tbl(doc, ["Zeitpunkt", "Beschreibung"],
-        [("Bei Durchführungsfreigabe", "Die Projekte des Programms können koordiniert umgesetzt werden."),
-         ("Bei ausbleibender Freigabe", "Die Digitalisierungsziele des Programms werden nicht erreicht.")])
-
-    doc.add_heading("Dokument-Protokoll", level=1)
-    tbl(doc, ["Version", "Name", "Datum", "Bemerkungen"],
-        [("1.0", "Stadtrat Musterstadt", de(a.get("datum", "")), "Programmdurchführung freigegeben")])
-
+    doc = Document(TEMPLATE)
+    set_doc_title(doc, "Programmdurchführungsauftrag")
+    set_title_meta(doc, {
+        "Projektname / Projektnummer": f"{name} / {ref}",
+        "Bearbeitungsdatum": de(a.get("datum", z.get("start", ""))),
+        "Version": "1.0",
+        "Autor/-in": "Programmleitung",
+        "Projektleiter/in": "N. N. (Programmleitung)",
+        "Auftraggeber/in": "Stadtrat Musterstadt",
+        "Verwaltungseinheit": "Stabsstelle PMO",
+        "Geschäftsbereich": "Programmleitung",
+        "Projektnummer": ref,
+    })
+    fill_phase_table(find_table(doc, "Phase", "Geplant CHF"), phase_values(budget, PHASE_PROGRAMM, ".--"))
+    fill_phase_table(find_table(doc, "Phase", "Arbeitstage"), phase_values(aufwand, PHASE_PROGRAMM))
+    fill_org(doc, "Stadtrat Musterstadt", "str", "Stadtrat",
+             "N. N.", "", "Stabsstelle PMO")
+    fill_risiken(doc, ["Abhängigkeiten zwischen den Projekten", "Ressourcenkonkurrenz im Programm"], "Programmleitung")
+    fill_rows_col(find_table(doc, "Zeitpunkt", "Beschreibung"), [
+        "Die Projekte des Programms können koordiniert umgesetzt werden.",
+        "Verzögerung des Programmnutzens; Abhängigkeiten geraten in Verzug.",
+        "Die Digitalisierungsziele des Programms werden nicht erreicht."])
+    fill_protokoll(doc, "1.0", "Stadtrat Musterstadt", de(a.get("datum", "")),
+                   "Programmdurchführung freigegeben")
     doc.save(path)
 
 
 def _stub(ref, v):
-    """Minimale Stammdaten für Portfolio-Projekte ohne PSR-Stammdaten (z. B. geplant)."""
     a = v.get("auftrag", {})
-    return {"short": ref, "name": v.get("titel") or ref, "nummer": ref,
-            "pl": "N. N.", "ag": "Ressortleitung " + (v.get("bereich", "").replace("Ressort ", "") or "–"),
-            "ve": v.get("einheit", "–"), "gb": v.get("bereich", "–"),
+    bereich = v.get("bereich", "")
+    return {"name": v.get("titel") or ref, "nummer": ref, "pl": "N. N.",
+            "ag": "Ressortleitung " + (bereich.replace("Ressort ", "") or "–"),
+            "ve": v.get("einheit", "–"), "gb": bereich or "–",
             "cost_plan": a.get("budget_soll", 0), "eff_plan": a.get("aufwand_soll", 0),
-            "ziel": ("Nutzen", v.get("titel", "das Vorhaben") + " umsetzen"),
+            "ziel": ("Nutzen", (v.get("titel") or "das Vorhaben") + " umsetzen"),
             "risks": ["Datenübernahme aus Altsystem", "Verfügbarkeit Fachressourcen"]}
 
 
 def main():
+    if not os.path.exists(TEMPLATE):
+        print("FEHLER: Vorlage fehlt:", TEMPLATE)
+        return
     pf = yaml.safe_load(open(os.path.join(HERE, "portfolio-musterstadt.yaml"), encoding="utf-8"))
     soll = {v["ref"]: v for v in pf["vorhaben"]}
     zeit = pf.get("zeitplan", {})
-    by_short = {p["nummer"]: p for p in PROJECTS}
+    by_nr = {p["nummer"]: p for p in PROJECTS}
 
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-
-    # Programm-Kinder sammeln (für die PDA-Projektliste)
-    kinder = {}
-    for ref, v in soll.items():
-        if v.get("art") == "projekt" and v.get("programm"):
-            p = by_short.get(ref)
-            kinder.setdefault(v["programm"], []).append({
-                "nummer": ref, "name": v.get("titel") or ref,
-                "budget": v["auftrag"].get("budget_soll", 0),
-                "status": v["auftrag"].get("status", "")})
 
     n_proj = n_prog = 0
     for ref, v in soll.items():
         if v.get("art") == "programm":
             name = v.get("titel") or ref
             path = os.path.join(OUT, "Programme", _safe(name), "Programmdurchfuehrungsauftrag.docx")
-            build_programm_da(name, ref, v, zeit.get(ref), kinder.get(name, []), path)
+            build_programm_da(name, ref, v, zeit.get(ref), path)
             n_prog += 1
         else:
-            p = by_short.get(ref) or _stub(ref, v)
+            p = by_nr.get(ref) or _stub(ref, v)
             prog = v.get("programm")
             if prog:
                 folder = os.path.join(OUT, "Programme", _safe(prog), _safe(p["name"]))
@@ -284,7 +298,7 @@ def main():
             build_projekt_da(p, v, zeit.get(ref), os.path.join(folder, "Durchfuehrungsauftrag.docx"))
             n_proj += 1
 
-    print(f"Durchführungsaufträge erzeugt in {OUT}")
+    print(f"Durchführungsaufträge (vorlagengetreu) in {OUT}")
     print(f"  {n_proj} Projekt-DA, {n_prog} Programm-DA")
 
 
