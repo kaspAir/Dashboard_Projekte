@@ -6,6 +6,17 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.9.1] – 2026-10-29
+
+### Betrieb / Demo
+- **Durchführungsaufträge werden additiv eingelesen** (Upsert): neue DA ergänzen den
+  bestehenden DA-Store, bestehende Baselines bleiben erhalten – ideal für
+  schrittweises Hochladen auf den SharePoint.
+- Generator `generate_neuer_bereich.py`: erzeugt ein neues Ressort mit zwei Projekten
+  (PSR-Zeitreihe + Durchführungsauftrag) zum Live-Hochladen; Zeitplan dieser Projekte
+  im Seed hinterlegt, damit sie nach dem Einlesen sofort in Timeline und
+  Auslastungsanalyse erscheinen.
+
 ## [0.9.0] – 2026-10-29
 
 ### Ressourcen-/Auslastungsanalyse pro Person über die Zeitachse
@@ -154,7 +165,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.9.0...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.9.1...dev
+[0.9.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.1
 [0.9.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.9.0
 [0.8.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.1
 [0.8.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.0

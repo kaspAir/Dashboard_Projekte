@@ -46,6 +46,9 @@ zeitplan:
   M-2024-012: { start: "2024-09-01", ende: "2025-09-01", method: klassisch }
   M-2026-013: { start: "2026-11-01", ende: "2027-12-01", method: klassisch }
   M-2025-011: { start: "2025-04-01", ende: "2026-10-01", method: agil }
+  # Neuer Bereich «Kultur & Sport» – Zeitachse für Timeline/Auslastung (Daten kommen live per Upload)
+  M-2026-020: { start: "2025-01-01", ende: "2026-04-01", method: agil }
+  M-2026-021: { start: "2025-03-01", ende: "2026-09-01", method: klassisch }
 
 vorhaben:
   # ---- Programme (eigener Durchführungsauftrag, Rahmen) --------------------

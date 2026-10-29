@@ -390,8 +390,11 @@ def create_app() -> Flask:
                     if res["ingested"] > 0:
                         write_store(res["records"], mid)
                     if res.get("da_ingested"):
-                        from .da import write_da_store
-                        write_da_store(res["da_records"], mid)
+                        from .da import load_da, write_da_store
+                        cur = load_da(mid)                 # bestehende DA (Seed oder Live)
+                        for r in res["da_records"]:        # neue ergänzen/aktualisieren (Upsert)
+                            cur[str(r.get("ref"))] = r
+                        write_da_store(list(cur.values()), mid)
                     result = res
                 except Exception as exc:
                     error = f"Einlesen fehlgeschlagen: {exc}"
