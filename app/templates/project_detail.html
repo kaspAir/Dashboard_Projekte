@@ -59,6 +59,24 @@
   .fund{margin-top:12px;font-size:11px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px}
   .fund.muted{font-style:italic}
   @media(max-width:640px){.grid8,.ampeln{grid-template-columns:1fr}}
+  .da-meta{color:var(--muted);font-size:13px;margin:4px 0 14px;background:#f3f6fb;border:1px solid #dbe4f3;border-radius:8px;padding:8px 12px}
+  .da-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  h3{font-size:13px;margin:14px 0 8px}
+  .barrow{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12px}
+  .barlbl{width:160px;color:var(--muted);text-align:right;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bartrack{flex:1;background:#eef0f3;border-radius:4px;height:16px}
+  .bar{display:block;height:16px;border-radius:4px;background:#5b8def}
+  .bar.eff{background:#7c5bef}
+  .barval{width:96px;text-align:right;flex:none;font-variant-numeric:tabular-nums}
+  .plan-ist{margin-top:10px;font-size:13px;color:var(--ink)}
+  .over{color:var(--r);font-weight:600}.under{color:var(--g)}
+  .datab{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13px;margin-top:2px}
+  .datab th,.datab td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line)}
+  .datab th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  .datab tr:last-child td{border-bottom:none}
+  .rz{font-weight:600}.rz.hi{color:var(--r)}.rz.mid{color:var(--a)}
+  .mini{font-size:12px;color:var(--muted)}.datab th.num{text-align:right}
+  @media(max-width:720px){.da-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -66,6 +84,7 @@
 {% set LBL = {'gesamt':'Gesamtbeurteilung','termine':'Termine','kosten':'Kosten','personalaufwand':'Personalaufwand','ergebnisse':'Ergebnisse','projektziele':'Projektziele','projektrisiken':'Projektrisiken','governance':'Einhaltung Governance'} %}
 {% macro cls(s) %}{{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' }}{% endmacro %}
 {% macro amp(s) %}<span class="status {{ cls(s) }}"><span class="dot"></span>{{ s }}</span>{% endmacro %}
+{% macro chf(x) %}{% if x is none or x=='' %}–{% else %}{{ "{:,.0f}".format(x|int).replace(",", "'") }}{% endif %}{% endmacro %}
 <div class="wrap">
 
   <header>
@@ -85,6 +104,74 @@
     <div><div class="k">Stabilität</div>{% if S.stability=='schwankend' %}<span class="badge warn">schwankend ({{ S.changes }})</span>{% else %}<span class="badge">stabil</span>{% endif %}</div>
     <div><div class="k">Historie</div>{{ S.months }} Monate</div>
   </div>
+
+  {% if da %}
+  <h2>Durchführungsauftrag — Baseline / Startbedingung</h2>
+  <div class="da-meta">
+    Auftraggeber: <b>{{ da.ag }}</b> · Projektleitung: <b>{{ da.pl }}</b> ·
+    Vorgehensmodell: {{ 'Agil' if da.method=='agil' else 'Klassisch' }} ·
+    Version {{ da.version or '1.0' }} · Status: {{ da.status or 'Freigegeben' }}
+  </div>
+
+  <div class="da-grid">
+    <div>
+      <h3>Budget je Phase (Plan aus DA)</h3>
+      {% set kmax = (da.kosten_phasen.values()|list|max) if da.kosten_phasen else 1 %}
+      {% for ph, val in da.kosten_phasen.items() %}
+        <div class="barrow"><span class="barlbl" title="{{ ph }}">{{ ph }}</span>
+          <span class="bartrack"><span class="bar" style="width:{{ (val/kmax*100)|round }}%"></span></span>
+          <span class="barval">{{ chf(val) }}</span></div>
+      {% endfor %}
+      {% set prog = (d.timeline[-1].kosten.prognose|int) if d.timeline[-1].kosten.prognose else 0 %}
+      <div class="plan-ist">Plan (DA): <b>{{ chf(da.budget_soll) }}</b> CHF ·
+        Ist (PSR): {{ chf(d.timeline[-1].kosten.ist) }} ·
+        Prognose (PSR): <b class="{{ 'over' if da.budget_soll and prog > da.budget_soll else 'under' }}">{{ chf(d.timeline[-1].kosten.prognose) }}</b></div>
+    </div>
+    <div>
+      <h3>Aufwand je Phase (Plan aus DA)</h3>
+      {% set amax = (da.aufwand_phasen.values()|list|max) if da.aufwand_phasen else 1 %}
+      {% for ph, val in da.aufwand_phasen.items() %}
+        <div class="barrow"><span class="barlbl" title="{{ ph }}">{{ ph }}</span>
+          <span class="bartrack"><span class="bar eff" style="width:{{ (val/amax*100)|round }}%"></span></span>
+          <span class="barval">{{ val }} PT</span></div>
+      {% endfor %}
+      <div class="plan-ist">Plan (DA): <b>{{ da.aufwand_soll }}</b> PT</div>
+    </div>
+  </div>
+
+  <div class="da-grid">
+    <div>
+      <h3>Projektorganisation</h3>
+      <table class="datab"><tr><th>Rolle</th><th>Name</th><th>Funktion</th></tr>
+        {% for o in da.organisation %}<tr><td>{{ o.rolle }}</td><td>{{ o.name }}</td><td class="mini">{{ o.funktion }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    {% if da.ressourcen %}
+    <div>
+      <h3>Personaleinsatz (Baseline für Ressourcenplanung)</h3>
+      <table class="datab"><tr><th>Rolle</th><th>Person</th><th class="num">Aufwand (PT)</th></tr>
+        {% for r in da.ressourcen %}<tr><td>{{ r.rolle }}</td><td>{{ r.person }}</td><td style="text-align:right">{{ r.pt }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if da.ziele %}
+  <h3>Lösungsziele (aus DA)</h3>
+  <table class="datab"><tr><th>Nr.</th><th>Kategorie</th><th>Zielbeschreibung</th><th>Messgrösse</th><th>Priorität</th></tr>
+    {% for z in da.ziele %}<tr><td>{{ z.nr }}</td><td>{{ z.kategorie }}</td><td>{{ z.beschreibung }}</td><td class="mini">{{ z.messgroesse }}</td><td>{{ z.prioritaet }}</td></tr>{% endfor %}
+  </table>
+  {% endif %}
+
+  {% if da.risiken %}
+  <h3>Risiken (Startbedingung)</h3>
+  <table class="datab"><tr><th>Nr.</th><th>Risiko</th><th>EW</th><th>AG</th><th>RZ</th><th>Massnahme</th><th>Verantw.</th></tr>
+    {% for r in da.risiken %}<tr><td>{{ r.nr }}</td><td>{{ r.risiko }}</td><td>{{ r.ew }}</td><td>{{ r.ag }}</td>
+      <td class="rz {{ 'hi' if (r.rz|int) >= 6 else 'mid' if (r.rz|int) >= 3 else '' }}">{{ r.rz }}</td>
+      <td class="mini">{{ r.massnahme }}</td><td class="mini">{{ r.verantwortlich }}</td></tr>{% endfor %}
+  </table>
+  {% endif %}
+  {% endif %}
 
   <h2>Statusverlauf (Gesamtstatus je Monat)</h2>
   <div class="band">

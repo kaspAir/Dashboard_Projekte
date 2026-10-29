@@ -90,7 +90,7 @@
         <tr><th>Programm</th><th>Status</th><th class="num">Rahmen</th><th class="num">Σ Projekt-Soll</th><th class="num">Σ Prognose</th></tr>
         {% for pr in p.programme %}
         <tr>
-          <td><a href="/projekte?programm={{ pr.name|urlencode }}"><b>{{ pr.name }}</b></a><br><span class="mini">{{ pr.kinder }} Projekte</span></td>
+          <td><a href="/programm/{{ pr.ref }}"><b>{{ pr.name }}</b></a><br><span class="mini">{{ pr.kinder }} Projekte · Durchführungsauftrag</span></td>
           <td>{{ amp(pr.ampel) }}</td>
           <td class="num">{{ chf(pr.budget_soll) }}</td>
           <td class="num">{{ chf(pr.summe_soll) }}</td>

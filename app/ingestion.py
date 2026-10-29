@@ -91,11 +91,16 @@ def to_record(prov: dict) -> dict:
 def run_ingestion(source_config: dict, mim: dict | None = None) -> dict:
     mim = mim or load_mim()
     connector = build_connector(source_config)
-    records, scanned, skipped = [], 0, 0
+    from .da import extract_da, is_da
+    records, da_records, scanned, skipped = [], [], 0, 0
     for artifact in connector.discover():
         scanned += 1
+        path = artifact.local_path
         try:
-            prov = extract_snapshot(artifact.local_path, mim)["provenance"]
+            if is_da(path):                       # Durchführungsauftrag (Baseline)
+                da_records.append(extract_da(path))
+                continue
+            prov = extract_snapshot(path, mim)["provenance"]
         except Exception:
             skipped += 1
             continue
@@ -103,9 +108,11 @@ def run_ingestion(source_config: dict, mim: dict | None = None) -> dict:
             skipped += 1
             continue
         records.append(to_record(prov))
-    # stabile Sortierung: Projekt, dann Periode (Zeitreihe)
     records.sort(key=lambda r: (str(r["projekt"]), r["periode"]))
-    return {"records": records, "scanned": scanned, "ingested": len(records), "skipped": skipped}
+    da_records.sort(key=lambda r: (r.get("typ", ""), str(r.get("ref"))))
+    return {"records": records, "da_records": da_records, "scanned": scanned,
+            "ingested": len(records), "da_ingested": len(da_records),
+            "skipped": skipped}
 
 
 def write_store(records, mandant_id: str) -> str:

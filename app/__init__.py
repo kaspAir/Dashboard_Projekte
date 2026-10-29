@@ -150,11 +150,13 @@ def create_app() -> Flask:
     @app.get("/projekt/<key>")
     def projekt(key):
         user = current_user()
-        detail = project_detail(key, active_org(user), (active_mandant(user) or {}).get("id"))
+        mid = (active_mandant(user) or {}).get("id")
+        detail = project_detail(key, active_org(user), mid)
         if not detail:
             abort(404)
+        from .da import get_da
         return render_template("project_detail.html", env=app.config["APP_ENV"],
-                               d=detail, lifecycle_de=LIFECYCLE_DE, **_ctx(user))
+                               d=detail, da=get_da(mid, key), lifecycle_de=LIFECYCLE_DE, **_ctx(user))
 
     @app.get("/portfolio")
     def portfolio():
@@ -162,6 +164,23 @@ def create_app() -> Flask:
         from .portfolio import portfolio_view
         p = portfolio_view(active_org(user), (active_mandant(user) or {}).get("id"))
         return render_template("portfolio.html", env=app.config["APP_ENV"], p=p, **_ctx(user))
+
+    @app.get("/programm/<ref>")
+    def programm(ref):
+        user = current_user()
+        mid = (active_mandant(user) or {}).get("id")
+        from .da import get_da
+        from .portfolio import portfolio_view
+        da = get_da(mid, ref)
+        pv = portfolio_view(active_org(user), mid)
+        name = (da or {}).get("name") or ref
+        prog = next((p for p in pv["programme"] if p["ref"] == ref or p["name"] == name), None)
+        members = sorted([r for r in pv["rows"] if r.get("programm") == name],
+                         key=lambda r: (-(r.get("prio_score") or -1), r["titel"]))
+        if not da and not prog:
+            abort(404)
+        return render_template("programm_detail.html", env=app.config["APP_ENV"],
+                               da=da, prog=prog, name=name, members=members, **_ctx(user))
 
     @app.get("/portfolio/timeline")
     def portfolio_timeline():
@@ -362,6 +381,9 @@ def create_app() -> Flask:
                     res = run_ingestion(source)
                     if res["ingested"] > 0:
                         write_store(res["records"], mid)
+                    if res.get("da_ingested"):
+                        from .da import write_da_store
+                        write_da_store(res["da_records"], mid)
                     result = res
                 except Exception as exc:
                     error = f"Einlesen fehlgeschlagen: {exc}"

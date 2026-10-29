@@ -1,0 +1,1445 @@
+- typ: programm
+  ref: PG-DV
+  name: Digitale Verwaltung Musterstadt
+  status: ''
+  version: '1.0'
+  datum: ''
+  ag: Stadtrat Musterstadt
+  pl: N. N. (Programmleitung)
+  einheit: ''
+  bereich: ''
+  programm: ''
+  kosten_phasen:
+    Programminitialisierung: 210000
+    Programmdurchführung: 1680000
+    Programmabschluss: 210000
+  budget_soll: 2100000
+  aufwand_phasen:
+    Programminitialisierung: 170
+    Programmdurchführung: 1360
+    Programmabschluss: 170
+  aufwand_soll: 1700
+  method: klassisch
+  organisation:
+  - rolle: Programmauftraggeber
+    name: Stadtrat Musterstadt
+    kuerzel: str
+    funktion: Stadtrat
+  - rolle: Programmausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Programmausschuss (Ressortleitungen)
+  - rolle: Programmleiter
+    name: N. N.
+    kuerzel: ''
+    funktion: Programmleitung, Leiterin PMO
+  ressourcen: []
+  risiken:
+  - nr: R1
+    risiko: Abhängigkeiten zwischen den Projekten geraten in Verzug
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Programmleitung
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Ressourcenkonkurrenz zwischen den Projekten
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Programmleitung
+    termin: ''
+  - nr: 'Legende: EW=Eintretenswahrscheinlichkeit: 1 Niedrig / 2 Mittel / 3 Hoch;
+      AG=Auswirkungsgrad: 1 Gering / 2 Mittel / 3 Gross; RZ=Risikozahl: RZ = EW x
+      AG'
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Nutzen
+    beschreibung: Zielzustand im Themenfeld «Digitale Verwaltung Musterstadt» erreichen
+    messgroesse: Grad der Zielerreichung
+    prioritaet: hoch
+    prognose: on track
+  - nr: ''
+    kategorie: '---'
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+  - nr: '* Priorität: M = Muss / 1 = hoch, 2 = mittel, 3 = tief ** Prognose: Prognose
+      der Zielerreichung in Prozent, in den Programmstatusberichten auszufüllen'
+    kategorie: ''
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+- typ: programm
+  ref: PG-GS
+  name: Gesundheit & Soziales digital
+  status: ''
+  version: '1.0'
+  datum: ''
+  ag: Stadtrat Musterstadt
+  pl: N. N. (Programmleitung)
+  einheit: ''
+  bereich: ''
+  programm: ''
+  kosten_phasen:
+    Programminitialisierung: 62000
+    Programmdurchführung: 496000
+    Programmabschluss: 62000
+  budget_soll: 620000
+  aufwand_phasen:
+    Programminitialisierung: 48
+    Programmdurchführung: 384
+    Programmabschluss: 48
+  aufwand_soll: 480
+  method: klassisch
+  organisation:
+  - rolle: Programmauftraggeber
+    name: Stadtrat Musterstadt
+    kuerzel: str
+    funktion: Stadtrat
+  - rolle: Programmausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Programmausschuss (Ressortleitungen)
+  - rolle: Programmleiter
+    name: N. N.
+    kuerzel: ''
+    funktion: Programmleitung, Leiterin PMO
+  ressourcen: []
+  risiken:
+  - nr: R1
+    risiko: Abhängigkeiten zwischen den Projekten geraten in Verzug
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Programmleitung
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Ressourcenkonkurrenz zwischen den Projekten
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Programmleitung
+    termin: ''
+  - nr: 'Legende: EW=Eintretenswahrscheinlichkeit: 1 Niedrig / 2 Mittel / 3 Hoch;
+      AG=Auswirkungsgrad: 1 Gering / 2 Mittel / 3 Gross; RZ=Risikozahl: RZ = EW x
+      AG'
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Nutzen
+    beschreibung: Zielzustand im Themenfeld «Gesundheit & Soziales digital» erreichen
+    messgroesse: Grad der Zielerreichung
+    prioritaet: hoch
+    prognose: on track
+  - nr: ''
+    kategorie: '---'
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+  - nr: '* Priorität: M = Muss / 1 = hoch, 2 = mittel, 3 = tief ** Prognose: Prognose
+      der Zielerreichung in Prozent, in den Programmstatusberichten auszufüllen'
+    kategorie: ''
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+- typ: programm
+  ref: PG-SC
+  name: Smart City Infrastruktur
+  status: ''
+  version: '1.0'
+  datum: ''
+  ag: Stadtrat Musterstadt
+  pl: N. N. (Programmleitung)
+  einheit: ''
+  bereich: ''
+  programm: ''
+  kosten_phasen:
+    Programminitialisierung: 160000
+    Programmdurchführung: 1280000
+    Programmabschluss: 160000
+  budget_soll: 1600000
+  aufwand_phasen:
+    Programminitialisierung: 95
+    Programmdurchführung: 760
+    Programmabschluss: 95
+  aufwand_soll: 950
+  method: klassisch
+  organisation:
+  - rolle: Programmauftraggeber
+    name: Stadtrat Musterstadt
+    kuerzel: str
+    funktion: Stadtrat
+  - rolle: Programmausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Programmausschuss (Ressortleitungen)
+  - rolle: Programmleiter
+    name: N. N.
+    kuerzel: ''
+    funktion: Programmleitung, Leiterin PMO
+  ressourcen: []
+  risiken:
+  - nr: R1
+    risiko: Abhängigkeiten zwischen den Projekten geraten in Verzug
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Programmleitung
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Ressourcenkonkurrenz zwischen den Projekten
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Programmleitung
+    termin: ''
+  - nr: 'Legende: EW=Eintretenswahrscheinlichkeit: 1 Niedrig / 2 Mittel / 3 Hoch;
+      AG=Auswirkungsgrad: 1 Gering / 2 Mittel / 3 Gross; RZ=Risikozahl: RZ = EW x
+      AG'
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Nutzen
+    beschreibung: Zielzustand im Themenfeld «Smart City Infrastruktur» erreichen
+    messgroesse: Grad der Zielerreichung
+    prioritaet: hoch
+    prognose: on track
+  - nr: ''
+    kategorie: '---'
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+  - nr: '* Priorität: M = Muss / 1 = hoch, 2 = mittel, 3 = tief ** Prognose: Prognose
+      der Zielerreichung in Prozent, in den Programmstatusberichten auszufüllen'
+    kategorie: ''
+    beschreibung: ''
+    messgroesse: ''
+    prioritaet: ''
+    prognose: ''
+- typ: projekt
+  ref: M-2022-007
+  name: Einwohnerregister-Ablösung
+  status: Freigegeben
+  version: '0.1'
+  datum: 01.03.2023
+  ag: Werner Steiner
+  pl: W. Steiner
+  einheit: Einwohneramt
+  bereich: Ressort Sicherheit
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 110000
+    Konzept (klassisch): 220000
+    Realisierung (klassisch): 440000
+    Einführung (klassisch): 220000
+    Abschluss: 110000
+  budget_soll: 1100000
+  aufwand_phasen:
+    Initialisierung: 70
+    Konzept (klassisch): 140
+    Realisierung (klassisch): 280
+    Einführung (klassisch): 140
+    Abschluss: 70
+  aufwand_soll: 700
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Werner Steiner
+    kuerzel: wst
+    funktion: Ressortleiter Sicherheit
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: W. Steiner
+    kuerzel: wst
+    funktion: Projektleitung, Einwohneramt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Einwohneramt
+  ressourcen:
+  - rolle: Projektleitung
+    person: W. Steiner
+    pt: 105
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 140
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 280
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 105
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 70
+  risiken:
+  - nr: R1
+    risiko: Migration scheitert wiederholt
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: W. Steiner
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Betrieb Altsystem verlängert
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: W. Steiner
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Datenqualität
+    beschreibung: Fehlerfreie Migration der Personendaten
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2023-001
+  name: Bürgerportal Musterstadt
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.09.2023
+  ag: Dr. Thomas Widmer
+  pl: P. Ackermann
+  einheit: IT-Abteilung
+  bereich: Ressort Finanzen
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 120000
+    Umsetzung (agil): 560000
+    Abschluss: 120000
+  budget_soll: 800000
+  aufwand_phasen:
+    Initialisierung: 93
+    Umsetzung (agil): 434
+    Abschluss: 93
+  aufwand_soll: 620
+  method: agil
+  organisation:
+  - rolle: Auftraggeber
+    name: Dr. Thomas Widmer
+    kuerzel: twi
+    funktion: Ressortleiter Finanzen
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: P. Ackermann
+    kuerzel: pac
+    funktion: Projektleitung, IT-Abteilung
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung IT-Abteilung
+  ressourcen:
+  - rolle: Projektleitung
+    person: P. Ackermann
+    pt: 93
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 124
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 248
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 93
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 62
+  risiken:
+  - nr: R1
+    risiko: Abhängigkeit von eID
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: P. Ackermann
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: viele Fachverfahren anzubinden
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: P. Ackermann
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Zugang
+    beschreibung: Ein Login für alle städtischen Dienste
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-002
+  name: Digitale Baugenehmigung
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.06.2024
+  ag: Roland Hofer
+  pl: R. Hofer
+  einheit: Bauamt
+  bereich: Ressort Bau & Umwelt
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 46000
+    Konzept (klassisch): 92000
+    Realisierung (klassisch): 184000
+    Einführung (klassisch): 92000
+    Abschluss: 46000
+  budget_soll: 460000
+  aufwand_phasen:
+    Initialisierung: 36
+    Konzept (klassisch): 72
+    Realisierung (klassisch): 144
+    Einführung (klassisch): 72
+    Abschluss: 36
+  aufwand_soll: 360
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Roland Hofer
+    kuerzel: rho
+    funktion: Ressortleiter Bau & Umwelt
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: R. Hofer
+    kuerzel: rho
+    funktion: Projektleitung, Bauamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Bauamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: R. Hofer
+    pt: 54
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 72
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 144
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 54
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 36
+  risiken:
+  - nr: R1
+    risiko: Datenübernahme Altsystem
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: R. Hofer
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Akzeptanz Sachbearbeitung
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: R. Hofer
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Effizienz
+    beschreibung: Baugesuche medienbruchfrei bearbeiten
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-003
+  name: Schul-WLAN-Ausbau
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.02.2024
+  ag: Sandra Brunner
+  pl: S. Brunner
+  einheit: Schulamt
+  bereich: Ressort Bildung
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 32000
+    Konzept (klassisch): 64000
+    Realisierung (klassisch): 128000
+    Einführung (klassisch): 64000
+    Abschluss: 32000
+  budget_soll: 320000
+  aufwand_phasen:
+    Initialisierung: 18
+    Konzept (klassisch): 36
+    Realisierung (klassisch): 72
+    Einführung (klassisch): 36
+    Abschluss: 18
+  aufwand_soll: 180
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Sandra Brunner
+    kuerzel: sbr
+    funktion: Ressortleiterin Bildung
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: S. Brunner
+    kuerzel: sbr
+    funktion: Projektleitung, Schulamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Schulamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: S. Brunner
+    pt: 27
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 36
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 72
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 27
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 18
+  risiken:
+  - nr: R1
+    risiko: Lieferzeiten Hardware
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: S. Brunner
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: bauliche Gegebenheiten
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: S. Brunner
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Infrastruktur
+    beschreibung: Flächendeckendes WLAN an allen Schulen
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-004
+  name: E-Rechnung Stadtkasse
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.08.2024
+  ag: Dr. Thomas Widmer
+  pl: T. Widmer
+  einheit: Stadtkasse
+  bereich: Ressort Finanzen
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 24000
+    Konzept (klassisch): 48000
+    Realisierung (klassisch): 96000
+    Einführung (klassisch): 48000
+    Abschluss: 24000
+  budget_soll: 240000
+  aufwand_phasen:
+    Initialisierung: 19
+    Konzept (klassisch): 38
+    Realisierung (klassisch): 76
+    Einführung (klassisch): 38
+    Abschluss: 19
+  aufwand_soll: 190
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Dr. Thomas Widmer
+    kuerzel: twi
+    funktion: Ressortleiter Finanzen
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: T. Widmer
+    kuerzel: twi
+    funktion: Projektleitung, Stadtkasse
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Stadtkasse
+  ressourcen:
+  - rolle: Projektleitung
+    person: T. Widmer
+    pt: 28
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 38
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 76
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 28
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 19
+  risiken:
+  - nr: R1
+    risiko: Erkennungsrate Sonderformate
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: T. Widmer
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Lizenzkosten
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: T. Widmer
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Automatisierung
+    beschreibung: Rechnungen automatisiert verarbeiten
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-005
+  name: Sozialhilfe-Portal
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.10.2024
+  ag: Ursula Graf
+  pl: U. Graf
+  einheit: Sozialamt
+  bereich: Ressort Soziales & Gesundheit
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 61500
+    Umsetzung (agil): 287000
+    Abschluss: 61500
+  budget_soll: 410000
+  aufwand_phasen:
+    Initialisierung: 45
+    Umsetzung (agil): 210
+    Abschluss: 45
+  aufwand_soll: 300
+  method: agil
+  organisation:
+  - rolle: Auftraggeber
+    name: Ursula Graf
+    kuerzel: ugr
+    funktion: Ressortleiterin Soziales
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: U. Graf
+    kuerzel: ugr
+    funktion: Projektleitung, Sozialamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Sozialamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: U. Graf
+    pt: 45
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 60
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 120
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 45
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 30
+  risiken:
+  - nr: R1
+    risiko: Datenschutz sensible Daten
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: U. Graf
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Fachbereich knapp verfügbar
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: U. Graf
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Servicequalität
+    beschreibung: Anträge und Fallmanagement digital
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-006
+  name: Verkehrsleitsystem
+  status: Freigegeben
+  version: '1.0'
+  datum: 15.01.2024
+  ag: Roland Hofer
+  pl: V. Moser
+  einheit: Bauamt
+  bereich: Ressort Bau & Umwelt
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 92000
+    Konzept (klassisch): 184000
+    Realisierung (klassisch): 368000
+    Einführung (klassisch): 184000
+    Abschluss: 92000
+  budget_soll: 920000
+  aufwand_phasen:
+    Initialisierung: 54
+    Konzept (klassisch): 108
+    Realisierung (klassisch): 216
+    Einführung (klassisch): 108
+    Abschluss: 54
+  aufwand_soll: 540
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Roland Hofer
+    kuerzel: rho
+    funktion: Ressortleiter Bau & Umwelt
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: V. Moser
+    kuerzel: vmo
+    funktion: Projektleitung, Bauamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Bauamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: V. Moser
+    pt: 81
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 108
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 216
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 81
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 54
+  risiken:
+  - nr: R1
+    risiko: Bewilligungen verzögern
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: V. Moser
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Budgetnachtrag nötig
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: V. Moser
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Verkehrsfluss
+    beschreibung: Stauzeiten auf Hauptachsen senken
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-008
+  name: Stadtpolizei-Einsatzapp
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.08.2024
+  ag: Werner Steiner
+  pl: X. Keller
+  einheit: Stadtpolizei
+  bereich: Ressort Sicherheit
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 84000
+    Umsetzung (agil): 392000
+    Abschluss: 84000
+  budget_soll: 560000
+  aufwand_phasen:
+    Initialisierung: 54
+    Umsetzung (agil): 252
+    Abschluss: 54
+  aufwand_soll: 360
+  method: agil
+  organisation:
+  - rolle: Auftraggeber
+    name: Werner Steiner
+    kuerzel: wst
+    funktion: Ressortleiter Sicherheit
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: X. Keller
+    kuerzel: xke
+    funktion: Projektleitung, Stadtpolizei
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Stadtpolizei
+  ressourcen:
+  - rolle: Projektleitung
+    person: X. Keller
+    pt: 54
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 72
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 144
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 54
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 36
+  risiken:
+  - nr: R1
+    risiko: Funkschnittstelle
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: X. Keller
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: 24/7-Betriebsanforderungen
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: X. Keller
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Reaktionszeit
+    beschreibung: Einsätze mobil koordinieren
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-009
+  name: Umwelt-Sensornetz
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.06.2024
+  ag: Roland Hofer
+  pl: Y. Lehmann
+  einheit: Bauamt
+  bereich: Ressort Bau & Umwelt
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 24000
+    Konzept (klassisch): 48000
+    Realisierung (klassisch): 96000
+    Einführung (klassisch): 48000
+    Abschluss: 24000
+  budget_soll: 240000
+  aufwand_phasen:
+    Initialisierung: 16
+    Konzept (klassisch): 32
+    Realisierung (klassisch): 64
+    Einführung (klassisch): 32
+    Abschluss: 16
+  aufwand_soll: 160
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Roland Hofer
+    kuerzel: rho
+    funktion: Ressortleiter Bau & Umwelt
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: Y. Lehmann
+    kuerzel: yle
+    funktion: Projektleitung, Bauamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Bauamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: Y. Lehmann
+    pt: 24
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 32
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 64
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 24
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 16
+  risiken:
+  - nr: R1
+    risiko: Kalibrierung witterungsabhängig
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Y. Lehmann
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Standortzugang
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Y. Lehmann
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Umweltschutz
+    beschreibung: Luft- und Lärmwerte kontinuierlich messen
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2024-012
+  name: Gesundheitsamt-Terminsystem
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.09.2024
+  ag: Ursula Graf
+  pl: B. Küng
+  einheit: Sozialamt
+  bereich: Ressort Soziales & Gesundheit
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 16000
+    Konzept (klassisch): 32000
+    Realisierung (klassisch): 64000
+    Einführung (klassisch): 32000
+    Abschluss: 16000
+  budget_soll: 160000
+  aufwand_phasen:
+    Initialisierung: 14
+    Konzept (klassisch): 28
+    Realisierung (klassisch): 56
+    Einführung (klassisch): 28
+    Abschluss: 14
+  aufwand_soll: 140
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Ursula Graf
+    kuerzel: ugr
+    funktion: Ressortleiterin Soziales
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: B. Küng
+    kuerzel: bkü
+    funktion: Projektleitung, Sozialamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Sozialamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: B. Küng
+    pt: 21
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 28
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 56
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 21
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 14
+  risiken:
+  - nr: R1
+    risiko: Anbindung Praxissysteme
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: B. Küng
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: geringe Nutzung anfangs
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: B. Küng
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Servicequalität
+    beschreibung: Online-Termine für Beratungen
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2025-010
+  name: Digitales Ratsinformationssystem
+  status: Freigegeben
+  version: '1.0'
+  datum: 01.03.2025
+  ag: Dr. Thomas Widmer
+  pl: Z. Frei
+  einheit: IT-Abteilung
+  bereich: Ressort Finanzen
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 27000
+    Umsetzung (agil): 126000
+    Abschluss: 27000
+  budget_soll: 180000
+  aufwand_phasen:
+    Initialisierung: 22
+    Umsetzung (agil): 105
+    Abschluss: 22
+  aufwand_soll: 150
+  method: agil
+  organisation:
+  - rolle: Auftraggeber
+    name: Dr. Thomas Widmer
+    kuerzel: twi
+    funktion: Ressortleiter Finanzen
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: Z. Frei
+    kuerzel: zfr
+    funktion: Projektleitung, IT-Abteilung
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung IT-Abteilung
+  ressourcen:
+  - rolle: Projektleitung
+    person: Z. Frei
+    pt: 22
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 30
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 60
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 22
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 15
+  risiken:
+  - nr: R1
+    risiko: Migration Altprotokolle
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Z. Frei
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Rechteverwaltung
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Z. Frei
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Transparenz
+    beschreibung: Sitzungen und Beschlüsse digital verfügbar
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track
+- typ: projekt
+  ref: M-2026-013
+  name: Digitale Bauakte
+  status: Freigegeben
+  version: '1.0'
+  datum: 15.02.2026
+  ag: Roland Hofer
+  pl: Daniel Huber
+  einheit: Bauamt
+  bereich: Ressort Bau & Umwelt
+  programm: ''
+  kosten_phasen:
+    Initialisierung: 30000
+    Konzept (klassisch): 60000
+    Realisierung (klassisch): 120000
+    Einführung (klassisch): 60000
+    Abschluss: 30000
+  budget_soll: 300000
+  aufwand_phasen:
+    Initialisierung: 22
+    Konzept (klassisch): 44
+    Realisierung (klassisch): 88
+    Einführung (klassisch): 44
+    Abschluss: 22
+  aufwand_soll: 220
+  method: klassisch
+  organisation:
+  - rolle: Auftraggeber
+    name: Roland Hofer
+    kuerzel: rho
+    funktion: Ressortleiter Bau & Umwelt
+  - rolle: Projektausschuss
+    name: Felix Baumann
+    kuerzel: fba
+    funktion: Vertreter Stadtrat
+  - rolle: Projektleiter
+    name: Daniel Huber
+    kuerzel: dhu
+    funktion: Projektleitung, Bauamt
+  - rolle: ISDS-Verantwortlicher
+    name: Eva Schmid
+    kuerzel: esc
+    funktion: ISDS-Beauftragte, Stabsstelle
+  - rolle: Anwendervertreter
+    name: Gina Roth
+    kuerzel: gro
+    funktion: Anwendervertretung Bauamt
+  ressourcen:
+  - rolle: Projektleitung
+    person: Daniel Huber
+    pt: 33
+  - rolle: Business-/Fachanalyse
+    person: Gina Roth
+    pt: 44
+  - rolle: Realisierung / Entwicklung
+    person: Daniel Huber
+    pt: 88
+  - rolle: Test & Qualitätssicherung
+    person: Hans Vogel
+    pt: 33
+  - rolle: Einführung & Schulung
+    person: Beat Küng
+    pt: 22
+  risiken:
+  - nr: R1
+    risiko: Datenübernahme aus Altsystem
+    ew: '2'
+    ag: '4'
+    rz: Gegensteuernde Massnahme definiert
+    massnahme: Daniel Huber
+    verantwortlich: ''
+    termin: ''
+  - nr: R2
+    risiko: Verfügbarkeit Fachressourcen
+    ew: '3'
+    ag: '2'
+    rz: '6'
+    massnahme: Gegensteuernde Massnahme definiert
+    verantwortlich: Daniel Huber
+    termin: ''
+  - nr: R3
+    risiko: ''
+    ew: ''
+    ag: ''
+    rz: ''
+    massnahme: ''
+    verantwortlich: ''
+    termin: ''
+  ziele:
+  - nr: LZ-01
+    kategorie: Nutzen
+    beschreibung: Digitale Bauakte umsetzen
+    messgroesse: Grad der Zielerreichung in %
+    prioritaet: hoch
+    prognose: on track
+  - nr: LZ-02
+    kategorie: Qualität
+    beschreibung: Medienbruchfreie, datenschutzkonforme Lösung
+    messgroesse: Abnahmekriterien erfüllt
+    prioritaet: mittel
+    prognose: on track

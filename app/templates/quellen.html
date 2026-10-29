@@ -68,7 +68,8 @@
   {% if result %}
     {% if result.ingested > 0 %}
       <div class="ok"><b>Eingelesen.</b> Gescannt: {{ result.scanned }} · als PSR übernommen:
-        <b>{{ result.ingested }}</b> · übersprungen: {{ result.skipped }}. Das Dashboard zeigt jetzt diese Daten.</div>
+        <b>{{ result.ingested }}</b>{% if result.da_ingested %} · Durchführungsaufträge: <b>{{ result.da_ingested }}</b>{% endif %}
+        · übersprungen: {{ result.skipped }}. Das Dashboard zeigt jetzt diese Daten.</div>
     {% else %}
       <div class="warn"><b>0 PSR gefunden</b> (gescannt: {{ result.scanned }}). Pfad/Quelle prüfen –
         bestehende Daten bleiben unverändert.</div>

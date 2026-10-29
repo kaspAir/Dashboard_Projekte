@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ name }} – Programm</title>
+<style>
+  :root{--g:#2e9e4f;--a:#e0a400;--r:#d23b3b;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--bg:#f5f6f8;--card:#fff;--link:#2563eb}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1040px;margin:0 auto;padding:24px 20px 60px}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  h1{font-size:22px;margin:0}
+  h2{font-size:14px;margin:26px 0 8px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+  h3{font-size:13px;margin:14px 0 8px}
+  a{color:var(--link);text-decoration:none;font-weight:600}
+  .env{font-size:12px;color:var(--muted)}
+  .da-meta{color:var(--muted);font-size:13px;margin:12px 0 14px;background:#f3f6fb;border:1px solid #dbe4f3;border-radius:8px;padding:8px 12px}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .pill{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 14px;min-width:120px}
+  .pill .n{font-size:18px;font-weight:700}.pill .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .pill.warn .n{color:var(--r)}
+  .da-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .barrow{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:12px}
+  .barlbl{width:170px;color:var(--muted);text-align:right;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bartrack{flex:1;background:#eef0f3;border-radius:4px;height:16px}
+  .bar{display:block;height:16px;border-radius:4px;background:#5b8def}.bar.eff{background:#7c5bef}
+  .barval{width:96px;text-align:right;flex:none;font-variant-numeric:tabular-nums}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13px;margin-top:2px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;background:#fbfbfc}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .status{font-weight:600}.status.g{color:var(--g)}.status.a{color:var(--a)}.status.r{color:var(--r)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+  .g .dot{background:var(--g)}.a .dot{background:var(--a)}.r .dot{background:var(--r)}
+  .mini{font-size:12px;color:var(--muted)}.over{color:var(--r);font-weight:600}
+  .rz{font-weight:600}.rz.hi{color:var(--r)}.rz.mid{color:var(--a)}
+  @media(max-width:720px){.da-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+{% macro cls(s) %}{{ 'g' if s=='grün' else 'a' if s=='gelb' else 'r' if s=='rot' else '' }}{% endmacro %}
+{% macro amp(s) %}{% if s %}<span class="status {{ cls(s) }}"><span class="dot"></span>{{ s }}</span>{% else %}<span class="mini">–</span>{% endif %}{% endmacro %}
+{% macro chf(x) %}{% if x is none or x=='' %}–{% else %}{{ "{:,.0f}".format(x|int).replace(",", "'") }}{% endif %}{% endmacro %}
+<div class="wrap">
+  {% include '_nav.html' %}
+  <header>
+    <h1>{{ name }} <span class="mini">· Programm {{ da.ref if da else '' }}</span></h1>
+    <div class="env">Umgebung: <b>{{ env }}</b> · <a href="/portfolio">← Portfolio</a> · <a href="/portfolio/timeline">Timeline</a></div>
+  </header>
+
+  {% if da %}
+  <div class="da-meta">Programmdurchführungsauftrag · Auftraggeber: <b>{{ da.ag }}</b> ·
+    Programmleitung: <b>{{ da.pl }}</b> · Status: {{ da.status or prog.status_label if prog else 'Freigegeben' }}</div>
+  {% endif %}
+
+  {% set summe_soll = members|sum(attribute='budget_soll', start=0) %}
+  {% set summe_prog = members|sum(attribute='k_prog', start=0) %}
+  <div class="pills">
+    <div class="pill"><div class="n">{{ members|length }}</div><div class="l">Projekte</div></div>
+    {% if prog %}<div class="pill"><div class="n">{{ chf(prog.budget_soll) }}</div><div class="l">Programm-Rahmen (CHF)</div></div>{% endif %}
+    <div class="pill"><div class="n">{{ chf(summe_soll) }}</div><div class="l">Σ Projekt-Budget</div></div>
+    <div class="pill {{ 'warn' if prog and prog.budget_soll and summe_prog > prog.budget_soll }}"><div class="n">{{ chf(summe_prog) }}</div><div class="l">Σ Prognose (PSR)</div></div>
+    {% if prog %}<div class="pill"><div class="n">{{ amp(prog.ampel) }}</div><div class="l">Status (worst-of)</div></div>{% endif %}
+  </div>
+
+  <h2>Projekte des Programms</h2>
+  <table>
+    <tr><th>Projekt</th><th>Status</th><th class="num">Prio</th><th class="num">Budget-Soll</th><th class="num">Prognose (PSR)</th></tr>
+    {% for m in members %}
+    <tr>
+      <td>{% if m.reports %}<a href="/projekt/{{ m.ref }}"><b>{{ m.titel }}</b></a>{% else %}<b>{{ m.titel }}</b>{% endif %}
+        <br><span class="mini">{{ m.ref }}{% if m.einheit %} · {{ m.einheit }}{% endif %}</span></td>
+      <td>{{ amp(m.ampel) }}</td>
+      <td class="num">{{ m.prio_score if m.prio_score is not none else '–' }}</td>
+      <td class="num">{{ chf(m.budget_soll) }}</td>
+      <td class="num"><span class="{{ 'over' if m.budget_soll and m.k_prog and m.k_prog > m.budget_soll }}">{{ chf(m.k_prog) }}</span></td>
+    </tr>
+    {% endfor %}
+    <tr><td><b>Total</b></td><td></td><td></td><td class="num"><b>{{ chf(summe_soll) }}</b></td><td class="num"><b>{{ chf(summe_prog) }}</b></td></tr>
+  </table>
+
+  {% if da and da.kosten_phasen %}
+  <h2>Programm-Durchführungsauftrag (Baseline)</h2>
+  <div class="da-grid">
+    <div>
+      <h3>Budget je Phase (Plan)</h3>
+      {% set kmax = (da.kosten_phasen.values()|list|max) if da.kosten_phasen else 1 %}
+      {% for ph, val in da.kosten_phasen.items() %}
+        <div class="barrow"><span class="barlbl" title="{{ ph }}">{{ ph }}</span>
+          <span class="bartrack"><span class="bar" style="width:{{ (val/kmax*100)|round }}%"></span></span>
+          <span class="barval">{{ chf(val) }}</span></div>
+      {% endfor %}
+      <div class="mini" style="margin-top:8px">Plan (DA): <b>{{ chf(da.budget_soll) }}</b> CHF</div>
+    </div>
+    <div>
+      <h3>Aufwand je Phase (Plan)</h3>
+      {% set amax = (da.aufwand_phasen.values()|list|max) if da.aufwand_phasen else 1 %}
+      {% for ph, val in da.aufwand_phasen.items() %}
+        <div class="barrow"><span class="barlbl" title="{{ ph }}">{{ ph }}</span>
+          <span class="bartrack"><span class="bar eff" style="width:{{ (val/amax*100)|round }}%"></span></span>
+          <span class="barval">{{ val }} PT</span></div>
+      {% endfor %}
+      <div class="mini" style="margin-top:8px">Plan (DA): <b>{{ da.aufwand_soll }}</b> PT</div>
+    </div>
+  </div>
+
+  <div class="da-grid">
+    <div>
+      <h3>Programmorganisation</h3>
+      <table><tr><th>Rolle</th><th>Name</th><th>Funktion</th></tr>
+        {% for o in da.organisation %}<tr><td>{{ o.rolle }}</td><td>{{ o.name }}</td><td class="mini">{{ o.funktion }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    {% if da.risiken %}
+    <div>
+      <h3>Risiken (Startbedingung)</h3>
+      <table><tr><th>Risiko</th><th class="num">EW</th><th class="num">AG</th><th class="num">RZ</th></tr>
+        {% for r in da.risiken %}<tr><td>{{ r.risiko }}</td><td class="num">{{ r.ew }}</td><td class="num">{{ r.ag }}</td>
+          <td class="num rz {{ 'hi' if (r.rz|int) >= 6 else 'mid' if (r.rz|int) >= 3 else '' }}">{{ r.rz }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+</body>
+</html>

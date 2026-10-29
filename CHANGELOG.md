@@ -6,6 +6,22 @@ Alle nennenswerten Änderungen an diesem Projekt. Format nach
 
 ## [Unreleased]
 
+## [0.8.0] – 2026-10-29
+
+### Durchführungsaufträge (Baseline) — Extraktion, Routing, Projekt-/Programmseite
+- **DA-Extraktor** (`app/da.py`): liest Durchführungsaufträge/Programmdurchführungs-
+  aufträge (.docx) in eine kanonische Baseline (Metadaten, Kosten/Aufwand je Phase,
+  Organisation/Personen, Ressourcen, Risiken, Ziele).
+- **Ingestion-Routing**: erkennt inhaltsbasiert PSR vs. DA; DAs speisen den DA-Store
+  (`data/da/<mandant>.yaml`, Seed `sample-data/da-<id>.yaml`), PSR wie bisher. Beim
+  SharePoint-Einlesen werden beide Dokumenttypen in einem Lauf verarbeitet.
+- **Projektseite**: neue Sektion „Durchführungsauftrag — Baseline" mit Budget/Aufwand
+  je Phase (Balken), Organisation, Personaleinsatz je Person, Risiken, Lösungszielen,
+  sowie **Plan (DA) vs. Ist/Prognose (PSR)**.
+- **Programmseite** (`/programm/<ref>`): Programm-DA-Baseline + Projekte des Programms
+  mit Status/Priorität/Budget/Prognose und Roll-up gegen den Programmrahmen.
+- **DA-Generator** erzeugt zusätzlich den committeten Seed-DA-Store.
+
 ## [0.7.3] – 2026-10-29
 
 ### Portfolio: Roadmap/Timeline & klickbare Bereiche
@@ -117,7 +133,8 @@ Erste zusammenhängende Version – demofähig für Interessenten.
 - Drei Mandanten mit eigenen Datensätzen: LLV (20 Projekte), kaspAIr GmbH (10),
   Stadt Musterstadt (12).
 
-[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.7.3...dev
+[Unreleased]: https://github.com/kaspAir/Dashboard_Projekte/compare/v0.8.0...dev
+[0.8.0]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.8.0
 [0.7.3]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.3
 [0.7.2]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.2
 [0.7.1]: https://github.com/kaspAir/Dashboard_Projekte/releases/tag/v0.7.1

@@ -29,6 +29,7 @@ from docx.text.paragraph import Paragraph
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.dirname(HERE))   # Projektwurzel für 'app'-Import
 from generate_psr import chf  # noqa: E402
 from psr_data_demo import PROJECTS  # noqa: E402
 
@@ -627,6 +628,21 @@ def main():
 
     print(f"Durchführungsaufträge (vollständig, vorlagengetreu) in {OUT}")
     print(f"  {n_proj} Projekt-DA, {n_prog} Programm-DA")
+
+    # Seed-DA-Store extrahieren (committet) – speist später das Portfolio-Soll
+    from app.da import extract_da, is_da
+    records = []
+    for dp, _dirs, files in os.walk(OUT):
+        for fn in sorted(files):
+            if fn.lower().endswith(".docx") and not fn.startswith("~$"):
+                fp = os.path.join(dp, fn)
+                if is_da(fp):
+                    records.append(extract_da(fp))
+    records.sort(key=lambda r: (r.get("typ", ""), str(r.get("ref"))))
+    out = os.path.join(HERE, "da-musterstadt.yaml")
+    with open(out, "w", encoding="utf-8") as f:
+        yaml.safe_dump(records, f, allow_unicode=True, sort_keys=False)
+    print(f"  Seed-DA-Store: {out} ({len(records)} DA)")
 
 
 if __name__ == "__main__":

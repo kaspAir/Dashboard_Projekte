@@ -349,7 +349,7 @@ def portfolio_view(org=None, mandant_id=None):
         summe_prog = sum(r["k_prog"] or 0 for r in kinder)
         ampeln = [r["ampel"] for r in kinder if r["ampel"]]
         programme.append({
-            "name": name, "status": soll.get("status", ""),
+            "name": name, "ref": str(v.get("ref")), "status": soll.get("status", ""),
             "status_label": STATUS_LABEL.get(soll.get("status"), soll.get("status", "")),
             "budget_soll": _num(soll.get("budget_soll")), "kinder": len(kinder),
             "summe_soll": summe_soll, "summe_prognose": summe_prog,
